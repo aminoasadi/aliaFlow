@@ -8,18 +8,11 @@ export function DepartmentHeading({ title }: { title: string }) {
   return <section className="department-heading"><h2>{title}</h2></section>;
 }
 
-const catalogueTabs = [
-  { number: "1", label: "Thrivable Business" },
-  { number: "2", label: "Business Leadership" },
-  { number: "3", label: "Technocratic Design" },
-  { number: "4", label: "Execution Management" },
-];
-
-export function ServiceCatalogueNav() {
+export function ServiceCatalogueNav({ heading, tabs }: { heading: string; tabs: { number: string; label: string }[] }) {
   return <section className="catalogue-nav">
-    <h2>OUR SERVICE CATALOGUE</h2>
+    <h2>{heading}</h2>
     <ul>
-      {catalogueTabs.map((tab) => <li key={tab.number}><span>{tab.number}</span>{tab.label}</li>)}
+      {tabs.map((tab) => <li key={tab.number}><span>{tab.number}</span>{tab.label}</li>)}
     </ul>
   </section>;
 }

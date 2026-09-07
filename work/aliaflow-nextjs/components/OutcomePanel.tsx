@@ -1,4 +1,9 @@
-export type Outcome = { label: string; emphasis: string; copy: string; stats: string[] };
+export type Outcome = {
+  label: string;
+  emphasis: string;
+  copy: string;
+  stats: { value: string }[];
+};
 
 export function OutcomePanel({ outcome, index }: { outcome: Outcome; index: number }) {
   const short = outcome.label.replace("is ", "");
