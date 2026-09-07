@@ -95,15 +95,7 @@ Each entry: section key → fields → current hardcoded source file.
     `testimonials: list<{ name: text, role: text, title: text, body: textarea }>`,
     `closing_heading: text`, `closing_body: text` —
     `components/FigmaSections.tsx` (`TestimonialsAndFooter`)
-12. **project-loop** — `eyebrow: text`, `heading: text`, `body: textarea`,
-    `projects: list<{ name: text, subtitle: text, image: image }>` —
-    `data/site.ts` (`projects`) + `components/ProjectLoop.tsx`
-13. **trust-team** — `eyebrow: text`, `heading: text`,
-    `pillars: list<{ label: text, body: textarea }>`,
-    `team_heading: text`,
-    `team: list<{ name: text, role: text, image: image }>` —
-    `components/TrustSection.tsx`
-14. **footer** — `eyebrow: text`, `heading: text`, `email: text`,
+12. **footer** — `eyebrow: text`, `heading: text`, `email: text`,
     `description: text`, `social_links: list<{ label: text, href: text }>`,
     `copyright: text` — `components/Footer.tsx`
 
@@ -157,6 +149,13 @@ mostly don't change, only where their data comes from.
 - Manual verification: run `next dev`, log in, edit one field per section
   type (text, textarea, image, list), confirm the public page reflects the
   change after reload.
+
+## Correction after re-reading the codebase
+
+`components/ProjectLoop.tsx`, `components/TrustSection.tsx`, `components/Pillar.tsx`,
+and `components/ServiceCatalogue.tsx` are not imported by `app/page.tsx` — they are
+dead code, not part of the rendered site. The section inventory above already
+excludes them. 12 sections total, not 14.
 
 ## Out of scope
 
