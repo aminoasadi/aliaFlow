@@ -1,38 +1,9 @@
 import Image from "next/image";
-import type { ReactNode } from "react";
+import { Fragment, type ReactNode } from "react";
 
-const lorem =
-  "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet.";
-
-const futures = [
-  {
-    title: "Future of BANKING",
-    heading: "Future of Banking in\na Technocratic world",
-    tags: "#Digital Banking #FinTech Innovation\n#Automated & AI",
-  },
-  {
-    title: "Future of GOVERNANCE",
-    heading: "Future of Governance in\na Technocratic World",
-    tags: "#Digital Governance #Smart Policy Systems\n#Futuristic Administration",
-  },
-  {
-    title: "Future of EDUCATION",
-    heading: "Future of Education in\na Technocratic World",
-    tags: "#EdTech #Digital Learning\n#Future Classrooms",
-  },
-];
-
-const loops = [
-  { image: "/assets/aliasys-loop.png", label: "ICT Infrastructure", title: "Aliasys Business Loop" },
-  { image: "/assets/aliapay-loop.png", label: "Banking and Fintech", title: "Aliapay Business Loop" },
-  { image: "/assets/alialab-loop.png", label: "Education", title: "AliaLab Business Loop" },
-];
-
-const cultures = [
-  { image: "/assets/workshop.png", label: "ICT Infrastructure", title: "Technocratic Culture" },
-  { image: "/assets/design-event.png", label: "Innovation & Design", title: "Design Thinking Culture" },
-  { image: "/assets/meeting-halftone.png", label: "Leadership & Management", title: "Collaborative Agile Culture" },
-];
+function Lines({ text }: { text: string }) {
+  return <>{text.split("\n").map((line, i) => <Fragment key={line}>{i > 0 ? <br /> : null}{line}</Fragment>)}</>;
+}
 
 function LoopMark() {
   return (
@@ -69,6 +40,8 @@ function ServiceBlock({ number, title, body, mark }: { number: string; title: st
 }
 
 function TileGrid({ items, contain = false }: { items: { image: string; label: string; title: string }[]; contain?: boolean }) {
+  const lorem =
+    "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet.";
   return (
     <div className="future-grid">
       {items.map((item) => (
@@ -87,25 +60,54 @@ function TileGrid({ items, contain = false }: { items: { image: string; label: s
   );
 }
 
-export function ThrivableBusiness() {
+export type ThrivableBusinessData = {
+  heading: string;
+  question_image: string;
+  question: string;
+  service_blocks: { number: string; title: string; body: string }[];
+  futures: { title: string; heading: string; tags: string }[];
+  loops: { image: string; label: string; title: string }[];
+  cultures: { image: string; label: string; title: string }[];
+  magazine_heading: string;
+  magazine_price: string;
+  magazine_image: string;
+  jam_heading: string;
+  jam_date: string;
+  jam_body: string;
+  jam_image: string;
+};
+
+export function ThrivableBusiness({
+  heading,
+  question_image,
+  question,
+  service_blocks,
+  futures,
+  loops,
+  cultures,
+  magazine_heading,
+  magazine_price,
+  magazine_image,
+  jam_heading,
+  jam_date,
+  jam_body,
+  jam_image,
+}: ThrivableBusinessData) {
+  const marks = [<Image key="cyborg" src="/assets/cyborg.png" alt="" fill sizes="130px" />, <LoopMark key="loop" />, <CultureMark key="culture" />];
+
   return (
     <section className="thrivable-business" aria-labelledby="thrivable-title">
       <header className="thrivable-heading">
         <span aria-hidden="true" />
-        <h2 id="thrivable-title">THRIVABLE BUSINESS</h2>
+        <h2 id="thrivable-title">{heading}</h2>
       </header>
 
       <section className="thrivable-question" aria-label="Where to play, how to win">
-        <Image src="/assets/metro-paths.png" alt="A leader standing at the intersection of business pathways" fill sizes="100vw" priority />
-        <h3>WHERE TO PLAY?<br />HOW TO WIN?</h3>
+        <Image src={question_image} alt="A leader standing at the intersection of business pathways" fill sizes="100vw" priority />
+        <h3><Lines text={question} /></h3>
       </section>
 
-      <ServiceBlock
-        number="1"
-        title="Future of X Book"
-        body="Many companies lack the time, resources, and expertise required to continuously monitor the future of their industry, emerging technologies and new business models suitable for growth. At AliaFlow, by analyzing weak signals and emerging trends, we produce fully customized, periodic reports on future of industries in a technocratic world where new market and technologies emerge and disrupt the old model of doing business."
-        mark={<Image src="/assets/cyborg.png" alt="" fill sizes="130px" />}
-      />
+      {service_blocks[0] ? <ServiceBlock number={service_blocks[0].number} title={service_blocks[0].title} body={service_blocks[0].body} mark={marks[0]} /> : null}
 
       <div className="future-grid">
         {futures.map((future) => (
@@ -114,46 +116,36 @@ export function ThrivableBusiness() {
             <div className="future-card-title">{future.title.replace(" ", "\n")}</div>
             <div className="future-card-copy">
               <small>Industry Name</small>
-              <h3>{future.heading}</h3>
-              <p>{future.tags}</p>
+              <h3><Lines text={future.heading} /></h3>
+              <p><Lines text={future.tags} /></p>
             </div>
           </article>
         ))}
       </div>
 
-      <ServiceBlock
-        number="2"
-        title="Critical Business Loop"
-        body="Based on the desired future, we consider the most value creating loops, aligned with your current capabilities and portfolio, into a practical business model with its most critical services. This critical business model provides a starting framework for developing a short-term and long-term strategies, helping leaders and decision makers align their planning and decisions around a shared goal."
-        mark={<LoopMark />}
-      />
+      {service_blocks[1] ? <ServiceBlock number={service_blocks[1].number} title={service_blocks[1].title} body={service_blocks[1].body} mark={marks[1]} /> : null}
       <TileGrid items={loops} contain />
 
-      <ServiceBlock
-        number="3"
-        title="Brand Culture & XP"
-        body="We shape the designed business model, we build a Brand City — a conceptual collaborative inner space that brings your brand's future to life in all its dimensions. From brand identity and culture, to the daily behaviors, and communication systems that make it real. The right open systems and ways of working will remove some of its stakeholders."
-        mark={<CultureMark />}
-      />
+      {service_blocks[2] ? <ServiceBlock number={service_blocks[2].number} title={service_blocks[2].title} body={service_blocks[2].body} mark={marks[2]} /> : null}
       <TileGrid items={cultures} />
 
       <section className="magazine-promo">
         <div className="magazine-copy">
-          <h2>THE FUTURE OF BANKING<br />IN A TECHNOCRATIC WORLD<br />MAGAZINE</h2>
-          <p className="magazine-price">$900</p>
+          <h2><Lines text={magazine_heading} /></h2>
+          <p className="magazine-price">{magazine_price}</p>
           <button type="button">Buy Magazine</button>
         </div>
-        <div className="magazine-art"><Image src="/assets/magazine.png" alt="Future of Banking magazine spread" fill sizes="60vw" /></div>
+        <div className="magazine-art"><Image src={magazine_image} alt="Future of Banking magazine spread" fill sizes="60vw" /></div>
       </section>
 
       <section className="jam-promo">
         <div className="jam-copy">
-          <h2>Banking<br />Thrivability JAM</h2>
-          <p className="jam-date">Mon, Oct 13, 2025 - Oct 17, 2025</p>
-          <p>{lorem}</p>
+          <h2><Lines text={jam_heading} /></h2>
+          <p className="jam-date">{jam_date}</p>
+          <p>{jam_body}</p>
           <button type="button">Book Now</button>
         </div>
-        <div className="jam-art"><Image src="/assets/banking-event.png" alt="Venue for the Banking Thrivability JAM" fill sizes="60vw" /></div>
+        <div className="jam-art"><Image src={jam_image} alt="Venue for the Banking Thrivability JAM" fill sizes="60vw" /></div>
       </section>
     </section>
   );
