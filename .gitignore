@@ -1,0 +1,14 @@
+# Dependencies and generated build artifacts
+**/node_modules/
+**/.next/
+**/dist/
+**/coverage/
+
+# Local environment and runtime data
+**/.env
+**/.env.local
+**/uploads/
+
+# Operating-system and editor files
+.DS_Store
+*.log

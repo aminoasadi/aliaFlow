@@ -1,0 +1,30 @@
+/* DAFIC Simple-mode tokens and ALIAFLOW extension seams. */
+:root{
+  --dafic-primary-500:#0A8080;
+  --dafic-background-500:#FFFFFF;
+  --dafic-background-700:#E6E6E6;
+  --dafic-grey-800:#27272A;
+  --dafic-grey-500:#71717A;
+  --dafic-grey-300:#D4D4D8;
+  --dafic-radius-sm:8px;
+  --dafic-radius-md:20px;
+  --dafic-radius-lg:32px;
+  --dafic-radius-pill:100px;
+}
+
+/* Extension: Header uses DAFIC focus treatment without changing its Figma geometry. */
+.site-header a:focus-visible,.site-header button:focus-visible,.future-card a:focus-visible{
+  outline:3px solid var(--dafic-primary-500);
+  outline-offset:4px;
+}
+
+/* Extension: DAFIC compact control dimension and primary state for the mobile navigation. */
+.menu-toggle{min-height:36px;border-radius:var(--dafic-radius-sm)}
+.menu-toggle[aria-expanded="true"]{border-color:var(--dafic-primary-500);background:var(--dafic-primary-500);color:var(--dafic-background-500)}
+
+/* Extension: keep source-led imagery while putting soft visual slots on documented DAFIC radii. */
+.dafic-surface{border:1px solid var(--dafic-grey-300);border-radius:var(--dafic-radius-md);background:var(--dafic-background-500)}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
+}

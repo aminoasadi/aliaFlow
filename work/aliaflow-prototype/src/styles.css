@@ -1,0 +1,92 @@
+:root {
+  color-scheme: light;
+  background: #1d1d1d;
+  font-family: Arial, Helvetica, sans-serif;
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100%;
+}
+
+body {
+  background: #1d1d1d;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page-shell {
+  width: 100%;
+  overflow-x: clip;
+}
+
+.figma-page {
+  position: relative;
+  width: min(100%, 1440px);
+  margin-inline: auto;
+  line-height: 0;
+  background: #fff;
+}
+
+.page-slice {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  border: 0;
+}
+
+.scroll-anchor {
+  position: absolute;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  scroll-margin-top: 0;
+  pointer-events: none;
+}
+
+.nav-hotspots,
+.catalogue-hotspots {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+}
+
+.nav-hotspots {
+  top: 0;
+  height: 76px;
+}
+
+.catalogue-hotspots {
+  top: 23.16%;
+  height: 72px;
+}
+
+.hotspot {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  display: block;
+  pointer-events: auto;
+  border-radius: 2px;
+}
+
+.hotspot:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: -4px;
+  box-shadow: 0 0 0 6px #202020;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    scroll-behavior: auto;
+  }
+}

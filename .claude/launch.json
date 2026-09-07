@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "aliaflow-nextjs",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--prefix", "work/aliaflow-nextjs"],
+      "port": 3000
+    },
+    {
+      "name": "aliaflow-prototype",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--prefix", "work/aliaflow-prototype"],
+      "port": 5173
+    }
+  ]
+}
