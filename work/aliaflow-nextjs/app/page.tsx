@@ -15,6 +15,8 @@ import {
 import { ThrivableBusiness, type ThrivableBusinessData } from "../components/ThrivableBusiness";
 import { getSection } from "../lib/sections";
 
+export const dynamic = "force-dynamic";
+
 async function requireSection<T>(key: string): Promise<T> {
   const data = await getSection(key);
   if (!data) throw new Error(`Section "${key}" is not seeded. Run \`npm run seed\`.`);
