@@ -33,7 +33,7 @@ const sections: Record<string, Record<string, unknown>> = {
       {
         label: "is Feasible",
         emphasis: "COMPETITIVE",
-        copy: "The competitive advantage we create for you is based on a mixture of your organization's capabilities and the future of emerging technologies, which makes it a unique and hard-to-copy advantage. At the same time, this competitive advantage will be at several silos and levels of your organization. Different types of innovation would eventually make it hard for your competitors to imitate your business structure.",
+        copy: "The competitive advantage we create for you is based on a mixture of your organization’s capabilities and the future of emerging technologies, which makes it a unique and hard-to-copy advantage. At the same time, this competitive advantage will be at several silos and levels of your organization. Different types of innovation would eventually make it hard for your competitors to imitate your business structure.",
         stats: [{ value: "# 7 Risks" }, { value: "# 6 Roles" }, { value: "# 5 Games" }],
       },
       {
@@ -180,7 +180,7 @@ const sections: Record<string, Record<string, unknown>> = {
       {
         number: "9",
         title: "Performance Testing",
-        body: "The implementation of solutions is carried out in close collaboration with the organization's units and experts through a fully participatory process.",
+        body: "The implementation of solutions is carried out in close collaboration with the organization’s units and experts through a fully participatory process.",
         cards: [
           { title: "Performance Testing 1", image: "" },
           { title: "Performance Testing 2", image: "" },
@@ -210,15 +210,15 @@ const sections: Record<string, Record<string, unknown>> = {
     points: [
       {
         label: "Different",
-        body: "Business Continuity refers to an organization's ability to maintain essential functions during and after a disaster, disruption, or unexpected event.",
+        body: "Business Continuity refers to an organization’s ability to maintain essential functions during and after a disaster, disruption, or unexpected event.",
       },
       {
         label: "Competitive",
-        body: "Business Continuity refers to an organization's ability to maintain essential functions during and after a disaster, disruption, or unexpected event.",
+        body: "Business Continuity refers to an organization’s ability to maintain essential functions during and after a disaster, disruption, or unexpected event.",
       },
       {
         label: "Scalable",
-        body: "Business Continuity refers to an organization's ability to maintain essential functions during and after a disaster, disruption, or unexpected event.",
+        body: "Business Continuity refers to an organization’s ability to maintain essential functions during and after a disaster, disruption, or unexpected event.",
       },
     ],
   },
@@ -275,7 +275,7 @@ const sections: Record<string, Record<string, unknown>> = {
   },
 
   footer: {
-    eyebrow: "LET'S TALK",
+    eyebrow: "LET’S TALK",
     heading_line1: "Make your business",
     heading_emphasis: "thrive.",
     email: "hello@aliaflow.com",
