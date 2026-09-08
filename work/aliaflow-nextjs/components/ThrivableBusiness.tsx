@@ -27,14 +27,28 @@ function CultureMark() {
   );
 }
 
-function ServiceBlock({ number, title, body, mark }: { number: string; title: string; body: string; mark: ReactNode }) {
+function ServiceBlock({
+  number,
+  title,
+  body,
+  image,
+  mark,
+}: {
+  number: string;
+  title: string;
+  body: string;
+  image?: string;
+  mark: ReactNode;
+}) {
   return (
     <article className="future-book">
       <div className="future-book-copy">
         <h3><b>{number}</b> {title}</h3>
         <p>{body}</p>
       </div>
-      <div className="future-book-mark">{mark}</div>
+      <div className="future-book-mark">
+        {image ? <Image src={image} alt="" fill sizes="130px" /> : mark}
+      </div>
     </article>
   );
 }
@@ -64,7 +78,8 @@ export type ThrivableBusinessData = {
   heading: string;
   question_image: string;
   question: string;
-  service_blocks: { number: string; title: string; body: string }[];
+  service_blocks: { number: string; title: string; body: string; image?: string }[];
+  futures_image: string;
   futures: { title: string; heading: string; tags: string }[];
   loops: { image: string; label: string; title: string }[];
   cultures: { image: string; label: string; title: string }[];
@@ -82,6 +97,7 @@ export function ThrivableBusiness({
   question_image,
   question,
   service_blocks,
+  futures_image,
   futures,
   loops,
   cultures,
@@ -107,12 +123,12 @@ export function ThrivableBusiness({
         <h3><Lines text={question} /></h3>
       </section>
 
-      {service_blocks[0] ? <ServiceBlock number={service_blocks[0].number} title={service_blocks[0].title} body={service_blocks[0].body} mark={marks[0]} /> : null}
+      {service_blocks[0] ? <ServiceBlock number={service_blocks[0].number} title={service_blocks[0].title} body={service_blocks[0].body} image={service_blocks[0].image} mark={marks[0]} /> : null}
 
       <div className="future-grid">
         {futures.map((future) => (
           <article key={future.title} className="future-card">
-            <div className="future-map" aria-hidden="true"><Image src="/assets/pastel-metro-network.png" alt="" fill sizes="33vw" /></div>
+            <div className="future-map" aria-hidden="true"><Image src={futures_image} alt="" fill sizes="33vw" /></div>
             <div className="future-card-title">{future.title.replace(" ", "\n")}</div>
             <div className="future-card-copy">
               <small>Industry Name</small>
@@ -123,10 +139,10 @@ export function ThrivableBusiness({
         ))}
       </div>
 
-      {service_blocks[1] ? <ServiceBlock number={service_blocks[1].number} title={service_blocks[1].title} body={service_blocks[1].body} mark={marks[1]} /> : null}
+      {service_blocks[1] ? <ServiceBlock number={service_blocks[1].number} title={service_blocks[1].title} body={service_blocks[1].body} image={service_blocks[1].image} mark={marks[1]} /> : null}
       <TileGrid items={loops} contain />
 
-      {service_blocks[2] ? <ServiceBlock number={service_blocks[2].number} title={service_blocks[2].title} body={service_blocks[2].body} mark={marks[2]} /> : null}
+      {service_blocks[2] ? <ServiceBlock number={service_blocks[2].number} title={service_blocks[2].title} body={service_blocks[2].body} image={service_blocks[2].image} mark={marks[2]} /> : null}
       <TileGrid items={cultures} />
 
       <section className="magazine-promo">

@@ -28,18 +28,21 @@ const sections: Record<string, Record<string, unknown>> = {
         label: "is Desirable",
         emphasis: "DIFFERENT",
         copy: "We create a truly differentiated business for you, built around the new and emerging needs and desires in your target market. It will not only be desirable and wanted by your customers, but also socially impactful and will create a lasting change in their work or life.",
+        image: "/assets/blank-panel.png",
         stats: [{ value: "# 4 Senses" }, { value: "# 3 Loops" }],
       },
       {
         label: "is Feasible",
         emphasis: "COMPETITIVE",
         copy: "The competitive advantage we create for you is based on a mixture of your organization’s capabilities and the future of emerging technologies, which makes it a unique and hard-to-copy advantage. At the same time, this competitive advantage will be at several silos and levels of your organization. Different types of innovation would eventually make it hard for your competitors to imitate your business structure.",
+        image: "/assets/blank-panel-1.png",
         stats: [{ value: "# 7 Risks" }, { value: "# 6 Roles" }, { value: "# 5 Games" }],
       },
       {
         label: "is Viable",
         emphasis: "SCALABLE",
         copy: "At this stage, we design a sustainable revenue model for your business that ensures long-term growth and keeps the organization moving steadily toward its goals. This model is built to support consistent progress, not just short-term gains. We also plan growth in a controlled and strategic way at every phase, ensuring that each step strengthens the business and prepares it for the next version of your business model.",
+        image: "/assets/blank-panel-2.png",
         stats: [{ value: "# 8 Changes" }, { value: "# 9 Tests" }],
       },
     ],
@@ -66,18 +69,22 @@ const sections: Record<string, Record<string, unknown>> = {
         number: "1",
         title: "Future of X Book",
         body: "Many companies lack the time, resources, and expertise required to continuously monitor the future of their industry, emerging technologies and new business models suitable for growth. At AliaFlow, by analyzing weak signals and emerging trends, we produce fully customized, periodic reports on future of industries in a technocratic world where new market and technologies emerge and disrupt the old model of doing business.",
+        image: "/assets/cyborg.png",
       },
       {
         number: "2",
         title: "Critical Business Loop",
         body: "Based on the desired future, we consider the most value creating loops, aligned with your current capabilities and portfolio, into a practical business model with its most critical services. This critical business model provides a starting framework for developing a short-term and long-term strategies, helping leaders and decision makers align their planning and decisions around a shared goal.",
+        image: "",
       },
       {
         number: "3",
         title: "Brand Culture & XP",
         body: "We shape the designed business model, we build a Brand City — a conceptual collaborative inner space that brings your brand's future to life in all its dimensions. From brand identity and culture, to the daily behaviors, and communication systems that make it real. The right open systems and ways of working will remove some of its stakeholders.",
+        image: "",
       },
     ],
+    futures_image: "/assets/pastel-metro-network.png",
     futures: [
       {
         title: "Future of BANKING",
@@ -115,6 +122,7 @@ const sections: Record<string, Record<string, unknown>> = {
   },
 
   "business-leadership": {
+    question_image: "/assets/metro-boardroom.png",
     question: "WHAT TO PLAY?\nHOW TO LEAD?",
     statements: [
       {
@@ -154,6 +162,7 @@ const sections: Record<string, Record<string, unknown>> = {
   },
 
   "technocratic-design": {
+    question_image: "/assets/metro-boardroom.png",
     question: "WHEN TO DESIGN?\nHOW TO CHANGE?",
     pillars: [{ label: "Business Telling" }, { label: "Business Living" }, { label: "Business Playing" }],
     statements: [
@@ -289,12 +298,12 @@ const sections: Record<string, Record<string, unknown>> = {
 };
 
 async function main() {
+  let created = 0;
   for (const [key, data] of Object.entries(sections)) {
-    await prisma.section.upsert({
-      where: { key },
-      update: { data: JSON.stringify(data) },
-      create: { key, data: JSON.stringify(data) },
-    });
+    const existing = await prisma.section.findUnique({ where: { key } });
+    if (existing) continue;
+    await prisma.section.create({ data: { key, data: JSON.stringify(data) } });
+    created += 1;
   }
 
   const adminEmail = process.env.ADMIN_EMAIL;
@@ -310,7 +319,7 @@ async function main() {
     create: { email: adminEmail, passwordHash },
   });
 
-  console.log(`Seeded ${Object.keys(sections).length} sections and admin user ${adminEmail}`);
+  console.log(`Seeded ${created} new section(s) (${Object.keys(sections).length - created} already existed, left untouched) and admin user ${adminEmail}`);
 }
 
 main()

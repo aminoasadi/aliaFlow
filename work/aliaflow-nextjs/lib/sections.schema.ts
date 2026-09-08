@@ -44,6 +44,7 @@ export const sectionSchemas: Record<string, SectionSchema> = {
         label: text("Label (e.g. \"is Desirable\")"),
         emphasis: text("Emphasis word (e.g. \"DIFFERENT\")"),
         copy: textarea("Body copy"),
+        image: image("Detail panel image"),
         stats: list("Stats", "Stat", { value: text("Value") }),
       }),
       manifesto_heading: textarea("Manifesto heading"),
@@ -72,7 +73,9 @@ export const sectionSchemas: Record<string, SectionSchema> = {
         number: text("Number"),
         title: text("Title"),
         body: textarea("Body"),
+        image: image("Icon image (leave blank to use the default icon)"),
       }),
+      futures_image: image("Futures grid background image"),
       futures: list("Future cards", "Future", {
         title: text("Card label"),
         heading: textarea("Heading"),
@@ -101,6 +104,7 @@ export const sectionSchemas: Record<string, SectionSchema> = {
   "business-leadership": {
     label: "Business Leadership",
     fields: {
+      question_image: image("Question hero background image"),
       question: textarea("Question heading"),
       statements: list("Statements", "Statement", {
         number: text("Number"),
@@ -120,6 +124,7 @@ export const sectionSchemas: Record<string, SectionSchema> = {
   "technocratic-design": {
     label: "Technocratic Design",
     fields: {
+      question_image: image("Question hero background image"),
       question: textarea("Question heading"),
       pillars: list("Pillars", "Pillar", { label: text("Label") }),
       statements: list("Statements", "Statement", {

@@ -42,12 +42,14 @@ export function EventPromo({ title, image, dark = false }: { title: string; imag
 type StatementWithCards = { number: string; title: string; body: string; cards: { title: string; image?: string }[] };
 
 export function BusinessLeadership({
+  question_image,
   question,
   statements,
   holocratic_line,
   event_title,
   event_image,
 }: {
+  question_image: string;
   question: string;
   statements: StatementWithCards[];
   holocratic_line: string;
@@ -56,7 +58,7 @@ export function BusinessLeadership({
 }) {
   return <>
     <DepartmentHeading title="BUSINESS LEADERSHIP" />
-    <QuestionHero title="BUSINESS LEADERSHIP" question={question} />
+    <QuestionHero title="BUSINESS LEADERSHIP" question={question} image={question_image} />
     {statements.map((statement) => (
       <Fragment key={statement.number}>
         <ServiceStatement dark number={statement.number} title={statement.title} body={statement.body} />
@@ -69,12 +71,14 @@ export function BusinessLeadership({
 }
 
 export function TechnocraticDesign({
+  question_image,
   question,
   pillars,
   statements,
   event_title,
   event_image,
 }: {
+  question_image: string;
   question: string;
   pillars: { label: string }[];
   statements: StatementWithCards[];
@@ -83,7 +87,7 @@ export function TechnocraticDesign({
 }) {
   return <>
     <DepartmentHeading title="TECHNOCRATIC DESIGN" />
-    <QuestionHero title="TECHNOCRATIC DESIGN" question={question} />
+    <QuestionHero title="TECHNOCRATIC DESIGN" question={question} image={question_image} />
     <section className="design-pillars">{pillars.map((pillar) => <span key={pillar.label}><i className="mini-icon" /><b>{pillar.label}</b></span>)}</section>
     {statements.map((statement) => (
       <Fragment key={statement.number}>
