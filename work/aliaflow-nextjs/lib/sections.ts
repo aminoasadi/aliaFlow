@@ -40,3 +40,15 @@ export async function updateSection(
 
   return data as Record<string, unknown>;
 }
+
+export async function listSectionsMeta(): Promise<
+  { key: string; label: string; updatedAt: Date }[]
+> {
+  const rows = await prisma.section.findMany({ select: { key: true, updatedAt: true } });
+  const updatedAtByKey = new Map(rows.map((row) => [row.key, row.updatedAt]));
+  return Object.entries(sectionSchemas).map(([key, schema]) => ({
+    key,
+    label: schema.label,
+    updatedAt: updatedAtByKey.get(key) ?? new Date(0),
+  }));
+}

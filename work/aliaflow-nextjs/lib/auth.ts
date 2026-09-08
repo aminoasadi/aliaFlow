@@ -1,5 +1,6 @@
 import { SignJWT, jwtVerify } from "jose";
 import bcrypt from "bcryptjs";
+import { cookies } from "next/headers";
 
 export const SESSION_COOKIE_NAME = "aliaflow_session";
 
@@ -38,4 +39,12 @@ export async function verifySessionToken(token: string): Promise<{ sub: string }
   } catch {
     return null;
   }
+}
+
+export async function getSessionUserId(): Promise<string | null> {
+  const cookieStore = await cookies();
+  const token = cookieStore.get(SESSION_COOKIE_NAME)?.value;
+  if (!token) return null;
+  const session = await verifySessionToken(token);
+  return session?.sub ?? null;
 }
