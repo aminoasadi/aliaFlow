@@ -7,7 +7,6 @@
 # Local environment and runtime data
 **/.env
 **/.env.local
-**/uploads/
 
 # Operating-system and editor files
 .DS_Store

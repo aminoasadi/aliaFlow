@@ -1,4 +1,10 @@
-export type Outcome = { label: string; emphasis: string; copy: string; stats: string[] };
+export type Outcome = {
+  label: string;
+  emphasis: string;
+  copy: string;
+  image: string;
+  stats: { value: string }[];
+};
 
 export function OutcomePanel({ outcome, index }: { outcome: Outcome; index: number }) {
   const short = outcome.label.replace("is ", "");
@@ -11,7 +17,7 @@ export function OutcomePanel({ outcome, index }: { outcome: Outcome; index: numb
       <article className={`fig-outcome outcome-${index + 1}`}>
         <div className="fig-outcome-screen fig-outcome-detail">
           <div className="circle-field" aria-hidden>{Array.from({ length: 60 }).map((_, dot) => <i key={dot} />)}</div>
-          <div className="detail-placeholder"><img src={`/assets/blank-panel${index ? `-${index}` : ""}.png`} alt="" /></div>
+          <div className="detail-placeholder"><img src={outcome.image} alt="" /></div>
           <div className="outcome-detail">
             <p className="outcome-label">Not only</p>
             <h4>{short.toUpperCase()},</h4>

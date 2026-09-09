@@ -5,7 +5,8 @@
       "name": "aliaflow-nextjs",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev", "--prefix", "work/aliaflow-nextjs"],
-      "port": 3000
+      "port": 3000,
+      "autoPort": true
     },
     {
       "name": "aliaflow-prototype",
