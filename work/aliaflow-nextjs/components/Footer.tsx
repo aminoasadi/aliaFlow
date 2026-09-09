@@ -17,7 +17,7 @@ export function Footer({ eyebrow, heading_line1, heading_emphasis, email, descri
         <a href={`mailto:${email}`} className="cta">{email} <span>&#8599;</span></a>
       </div>
       <div className="footer-meta">
-        <a className="wordmark" href="#home">ALIAFLOW</a>
+        <a className="wordmark" href="#home" aria-label="Aliaflow home"><img src="/assets/aliaflow-logo.svg" alt="Aliaflow" /></a>
         <p>{description}</p>
         <div>
           {social_links.map((link) => <a key={link.label} href={link.href}>{link.label}</a>)}

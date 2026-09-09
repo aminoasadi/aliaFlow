@@ -1,0 +1,114 @@
+/* Reference-derived Brand Culture & XP section. */
+.brand-culture { background: #fff; color: #414141; }
+
+.brand-culture-header {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 225px;
+  align-items: center;
+  min-height: 358px;
+  padding: 82px clamp(52px, 4.7vw, 70px) 38px clamp(36px, 9.8vw, 146px);
+  overflow: hidden;
+  border-top: 3px solid #aaa;
+}
+
+.brand-culture-header::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 49.5%;
+  height: 52px;
+  background: #aaa;
+  content: "";
+}
+
+.brand-culture-copy,
+.brand-culture-mark { position: relative; z-index: 1; }
+
+.brand-culture-copy h2 {
+  margin: 0;
+  color: #414141;
+  font-size: clamp(48px, 5.15vw, 76px);
+  font-weight: 600;
+  letter-spacing: -.06em;
+  line-height: .98;
+}
+
+.brand-culture-copy h2 b { margin-right: .16em; font-weight: 500; }
+
+.brand-culture-copy p {
+  max-width: 375px;
+  margin: 34px 0 0 86px;
+  color: #111;
+  font-size: 14px;
+  line-height: 1.22;
+}
+
+.brand-culture-mark {
+  display: grid;
+  width: 194px;
+  height: 194px;
+  place-items: center;
+  border-radius: 50%;
+  background: #efefef;
+}
+
+.brand-culture-mark svg { width: 116px; height: 116px; }
+
+.brand-culture-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid #efefef;
+}
+
+.brand-culture-panel + .brand-culture-panel { border-left: 3px solid #fff; }
+
+.brand-culture-image {
+  position: relative;
+  height: clamp(300px, 33.8vw, 422px);
+  overflow: hidden;
+  background: #f1f1f1;
+}
+
+.brand-culture-image img { object-fit: cover; filter: contrast(1.05); }
+
+.brand-culture-detail { min-height: 228px; padding: 23px 32px 36px; }
+
+.brand-culture-detail small {
+  display: block;
+  color: #111;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.brand-culture-detail h3 {
+  margin: 34px 0 15px;
+  color: #444;
+  font-size: clamp(24px, 2.15vw, 31px);
+  font-weight: 600;
+  letter-spacing: -.045em;
+  line-height: 1.02;
+}
+
+.brand-culture-detail p {
+  max-width: 350px;
+  margin: 0;
+  color: #666;
+  font-size: 17px;
+  line-height: 1.3;
+}
+
+@media (max-width: 780px) {
+  .brand-culture-header { grid-template-columns: 1fr; min-height: 0; padding: 76px 28px 38px; }
+  .brand-culture-header::before { width: 56%; height: 32px; }
+  .brand-culture-copy h2 { font-size: 43px; }
+  .brand-culture-copy p { margin: 26px 0 0; font-size: 15px; }
+  .brand-culture-mark { width: 148px; height: 148px; margin: 28px 0 0; justify-self: end; }
+  .brand-culture-mark svg { width: 88px; height: 88px; }
+  .brand-culture-grid { grid-template-columns: 1fr; }
+  .brand-culture-panel + .brand-culture-panel { border-top: 3px solid #fff; border-left: 0; }
+  .brand-culture-image { height: 90vw; }
+  .brand-culture-detail { min-height: 0; padding: 24px 28px 32px; }
+  .brand-culture-detail h3 { margin: 20px 0 12px; }
+  .brand-culture-detail p { font-size: 16px; }
+}

@@ -3,10 +3,14 @@
 **/.next/
 **/dist/
 **/coverage/
+**/.next-dev/
+*.tsbuildinfo
 
 # Local environment and runtime data
 **/.env
 **/.env.local
+**/*.db
+**/uploads/
 
 # Operating-system and editor files
 .DS_Store

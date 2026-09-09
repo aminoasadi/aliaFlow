@@ -1,0 +1,169 @@
+/* Critical Business Loop: a dedicated composition rather than the generic service card. */
+.critical-business-loop {
+  background: #fff;
+  color: #424242;
+}
+
+.critical-loop-header {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  align-items: center;
+  min-height: 430px;
+  padding: 100px clamp(40px, 4.3vw, 64px) 44px clamp(40px, 7.2vw, 108px);
+  overflow: hidden;
+  border-top: 3px solid #a7a7a7;
+  border-bottom: 3px solid #a7a7a7;
+}
+
+.critical-loop-header::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50.5%;
+  height: 64px;
+  background: #ababab;
+  content: "";
+}
+
+.critical-loop-copy,
+.critical-loop-mark { position: relative; z-index: 1; }
+
+.critical-loop-copy h2 {
+  max-width: 1040px;
+  margin: 0;
+  color: #414141;
+  font-size: clamp(50px, 5.35vw, 80px);
+  font-weight: 600;
+  letter-spacing: -.055em;
+  line-height: .98;
+}
+
+.critical-loop-copy h2 b { font-weight: 500; margin-right: .16em; }
+
+.critical-loop-copy p {
+  max-width: 450px;
+  margin: 42px 0 0 77px;
+  color: #101010;
+  font-size: 16px;
+  line-height: 1.3;
+}
+
+.critical-loop-mark {
+  width: 225px;
+  height: 225px;
+  justify-self: center;
+  margin-top: 34px;
+}
+
+.critical-loop-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  min-height: 508px;
+  border-bottom: 3px solid #a7a7a7;
+  background-color: #fff;
+  background-image: linear-gradient(#e1e1e1 2px, transparent 2px), linear-gradient(90deg, #e1e1e1 2px, transparent 2px);
+  background-size: 62px 64px;
+}
+
+.critical-loop-panel {
+  display: grid;
+  place-items: center;
+  min-height: 508px;
+}
+
+.critical-loop-panel + .critical-loop-panel { border-left: 3px solid #aaa; }
+
+.critical-loop-diagram {
+  position: relative;
+  display: grid;
+  width: clamp(210px, 18.9vw, 282px);
+  aspect-ratio: 1;
+  place-items: center;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, #0963c7 0deg 120deg, #42aa00 120deg 240deg, #f60717 240deg 360deg);
+}
+
+.critical-loop-diagram::before {
+  position: absolute;
+  inset: 15%;
+  border-radius: 50%;
+  background: #fff;
+  content: "";
+}
+
+.critical-loop-aliapay { background: conic-gradient(from 0deg, #f60717 0deg 120deg, #0963c7 120deg 240deg, #42aa00 240deg 360deg); }
+.critical-loop-alialab { background: conic-gradient(from 0deg, #42aa00 0deg 120deg, #f60717 120deg 240deg, #0963c7 240deg 360deg); }
+
+.critical-loop-name,
+.critical-loop-label { position: absolute; z-index: 1; }
+
+.critical-loop-name {
+  color: #444;
+  font-size: clamp(25px, 2vw, 34px);
+  font-weight: 500;
+}
+
+.critical-loop-label {
+  color: #fff;
+  font-size: clamp(12px, 1.2vw, 18px);
+  font-weight: 400;
+  letter-spacing: .02em;
+}
+
+.critical-loop-attraction { top: 15%; left: 10%; transform: rotate(-48deg); }
+.critical-loop-loyalty { top: 30%; right: 4%; transform: rotate(48deg); }
+.critical-loop-satisfaction { bottom: 9%; left: 22%; transform: rotate(174deg); }
+.critical-loop-aliapay .critical-loop-attraction { top: 11%; left: 50%; transform: translateX(-50%) rotate(13deg); }
+.critical-loop-aliapay .critical-loop-loyalty { top: auto; right: 9%; bottom: 14%; transform: rotate(57deg); }
+.critical-loop-aliapay .critical-loop-satisfaction { bottom: 19%; left: 4%; transform: rotate(-78deg); }
+.critical-loop-alialab .critical-loop-attraction { top: auto; right: 7%; bottom: 22%; transform: rotate(66deg); }
+.critical-loop-alialab .critical-loop-loyalty { top: auto; bottom: 17%; left: 6%; transform: rotate(-74deg); }
+.critical-loop-alialab .critical-loop-satisfaction { top: 10%; left: 29%; transform: rotate(-22deg); }
+
+.critical-loop-details {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(36px, 7vw, 108px);
+  padding: 28px clamp(40px, 2.7vw, 40px) 54px;
+}
+
+.critical-loop-details small {
+  display: block;
+  color: #111;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.critical-loop-details h3 {
+  margin: 40px 0 18px;
+  color: #444;
+  font-size: clamp(25px, 2.1vw, 34px);
+  font-weight: 600;
+  letter-spacing: -.035em;
+  line-height: 1;
+}
+
+.critical-loop-details p {
+  max-width: 385px;
+  margin: 0;
+  color: #666;
+  font-size: 18px;
+  line-height: 1.3;
+}
+
+@media (max-width: 780px) {
+  .critical-loop-header { grid-template-columns: 1fr; min-height: auto; padding: 85px 28px 44px; }
+  .critical-loop-header::before { width: 58%; height: 34px; }
+  .critical-loop-copy h2 { font-size: 44px; }
+  .critical-loop-copy p { margin: 26px 0 0; font-size: 15px; }
+  .critical-loop-mark { width: 150px; height: 150px; margin: 30px 0 0; justify-self: end; }
+  .critical-loop-grid, .critical-loop-details { grid-template-columns: 1fr; }
+  .critical-loop-grid { min-height: 0; background-size: 45px 45px; }
+  .critical-loop-panel { min-height: 340px; }
+  .critical-loop-panel + .critical-loop-panel { border-top: 2px solid #aaa; border-left: 0; }
+  .critical-loop-details { gap: 0; padding: 0 28px 34px; }
+  .critical-loop-details article { padding: 28px 0; border-bottom: 1px solid #ddd; }
+  .critical-loop-details h3 { margin: 18px 0 10px; }
+  .critical-loop-details p { font-size: 16px; }
+}

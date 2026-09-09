@@ -1,0 +1,13 @@
+.portfolio-timeline { position: relative; overflow: hidden; padding: 31px 0 76px; background: #fff; }
+.portfolio-timeline::before { position: absolute; top: 0; left: 50%; width: 43%; height: 60px; transform: translateX(-50%); background: #aaa; content: ""; }
+.portfolio-timeline-rail { display: flex; gap: 0; overflow-x: auto; padding: 100px 0 0; scrollbar-width: none; cursor: grab; scroll-snap-type: x mandatory; touch-action: pan-y; user-select: none; }
+.portfolio-timeline-rail::-webkit-scrollbar { display: none; }
+.portfolio-timeline.is-dragging .portfolio-timeline-rail { cursor: grabbing; scroll-snap-type: none; }
+.portfolio-timeline-rail article { flex: 0 0 330px; min-height: 430px; padding: 106px 34px 36px; color: #d7d7d7; text-align: center; scroll-snap-align: center; transition: color .18s ease, background .18s ease; }
+.portfolio-timeline-rail article.is-active { background: #f4f4f4; color: #3d3d3d; }
+.portfolio-timeline-rail h3 { margin: 0; font-size: 68px; line-height: .8; font-weight: 700; letter-spacing: -.07em; }
+.portfolio-timeline-rail strong { display: block; margin: 33px 0 62px; color: #86a8c4; font-size: 22px; font-weight: 400; }
+.portfolio-timeline-rail article.is-active strong { color: #3f3f3f; }
+.portfolio-timeline-rail p { margin: 0; color: #333; font-size: 14px; line-height: 1.4; text-align: left; }
+.portfolio-timeline-rail article:not(.is-active) p { opacity: .9; }
+@media (max-width: 780px) { .portfolio-timeline { padding-bottom: 42px; }.portfolio-timeline::before { height: 32px; }.portfolio-timeline-rail { padding-top: 55px; }.portfolio-timeline-rail article { flex-basis: 76vw; min-height: 350px; padding: 82px 28px 28px; }.portfolio-timeline-rail h3 { font-size: 56px; }.portfolio-timeline-rail strong { margin-bottom: 38px; } }

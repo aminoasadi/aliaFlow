@@ -9,7 +9,7 @@
 .outcome-stack{position:relative}
 .fig-outcome{position:relative;isolation:isolate}
 .fig-outcome-screen{position:relative;overflow:hidden;will-change:transform}
-.outcome-0{z-index:0}.outcome-title-1{z-index:1}.outcome-1{z-index:2}.outcome-title-2{z-index:3}.outcome-2{z-index:4}.outcome-title-3{z-index:5}.outcome-3{z-index:6}.outcome-manifesto{z-index:7}
+.outcome-0{z-index:0}.outcome-title-1{z-index:1}.outcome-1{z-index:2}.outcome-title-2{z-index:3}.outcome-2{z-index:4}.outcome-title-3{z-index:5}.outcome-3{z-index:6}.outcome-manifesto{z-index:7}.outcome-manifesto-values{z-index:8}.outcome-catalogue{z-index:9}
 .circle-field i{opacity:0;transform:scale(.25)}
 .fig-outcome-detail .detail-placeholder{opacity:0;transform:scale(.6)}
 
@@ -62,16 +62,14 @@
 .catalogue-nav li span{font-size:20px;font-weight:700;color:#1f1f1f}
 
 /* Magazine offer and the JAM event that close the Thrivable Business department. */
-.magazine-promo{display:grid;grid-template-columns:36% 64%;align-items:center;min-height:430px;background:#d9d9d9;border:2px solid #555;border-top:0}
-.magazine-copy{padding:44px 5% 44px 6%}
-.magazine-copy h2{margin:0 0 24px;color:#1d1d1d;font-size:33px;line-height:1.14;font-weight:800;letter-spacing:-.02em}
-.magazine-price{margin:0 0 24px;color:#1d1d1d;font-size:38px;font-weight:700}
-.magazine-copy button,.jam-copy button{padding:11px 26px;border:0;background:#333;color:#fff;font-size:14px;cursor:pointer}
-.magazine-art{position:relative;align-self:stretch;min-height:430px}.magazine-art img{object-fit:cover}
+.magazine-promo{position:relative;display:block;aspect-ratio:5728/2476;overflow:hidden;background:#e7e7e7;border:2px solid #555;border-top:0}
+.magazine-promo>img{object-fit:cover;object-position:center}
+.magazine-buy-button,.jam-copy button{padding:11px 26px;border:0;background:#333;color:#fff;font-size:14px;cursor:pointer}
+.magazine-buy-button{position:absolute;z-index:1;top:62%;left:4%;min-width:150px}
 .jam-promo{display:grid;grid-template-columns:40% 60%;align-items:center;min-height:430px;background:#fff;border:2px solid #555;border-top:0}
 .jam-copy{padding:48px 6% 48px 6%}
 .jam-copy h2{margin:0 0 26px;color:#1d1d1d;font-size:46px;line-height:1.08;font-weight:700;letter-spacing:-.03em}
 .jam-date{margin:0 0 14px;color:#1d1d1d;font-size:15px;font-weight:700}
 .jam-copy p{max-width:330px;margin:0 0 26px;color:#555;font-size:12px;line-height:1.3}
 .jam-art{position:relative;align-self:stretch;min-height:430px}.jam-art img{object-fit:contain;object-position:right center}
-@media(max-width:780px){.thrivable-heading{height:115px}.thrivable-heading h2{font-size:30px}.thrivable-question{height:310px}.thrivable-question h3{font-size:44px}.future-book{grid-template-columns:1fr 100px;min-height:220px}.future-book-copy{padding:30px 18px}.future-book h3{font-size:29px}.future-book h3 b{margin-right:6px}.future-book p{margin-left:0;font-size:10px}.future-book-mark{width:75px;height:75px}.future-grid{grid-template-columns:1fr}.future-card{border-bottom:2px solid #555}.future-map{height:220px}.future-card-title{top:82px;font-size:24px}.future-card-copy{min-height:145px}.future-book-mark svg{width:38px;height:38px}.catalogue-nav{padding:44px 6% 28px}.catalogue-nav h2{font-size:31px;margin-bottom:24px}.catalogue-nav ul{grid-template-columns:1fr 1fr;gap:9px}.catalogue-nav li{padding:10px 12px;font-size:12px}.catalogue-nav li span{font-size:16px}.magazine-promo,.jam-promo{grid-template-columns:1fr;min-height:0}.magazine-copy{padding:36px 8%}.magazine-copy h2{font-size:24px}.magazine-price{font-size:30px}.magazine-art,.jam-art{min-height:280px}.jam-copy{padding:36px 8%}.jam-copy h2{font-size:32px}}
+@media(max-width:780px){.thrivable-heading{height:115px}.thrivable-heading h2{font-size:30px}.thrivable-question{height:310px}.thrivable-question h3{font-size:44px}.future-book{grid-template-columns:1fr 100px;min-height:220px}.future-book-copy{padding:30px 18px}.future-book h3{font-size:29px}.future-book h3 b{margin-right:6px}.future-book p{margin-left:0;font-size:10px}.future-book-mark{width:75px;height:75px}.future-grid{grid-template-columns:1fr}.future-card{border-bottom:2px solid #555}.future-map{height:220px}.future-card-title{top:82px;font-size:24px}.future-card-copy{min-height:145px}.future-book-mark svg{width:38px;height:38px}.catalogue-nav{padding:44px 6% 28px}.catalogue-nav h2{font-size:31px;margin-bottom:24px}.catalogue-nav ul{grid-template-columns:1fr 1fr;gap:9px}.catalogue-nav li{padding:10px 12px;font-size:12px}.catalogue-nav li span{font-size:16px}.jam-promo{grid-template-columns:1fr;min-height:0}.magazine-buy-button{top:63%;left:4%;min-width:0;padding:7px 13px;font-size:10px}.jam-art{min-height:280px}.jam-copy{padding:36px 8%}.jam-copy h2{font-size:32px}}

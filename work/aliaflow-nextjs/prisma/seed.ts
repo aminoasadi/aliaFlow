@@ -302,7 +302,7 @@ async function main() {
   for (const [key, data] of Object.entries(sections)) {
     const existing = await prisma.section.findUnique({ where: { key } });
     if (existing) continue;
-    await prisma.section.create({ data: { key, data: JSON.stringify(data) } });
+    await prisma.section.create({ data: { key, data: JSON.stringify(data), publishedData: JSON.stringify(data), publishedAt: new Date() } });
     created += 1;
   }
 
@@ -318,6 +318,16 @@ async function main() {
     update: { passwordHash },
     create: { email: adminEmail, passwordHash },
   });
+
+  const defaults = {
+    siteName: "Aliaflow",
+    siteUrl: "http://localhost:3000",
+    locale: "en",
+    timezone: "Asia/Tehran",
+  };
+  for (const [key, value] of Object.entries(defaults)) {
+    await prisma.setting.upsert({ where: { key }, update: {}, create: { key, value } });
+  }
 
   console.log(`Seeded ${created} new section(s) (${Object.keys(sections).length - created} already existed, left untouched) and admin user ${adminEmail}`);
 }

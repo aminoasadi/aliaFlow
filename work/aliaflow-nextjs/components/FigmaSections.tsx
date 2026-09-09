@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Fragment } from "react";
+import { ImageCarousel, type FutureImage } from "./FutureImageCarousel";
 
 type Item = { title: string; image?: string; text?: string };
 
@@ -27,12 +28,18 @@ export function ServiceStatement({ number, title, body, dark = false }: { number
 }
 
 export function ThreeCards({ items, dark = false }: { items: Item[]; dark?: boolean }) {
-  return <section className={`three-cards ${dark ? "three-cards-dark" : ""}`}>
-    {items.map((item, index) => <article key={item.title}>
-      <div className="card-image">{item.image ? <Image src={item.image} alt="" fill sizes="33vw" /> : <span className="abstract-node">{index + 1}</span>}</div>
-      <div className="card-copy"><small>Industry Name</small><h3>{item.title}</h3><p>{item.text ?? lorem}</p></div>
-    </article>)}
-  </section>;
+  const title = items[0]?.title ?? "Service example";
+  const cardImages: Record<string, string> = {
+    "Business Game": "/assets/card-business-game.png",
+    "Strategic Role": "/assets/card-strategic-role.png",
+    "Leadership model": "/assets/card-leadership-model.png",
+    "Risk Setting": "/assets/card-risk-setting.png",
+    "Change Solving": "/assets/card-change-solving.png",
+    "Performance Testing": "/assets/card-performance-testing.png",
+  };
+  const source = Object.entries(cardImages).find(([prefix]) => title.startsWith(prefix))?.[1] ?? "/assets/card-change-solving.png";
+  const slides: FutureImage[] = Array.from({ length: 6 }, () => ({ src: source, alt: title }));
+  return <ImageCarousel items={slides} dark={dark} label="Service examples" />;
 }
 
 export function EventPromo({ title, image, dark = false }: { title: string; image: string; dark?: boolean }) {
@@ -134,12 +141,13 @@ export function WhyChooseUs({
   heading: string;
   points: { label: string; body: string }[];
 }) {
+  const illustrations = ["/assets/why-different.svg", "/assets/why-competitive.svg", "/assets/why-scalable.svg"];
   return <section className="why-us">
     <p>{eyebrow}</p>
     <h2><Lines text={heading} /></h2>
-    <div className="business-ring">BUSINESS<br />THRIVABILITY</div>
+    <div className="business-ring"><span className="ring-word ring-different">DIFFERENT</span><span className="ring-word ring-competitive">COMPETITIVE</span><span className="ring-word ring-scalable">SCALABLE</span><strong>BUSINESS<br />THRIVABILITY</strong></div>
     <div className="why-list">
-      {points.map((point, i) => <article key={point.label}><b>0{i + 1}</b><div><h3>{point.label}</h3><p>{point.body}</p></div></article>)}
+      {points.map((point, i) => <article key={point.label}><img src={illustrations[i]} alt="" /><div><h3>{point.label}</h3><p>{point.body}</p></div></article>)}
     </div>
   </section>;
 }

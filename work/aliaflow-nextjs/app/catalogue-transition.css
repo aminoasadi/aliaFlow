@@ -1,0 +1,104 @@
+/* Catalogue-to-department handoff, sized from the supplied desktop reference. */
+@media (min-width: 781px) {
+  .future-book-mark:has(.future-book-illustration) {
+    width: 180px;
+    height: 180px;
+    border-radius: 0;
+    background: transparent;
+  }
+
+  .future-book-mark .future-book-illustration {
+    position: static;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 1;
+    filter: none;
+  }
+
+  .catalogue-nav {
+    position: relative;
+    /* Outcome screens are temporarily pinned and carry local z-index values.
+       The catalogue is the next document chapter, so it must paint above a
+       released black values screen instead of appearing underneath it. */
+    z-index: 21;
+    min-height: 300px;
+    padding: 64px 5.6% 58px;
+    border-bottom: 3px solid #aaa;
+  }
+
+  .catalogue-nav::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    bottom: -44px;
+    left: 50%;
+    width: 52%;
+    height: 44px;
+    transform: translateX(-50%);
+    background: #fff;
+  }
+
+  .catalogue-nav h2 {
+    margin-bottom: 36px;
+    font-size: 64px;
+    line-height: 1;
+    letter-spacing: -.025em;
+  }
+
+  .catalogue-nav ul {
+    gap: 17px;
+  }
+
+  .catalogue-nav li {
+    min-height: 47px;
+    padding: 11px 16px;
+    font-size: 17px;
+  }
+
+  .catalogue-nav li span {
+    font-size: 24px;
+  }
+
+  .thrivable-business {
+    position: relative;
+    z-index: 20;
+    background: #aaa;
+    border: 0;
+    padding-top: 34px;
+  }
+
+  .thrivable-heading {
+    height: 170px;
+    border: 0;
+    background: transparent;
+  }
+
+  .thrivable-heading > span {
+    display: none;
+  }
+
+  .thrivable-heading h2 {
+    margin: 0;
+    color: #f5f5f5;
+    font-size: clamp(56px, 6vw, 82px);
+    line-height: .9;
+    letter-spacing: .01em;
+  }
+
+  .thrivable-question {
+    height: auto;
+    aspect-ratio: 5728 / 3037;
+    margin: 0 4px;
+    border: 0;
+  }
+
+  .thrivable-question img {
+    filter: none;
+    object-position: center;
+  }
+
+  .thrivable-question::after {
+    display: none;
+  }
+}

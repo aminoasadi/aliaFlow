@@ -1,0 +1,142 @@
+/* Exact circle pack for the “DESIRABLE / DIFFERENT” screen.
+   Values use the 1510 px reference canvas as their viewport-width basis. */
+@media (min-width: 781px) {
+  .outcome-1 .circle-field i {
+    display: block;
+    background: #1b1b1b;
+  }
+
+  .outcome-1 .circle-field i:nth-child(n + 22) {
+    display: none;
+  }
+
+  .outcome-1 .detail-placeholder {
+    left: 20.13vw;
+    top: 10.73vw;
+    width: 22.52vw;
+    height: 22.52vw;
+    background: #ddd;
+  }
+
+  .outcome-1 .outcome-detail {
+    left: 64.5%;
+    right: auto;
+    top: 130px;
+  }
+
+  .outcome-1 .circle-field i:nth-child(1) { left: -5.17vw; top: 4.64vw; width: 16.42vw; height: 16.42vw; }
+  .outcome-1 .circle-field i:nth-child(2) { left: 10.20vw; top: -4.83vw; width: 17.55vw; height: 17.55vw; }
+  .outcome-1 .circle-field i:nth-child(3) { left: 28.74vw; top: -2.52vw; width: 12.19vw; height: 12.19vw; }
+  .outcome-1 .circle-field i:nth-child(4) { left: 39.54vw; top: 6.45vw; width: 8.21vw; height: 8.21vw; }
+  .outcome-1 .circle-field i:nth-child(5) { left: 48.34vw; top: 7.02vw; width: 4.83vw; height: 4.83vw; }
+  .outcome-1 .circle-field i:nth-child(6) { left: 6.89vw; top: 16.92vw; width: 12.25vw; height: 12.25vw; }
+  .outcome-1 .circle-field i:nth-child(7) { left: 43.97vw; top: 16.67vw; width: 14.97vw; height: 14.97vw; }
+  .outcome-1 .circle-field i:nth-child(8) { left: -3.31vw; top: 19.25vw; width: 6.82vw; height: 6.82vw; }
+  .outcome-1 .circle-field i:nth-child(9) { left: -4.50vw; top: 28.70vw; width: 17.55vw; height: 17.55vw; }
+  .outcome-1 .circle-field i:nth-child(10) { left: 10.46vw; top: 33.70vw; width: 11.52vw; height: 11.52vw; }
+  .outcome-1 .circle-field i:nth-child(11) { left: 39.87vw; top: 35.59vw; width: 11.52vw; height: 11.52vw; }
+  .outcome-1 .circle-field i:nth-child(12) { left: 52.25vw; top: 37.59vw; width: 8.21vw; height: 8.21vw; }
+  .outcome-1 .circle-field i:nth-child(13) { left: 0.20vw; top: 46.36vw; width: 17.55vw; height: 17.55vw; }
+  .outcome-1 .circle-field i:nth-child(14) { left: 17.22vw; top: 47.98vw; width: 6.69vw; height: 6.69vw; }
+  .outcome-1 .circle-field i:nth-child(15) { left: 24.70vw; top: 42.97vw; width: 17.55vw; height: 17.55vw; }
+  .outcome-1 .circle-field i:nth-child(16) { left: 43.05vw; top: 50.19vw; width: 6.69vw; height: 6.69vw; }
+  .outcome-1 .circle-field i:nth-child(17) { left: 50.26vw; top: 49.12vw; width: 11.52vw; height: 11.52vw; }
+  .outcome-1 .circle-field i:nth-child(18) { left: 61.85vw; top: 51.51vw; width: 17.55vw; height: 17.55vw; }
+  .outcome-1 .circle-field i:nth-child(19) { left: 77.81vw; top: 49.37vw; width: 6.69vw; height: 6.69vw; }
+  .outcome-1 .circle-field i:nth-child(20) { left: 80.99vw; top: 57.14vw; width: 17.55vw; height: 17.55vw; }
+  .outcome-1 .circle-field i:nth-child(21) { left: 91.52vw; top: 60.26vw; width: 10.60vw; height: 10.60vw; }
+
+  /* Exact pack for the “FEASIBLE / COMPETITIVE” reference screen. */
+  .outcome-2 .circle-field i {
+    display: block;
+    background: #1b1b1b;
+  }
+
+  .outcome-2 .circle-field i:nth-child(n + 22) {
+    display: none;
+  }
+
+  .outcome-2 .detail-placeholder {
+    left: 61.59vw;
+    top: 19.40vw;
+    width: 20.93vw;
+    height: 20.93vw;
+    background: #ddd;
+  }
+
+  .outcome-2 .outcome-detail {
+    left: 7.02%;
+    top: 114px;
+  }
+
+  .outcome-2 .circle-field i:nth-child(1) { left: 57.75vw; top: -9.14vw; width: 15.36vw; height: 15.36vw; }
+  .outcome-2 .circle-field i:nth-child(2) { left: 72.98vw; top: -6.89vw; width: 17.68vw; height: 17.68vw; }
+  .outcome-2 .circle-field i:nth-child(3) { left: 90.60vw; top: 0.73vw; width: 11.52vw; height: 11.52vw; }
+  .outcome-2 .circle-field i:nth-child(4) { left: 53.25vw; top: 4.70vw; width: 8.21vw; height: 8.21vw; }
+  .outcome-2 .circle-field i:nth-child(5) { left: 61.52vw; top: 6.75vw; width: 12.00vw; height: 12.00vw; }
+  .outcome-2 .circle-field i:nth-child(6) { left: 41.92vw; top: 10.73vw; width: 15.10vw; height: 15.10vw; }
+  .outcome-2 .circle-field i:nth-child(7) { left: 73.97vw; top: 10.73vw; width: 7.95vw; height: 7.95vw; }
+  .outcome-2 .circle-field i:nth-child(8) { left: 82.12vw; top: 9.84vw; width: 11.80vw; height: 11.80vw; }
+  .outcome-2 .circle-field i:nth-child(9) { left: 94.57vw; top: 12.92vw; width: 6.69vw; height: 6.69vw; }
+  .outcome-2 .circle-field i:nth-child(10) { left: 57.22vw; top: 14.44vw; width: 4.83vw; height: 4.83vw; }
+  .outcome-2 .circle-field i:nth-child(11) { left: 86.36vw; top: 21.19vw; width: 4.83vw; height: 4.83vw; }
+  .outcome-2 .circle-field i:nth-child(12) { left: 40.26vw; top: 27.62vw; width: 8.21vw; height: 8.21vw; }
+  .outcome-2 .circle-field i:nth-child(13) { left: 49.40vw; top: 26.36vw; width: 10.60vw; height: 10.60vw; }
+  .outcome-2 .circle-field i:nth-child(14) { left: 32.32vw; top: 31.59vw; width: 8.21vw; height: 8.21vw; }
+  .outcome-2 .circle-field i:nth-child(15) { left: 15.96vw; top: 37.15vw; width: 6.69vw; height: 6.69vw; }
+  .outcome-2 .circle-field i:nth-child(16) { left: 21.39vw; top: 38.68vw; width: 17.55vw; height: 17.55vw; }
+  .outcome-2 .circle-field i:nth-child(17) { left: 39.07vw; top: 36.75vw; width: 11.52vw; height: 11.52vw; }
+  .outcome-2 .circle-field i:nth-child(18) { left: 51.39vw; top: 39.67vw; width: 6.69vw; height: 6.69vw; }
+  .outcome-2 .circle-field i:nth-child(19) { left: 61.46vw; top: 38.88vw; width: 11.52vw; height: 11.52vw; }
+  .outcome-2 .circle-field i:nth-child(20) { left: 72.65vw; top: 43.07vw; width: 11.52vw; height: 11.52vw; }
+  .outcome-2 .circle-field i:nth-child(21) { left: 83.11vw; top: 33.51vw; width: 17.48vw; height: 17.48vw; }
+
+  /* Exact pack for the “VIABLE / SCALABLE” reference screen. */
+  .outcome-3 .circle-field i {
+    display: block;
+    background: #1b1b1b;
+  }
+
+  .outcome-3 .circle-field i:nth-child(n + 24) {
+    display: none;
+  }
+
+  .outcome-3 .detail-placeholder {
+    left: 13.38vw;
+    top: 11.92vw;
+    width: 29.47vw;
+    height: 29.47vw;
+    border-radius: 5.30vw 5.30vw 5.30vw 10.60vw;
+    background: #ddd;
+  }
+
+  .outcome-3 .outcome-detail {
+    left: 64.83%;
+    right: auto;
+    top: 365px;
+  }
+
+  .outcome-3 .circle-field i:nth-child(1) { left: -8.34vw; top: 1.06vw; width: 17.48vw; height: 17.48vw; }
+  .outcome-3 .circle-field i:nth-child(2) { left: 12.98vw; top: -3.77vw; width: 11.92vw; height: 11.92vw; }
+  .outcome-3 .circle-field i:nth-child(3) { left: 24.24vw; top: 1.19vw; width: 11.59vw; height: 11.59vw; }
+  .outcome-3 .circle-field i:nth-child(4) { left: 35.63vw; top: -2.52vw; width: 11.52vw; height: 11.52vw; }
+  .outcome-3 .circle-field i:nth-child(5) { left: 47.81vw; top: -2.65vw; width: 6.69vw; height: 6.69vw; }
+  .outcome-3 .circle-field i:nth-child(6) { left: 58.28vw; top: -2.91vw; width: 17.48vw; height: 17.48vw; }
+  .outcome-3 .circle-field i:nth-child(7) { left: 76.75vw; top: -1.85vw; width: 11.92vw; height: 11.92vw; }
+  .outcome-3 .circle-field i:nth-child(8) { left: 39.27vw; top: 9.07vw; width: 6.69vw; height: 6.69vw; }
+  .outcome-3 .circle-field i:nth-child(9) { left: 46.62vw; top: 5.30vw; width: 11.52vw; height: 11.52vw; }
+  .outcome-3 .circle-field i:nth-child(10) { left: 74.44vw; top: 9.74vw; width: 6.69vw; height: 6.69vw; }
+  .outcome-3 .circle-field i:nth-child(11) { left: 56.69vw; top: 13.77vw; width: 8.21vw; height: 8.21vw; }
+  .outcome-3 .circle-field i:nth-child(12) { left: 39.87vw; top: 16.56vw; width: 8.01vw; height: 8.01vw; }
+  .outcome-3 .circle-field i:nth-child(13) { left: 48.74vw; top: 17.75vw; width: 8.21vw; height: 8.21vw; }
+  .outcome-3 .circle-field i:nth-child(14) { left: -5.03vw; top: 18.41vw; width: 14.50vw; height: 14.50vw; }
+  .outcome-3 .circle-field i:nth-child(15) { left: 6.09vw; top: 18.28vw; width: 7.95vw; height: 7.95vw; }
+  .outcome-3 .circle-field i:nth-child(16) { left: 5.83vw; top: 26.36vw; width: 4.83vw; height: 4.83vw; }
+  .outcome-3 .circle-field i:nth-child(17) { left: -5.30vw; top: 34.17vw; width: 10.87vw; height: 10.87vw; }
+  .outcome-3 .circle-field i:nth-child(18) { left: 3.05vw; top: 31.52vw; width: 11.52vw; height: 11.52vw; }
+  .outcome-3 .circle-field i:nth-child(19) { left: 15.23vw; top: 33.51vw; width: 6.69vw; height: 6.69vw; }
+  .outcome-3 .circle-field i:nth-child(20) { left: 22.38vw; top: 35.17vw; width: 11.52vw; height: 11.52vw; }
+  .outcome-3 .circle-field i:nth-child(21) { left: 35.70vw; top: 40.33vw; width: 8.21vw; height: 8.21vw; }
+  .outcome-3 .circle-field i:nth-child(22) { left: 42.45vw; top: 27.81vw; width: 12.91vw; height: 12.91vw; }
+  .outcome-3 .circle-field i:nth-child(23) { left: 52.32vw; top: 26.76vw; width: 5.83vw; height: 5.83vw; }
+}

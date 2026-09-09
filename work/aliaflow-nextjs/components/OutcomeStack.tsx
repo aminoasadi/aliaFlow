@@ -112,10 +112,12 @@ export function OutcomeStack({
       <article className="fig-outcome outcome-manifesto">
         <div className="fig-outcome-screen">
           <div className="manifesto-heading"><h2><Lines text={manifestoHeading} /></h2></div>
+        </div>
+      </article>
+      <article className="fig-outcome outcome-manifesto-values">
+        <div className="fig-outcome-screen manifesto-values-screen">
           <div className="manifesto-content">
-            <svg className="fig-shape" viewBox="0 0 200 190" aria-hidden>
-              <path d="M77.5,52.4 Q100,10 122.5,52.4 L167.5,137.6 Q190,180 142,180 L58,180 Q10,180 32.5,137.6 Z" fill="#d5d5d5" />
-            </svg>
+            <img className="fig-shape" src="/assets/subtract.svg" alt="" aria-hidden />
             <p><Lines text={manifestoWords} /></p>
           </div>
         </div>

@@ -8,10 +8,8 @@ function Lines({ text }: { text: string }) {
 function LoopMark() {
   return (
     <svg viewBox="0 0 48 48" fill="none" stroke="#8b8b8b" strokeWidth="1.7" strokeLinecap="round" aria-hidden>
-      <path d="M13 20v-5a2 2 0 0 1 2-2h5" />
-      <path d="M35 20v-5a2 2 0 0 0-2-2h-5" />
-      <path d="M13 28v5a2 2 0 0 0 2 2h5" />
-      <path d="M35 28v5a2 2 0 0 1-2 2h-5" />
+      <path d="M13 20v-5a2 2 0 0 1 2-2h5" /><path d="M35 20v-5a2 2 0 0 0-2-2h-5" />
+      <path d="M13 28v5a2 2 0 0 0 2 2h5" /><path d="M35 28v5a2 2 0 0 1-2 2h-5" />
       <path d="M24 17v14M18 24h12" />
     </svg>
   );

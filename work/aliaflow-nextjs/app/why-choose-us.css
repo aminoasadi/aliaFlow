@@ -1,0 +1,48 @@
+/* Why choose us: reference-matched framed editorial composition. */
+.why-us {
+  position: relative;
+  overflow: hidden;
+  padding: 88px 3.4% 73px;
+  border: 2px solid #454545;
+  background: #fff;
+  color: #394452;
+  text-align: center;
+}
+
+.why-us::before,
+.why-us::after { position: absolute; left: 50%; width: 35%; height: 34px; transform: translateX(-50%); background: #414141; content: ""; }
+.why-us::before { top: 0; }
+.why-us::after { bottom: 0; background: #aaa; }
+
+.why-us > p { margin: 0 0 23px; font-size: 18px; line-height: 1; }
+.why-us > h2 { margin: 0; font-size: clamp(46px, 5.1vw, 68px); line-height: .98; font-weight: 700; letter-spacing: -.055em; }
+
+.business-ring {
+  position: relative;
+  display: grid;
+  width: 285px;
+  height: 285px;
+  place-items: center;
+  margin: 77px auto 31px;
+  border: 32px solid #3f3f3f;
+  border-radius: 50%;
+  color: #3f3f3f;
+}
+
+.business-ring strong { font-size: 24px; line-height: 1.22; font-weight: 400; }
+.ring-word { position: absolute; color: #fff; font-size: 14px; font-weight: 600; letter-spacing: .25em; }
+.ring-different { left: -20px; top: 42%; transform: rotate(-90deg); }
+.ring-competitive { right: -31px; top: 37%; transform: rotate(84deg); }
+.ring-scalable { bottom: -15px; left: 50%; transform: translateX(-50%); }
+
+.why-list { display: grid; gap: 10px; margin: 0; text-align: left; }
+.why-list img { display: block; width: 100%; height: auto; }
+
+@media (max-width: 780px) {
+  .why-us { padding: 68px 20px 56px; }
+  .why-us::before, .why-us::after { width: 45%; height: 22px; }
+  .why-us > h2 { font-size: 39px; }
+  .business-ring { width: 220px; height: 220px; margin: 52px auto 28px; border-width: 25px; }
+  .business-ring strong { font-size: 19px; }
+  .ring-word { font-size: 10px; }
+}

@@ -1,0 +1,30 @@
+/* Keep the transition statement in the same full-page rhythm as the outcome screens. */
+.manifesto-heading {
+  height: 100svh;
+  min-height: 520px;
+}
+
+@media (max-width: 780px) {
+  .manifesto-heading {
+    min-height: 100svh;
+  }
+}
+
+/* The values panel is a standalone scroll screen: black field, soft triangular mark,
+   and the three outcome words placed at the same visual weight as the reference. */
+.manifesto-content {
+  min-height: 100svh;
+  height: 100svh;
+  gap: clamp(64px, 6.1vw, 88px);
+}
+
+.fig-shape {
+  width: clamp(250px, 24vw, 350px);
+  height: auto;
+}
+
+@media (max-width: 900px) and (min-width: 781px) {
+  .manifesto-content p {
+    font-size: 36px;
+  }
+}

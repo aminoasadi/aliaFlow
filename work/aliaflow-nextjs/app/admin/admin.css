@@ -2,33 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #f8fafc;
-  --foreground: #1e293b;
-  --card: #ffffff;
-  --card-foreground: #1e293b;
-  --popover: #ffffff;
-  --popover-foreground: #1e293b;
-  --primary: #6366f1;
-  --primary-foreground: #ffffff;
-  --secondary: #e5e7eb;
-  --secondary-foreground: #374151;
-  --muted: #f3f4f6;
-  --muted-foreground: #6b7280;
-  --accent: #e0e7ff;
-  --accent-foreground: #374151;
-  --destructive: #ef4444;
-  --destructive-foreground: #ffffff;
-  --border: #d1d5db;
-  --input: #d1d5db;
-  --ring: #6366f1;
-  --radius: 0.5rem;
-  --sidebar: #f3f4f6;
-  --sidebar-foreground: #1e293b;
-  --sidebar-primary: #6366f1;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #e0e7ff;
-  --sidebar-accent-foreground: #374151;
-  --sidebar-border: #d1d5db;
-  --sidebar-ring: #6366f1;
-}
+:root { --background:#f5f6f8; --foreground:#17191d; --card:#fff; --card-foreground:#17191d; --popover:#fff; --popover-foreground:#17191d; --primary:#1f49d8; --primary-foreground:#fff; --secondary:#e9ecf1; --secondary-foreground:#272b32; --muted:#eef0f3; --muted-foreground:#69707d; --accent:#e8edff; --accent-foreground:#1737a4; --destructive:#c73535; --destructive-foreground:#fff; --border:#dfe2e7; --input:#cfd3da; --ring:#1f49d8; --radius:.625rem; --sidebar:#f9fafb; --sidebar-foreground:#25282e; --sidebar-primary:#17191d; --sidebar-primary-foreground:#fff; --sidebar-accent:#e8edff; --sidebar-accent-foreground:#1737a4; --sidebar-border:#e3e5e9; --sidebar-ring:#1f49d8; }
+.admin-shell { color:var(--foreground); background:var(--background); font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; font-size:14px; line-height:1.5; }
+.admin-shell *, .admin-login * { box-sizing:border-box; }
+.admin-shell button,.admin-shell input,.admin-shell textarea,.admin-shell select,.admin-login button,.admin-login input { font:inherit; }
+.admin-shell a,.admin-login a { color:inherit; }
+.admin-main { margin:0 auto; width:100%; max-width:1440px; padding:28px 32px 48px; }
+.admin-page { display:grid; gap:24px; }
+.admin-page-header { display:flex; align-items:flex-start; justify-content:space-between; gap:24px; }
+.admin-kicker { margin:0 0 6px; color:var(--primary); font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; }
+.admin-title { margin:0; font-size:clamp(24px,2vw,32px); line-height:1.15; letter-spacing:-.035em; }
+.admin-description { max-width:640px; margin:8px 0 0; color:var(--muted-foreground); }
+.admin-stat { border-left:2px solid var(--border); padding-left:16px; }
+.admin-stat strong { display:block; font-size:24px; line-height:1; letter-spacing:-.04em; }
+.admin-stat span { color:var(--muted-foreground); font-size:12px; }
+.editor-grid { display:grid; grid-template-columns:minmax(0,1fr) 280px; align-items:start; gap:24px; }
+.admin-rail { position:sticky; top:76px; display:grid; gap:12px; }
+.admin-table { width:100%; border-collapse:collapse; }
+.admin-table th { padding:11px 16px; border-bottom:1px solid var(--border); color:var(--muted-foreground); font-size:11px; font-weight:600; letter-spacing:.06em; text-align:left; text-transform:uppercase; }
+.admin-table td { padding:14px 16px; border-bottom:1px solid var(--border); vertical-align:middle; }
+.admin-table tr:last-child td { border-bottom:0; }
+.admin-table tbody tr:hover { background:#f4f6fc; }
+.admin-login { min-height:100vh; display:grid; grid-template-columns:minmax(0,1.15fr) minmax(380px,.85fr); background:#111318; color:#fff; font-family:Inter,ui-sans-serif,system-ui,sans-serif; }
+.login-art { position:relative; display:flex; min-height:100vh; flex-direction:column; justify-content:space-between; overflow:hidden; padding:48px; background:radial-gradient(circle at 70% 30%,#3158dc 0,#1d318c 22%,#111318 62%); }
+.login-art::after { content:""; position:absolute; right:-8vw; bottom:-22vw; width:48vw; height:48vw; border:1px solid rgba(255,255,255,.18); border-radius:50%; box-shadow:0 0 0 7vw rgba(255,255,255,.03),0 0 0 14vw rgba(255,255,255,.025); }
+.login-panel { display:grid; place-items:center; min-height:100vh; padding:32px; background:#f7f8fa; color:#17191d; }
+@media (max-width:900px) { .admin-main{padding:20px 16px 36px}.editor-grid{grid-template-columns:1fr}.admin-rail{position:static}.admin-login{grid-template-columns:1fr}.login-art{display:none} }

@@ -14,6 +14,7 @@ export async function POST(request: NextRequest) {
   }
 
   const token = await createSessionToken(user.id);
+  await prisma.user.update({ where: { id: user.id }, data: { lastLoginAt: new Date() } });
   const response = NextResponse.json({ ok: true });
   response.cookies.set(SESSION_COOKIE_NAME, token, {
     httpOnly: true,

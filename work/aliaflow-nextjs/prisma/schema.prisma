@@ -9,13 +9,54 @@ datasource db {
 
 model User {
   id           String   @id @default(cuid())
+  name         String   @default("Administrator")
   email        String   @unique
   passwordHash String
+  role         String   @default("admin")
+  status       String   @default("active")
+  lastLoginAt  DateTime?
   createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
 
 model Section {
+  key           String     @id
+  data          String
+  status        String     @default("published")
+  publishedData String?
+  publishedAt   DateTime?
+  updatedBy     String?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  revisions     Revision[]
+}
+
+model Revision {
+  id         String   @id @default(cuid())
+  sectionKey String
+  data       String
+  action     String   @default("saved")
+  actorEmail String?
+  createdAt  DateTime @default(now())
+  section    Section  @relation(fields: [sectionKey], references: [key], onDelete: Cascade)
+
+  @@index([sectionKey, createdAt])
+}
+
+model Setting {
   key       String   @id
-  data      String
+  value     String
   updatedAt DateTime @updatedAt
+}
+
+model Activity {
+  id         String   @id @default(cuid())
+  action     String
+  entityType String
+  entityKey  String
+  actorEmail String?
+  detail     String?
+  createdAt  DateTime @default(now())
+
+  @@index([createdAt])
 }

@@ -9,7 +9,8 @@ export async function middleware(request: NextRequest) {
   const isProtectedPage = pathname.startsWith("/admin") && !PUBLIC_ADMIN_PATHS.has(pathname);
   const isProtectedApi =
     (pathname.startsWith("/api/sections/") && request.method !== "GET") ||
-    pathname.startsWith("/api/media");
+    pathname.startsWith("/api/media") ||
+    pathname.startsWith("/api/admin");
 
   if (!isProtectedPage && !isProtectedApi) {
     return NextResponse.next();
@@ -29,5 +30,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/api/sections/:path*", "/api/media/:path*"],
+  matcher: ["/admin/:path*", "/api/sections/:path*", "/api/media/:path*", "/api/admin/:path*"],
 };
