@@ -64,7 +64,7 @@
 /* Magazine offer and the JAM event that close the Thrivable Business department. */
 .magazine-promo{position:relative;display:block;aspect-ratio:5728/2476;overflow:hidden;background:#e7e7e7;border:2px solid #555;border-top:0}
 .magazine-promo>img{object-fit:cover;object-position:center}
-.magazine-buy-button,.jam-copy button{padding:11px 26px;border:0;background:#333;color:#fff;font-size:14px;cursor:pointer}
+.magazine-buy-button{display:inline-block;padding:11px 26px;background:#333;color:#fff;font-size:14px;cursor:pointer}
 .magazine-buy-button{position:absolute;z-index:1;top:62%;left:4%;min-width:150px}
 .jam-promo{display:grid;grid-template-columns:40% 60%;align-items:center;min-height:430px;background:#fff;border:2px solid #555;border-top:0}
 .jam-copy{padding:48px 6% 48px 6%}

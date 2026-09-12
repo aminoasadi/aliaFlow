@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { prisma } from "../lib/db";
 import "./globals.css";
 import "./figma-overrides.css";
 import "./dafic.css";
@@ -11,25 +12,24 @@ import "./future-image-carousel.css";
 import "./why-choose-us.css";
 import "./portfolio-timeline.css";
 
-export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
-  title: "Aliaflow — Your Trusted Leadership Partner",
-  description: "A componentized reconstruction of the Aliaflow experience.",
-  icons: {
-    icon: "/icon.svg",
-    shortcut: "/icon.svg",
-    apple: "/icon.svg",
-  },
-  openGraph: {
-    title: "Aliaflow — Your Trusted Leadership Partner",
-    description: "Leadership partner for desirable, competitive and scalable businesses.",
-    images: [{ url: "/assets/aliaflow-logo.svg", width: 139, height: 114, alt: "Aliaflow" }],
-  },
-  twitter: {
-    card: "summary",
-    images: ["/assets/aliaflow-logo.svg"],
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const rows = await prisma.setting.findMany();
+  const settings = Object.fromEntries(rows.map((row) => [row.key, row.value]));
+  const siteUrl = settings.siteUrl || process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const title = settings.seoTitle || settings.siteName || "Aliaflow";
+  const description = settings.seoDescription || "";
+  const image = settings.seoImage || "/icon.svg";
+  const imageAlt = settings.seoImageAlt || settings.siteName || "";
+
+  return {
+    metadataBase: new URL(siteUrl),
+    title,
+    description,
+    icons: { icon: "/icon.svg", shortcut: "/icon.svg", apple: "/icon.svg" },
+    openGraph: { title, description, images: [{ url: image, alt: imageAlt }] },
+    twitter: { card: "summary", images: [image] },
+  };
+}
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return <html lang="en" data-scroll-behavior="smooth"><body>{children}</body></html>;

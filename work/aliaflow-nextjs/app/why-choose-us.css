@@ -31,12 +31,14 @@
 
 .business-ring strong { font-size: 24px; line-height: 1.22; font-weight: 400; }
 .ring-word { position: absolute; color: #fff; font-size: 14px; font-weight: 600; letter-spacing: .25em; }
-.ring-different { left: -20px; top: 42%; transform: rotate(-90deg); }
-.ring-competitive { right: -31px; top: 37%; transform: rotate(84deg); }
-.ring-scalable { bottom: -15px; left: 50%; transform: translateX(-50%); }
+.ring-word-1 { left: -20px; top: 42%; transform: rotate(-90deg); }
+.ring-word-2 { right: -31px; top: 37%; transform: rotate(84deg); }
+.ring-word-3 { bottom: -15px; left: 50%; transform: translateX(-50%); }
 
 .why-list { display: grid; gap: 10px; margin: 0; text-align: left; }
 .why-list img { display: block; width: 100%; height: auto; }
+
+.event-copy .event-cta { display: inline-block; margin-top: 20px; padding: 17px 34px; background: #444; color: #fff; }
 
 @media (max-width: 780px) {
   .why-us { padding: 68px 20px 56px; }

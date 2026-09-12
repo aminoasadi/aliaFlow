@@ -5,9 +5,10 @@ export type HeroData = {
   eyebrow: string;
   heading: string;
   image: string;
+  image_alt: string;
 };
 
-export function Hero({ eyebrow, heading, image }: HeroData) {
+export function Hero({ eyebrow, heading, image, image_alt }: HeroData) {
   const headingLines = heading.split("\n");
   return (
     <section id="home" className="hero section-dark">
@@ -23,7 +24,7 @@ export function Hero({ eyebrow, heading, image }: HeroData) {
         </h1>
       </div>
       <div className="hero-art">
-        <Image src={image} alt="Leadership team around a strategic table" fill priority sizes="(max-width: 780px) 100vw, 58vw" />
+        <Image src={image} alt={image_alt} fill priority sizes="(max-width: 780px) 100vw, 58vw" />
       </div>
     </section>
   );

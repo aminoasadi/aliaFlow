@@ -35,4 +35,22 @@ describe("sectionSchemas", () => {
       expect(issues.length, `${key} should reject {}`).toBeGreaterThan(0);
     }
   });
+
+  it("exposes an image field for every CMS-managed visual card collection", () => {
+    const thrivable = sectionSchemas["thrivable-business"].fields;
+    for (const key of ["futures", "loops", "cultures"]) {
+      const collection = thrivable[key];
+      expect(collection.type, `${key} should be a list`).toBe("list");
+      if (collection.type === "list") expect(collection.fields.image?.type).toBe("image");
+    }
+
+    for (const key of ["business-leadership", "technocratic-design"]) {
+      const statements = sectionSchemas[key].fields.statements;
+      expect(statements.type, `${key}.statements should be a list`).toBe("list");
+      if (statements.type !== "list") continue;
+      const cards = statements.fields.cards;
+      expect(cards?.type, `${key}.statements.cards should be a list`).toBe("list");
+      if (cards?.type === "list") expect(cards.fields.image?.type).toBe("image");
+    }
+  });
 });

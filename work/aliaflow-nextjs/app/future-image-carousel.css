@@ -22,6 +22,8 @@
 
 .future-image-carousel-rail::-webkit-scrollbar { display: none; }
 .future-image-carousel.is-dragging .future-image-carousel-rail { cursor: grabbing; scroll-snap-type: none; }
+.future-image-carousel-rail:focus-visible,
+.image-carousel-rail:focus-visible { outline: 3px solid #2557d6; outline-offset: -3px; }
 
 .future-image-slide {
   flex: 0 0 clamp(320px, 36vw, 690px);
@@ -60,6 +62,10 @@
 .image-carousel.is-dragging .image-carousel-rail { cursor: grabbing; scroll-snap-type: none; }
 .image-carousel-slide { flex: 0 0 33.333%; scroll-snap-align: start; border-right: 3px solid #aaa; background: #f5f5f5; }
 .image-carousel-slide img { display: block; width: 100%; height: auto; pointer-events: none; }
+.image-carousel-placeholder { display: grid; min-height: clamp(420px, 52vw, 720px); place-content: center; gap: 20px; padding: 40px; color: #777; text-align: center; }
+.image-carousel-placeholder span { font-size: clamp(42px, 6vw, 88px); font-weight: 800; line-height: 1; }
+.image-carousel-placeholder strong { max-width: 260px; font-size: 18px; }
+.image-carousel-dark .image-carousel-placeholder { color: #ddd; }
 .image-carousel-dark { border-color: #aaa; background: #292929; }
 .image-carousel-dark .image-carousel-slide { border-color: #aaa; background: #292929; }
 

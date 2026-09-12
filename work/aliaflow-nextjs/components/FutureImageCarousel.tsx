@@ -1,12 +1,34 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, type KeyboardEvent } from "react";
 
 export type FutureImage = {
   /** CMS-provided URL for a fully designed card image. */
-  src: string;
+  src?: string;
   alt: string;
 };
+
+function handleRailKeys(event: KeyboardEvent<HTMLDivElement>) {
+  if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+  event.preventDefault();
+  const direction = event.key === "ArrowRight" ? 1 : -1;
+  event.currentTarget.scrollBy({ left: direction * event.currentTarget.clientWidth * 0.8, behavior: "smooth" });
+}
+
+function CarouselSlide({ item, index, className }: { item: FutureImage; index: number; className: string }) {
+  return (
+    <article className={className}>
+      {item.src ? (
+        <img src={item.src} alt={item.alt} draggable={false} />
+      ) : (
+        <div className="image-carousel-placeholder" role="img" aria-label={`${item.alt || "Image card"} has no image`}>
+          <span>{String(index + 1).padStart(2, "0")}</span>
+          <strong>{item.alt || "Image not added"}</strong>
+        </div>
+      )}
+    </article>
+  );
+}
 
 export function ImageCarousel({ items, dark = false, label = "Image carousel" }: { items: FutureImage[]; dark?: boolean; label?: string }) {
   const rail = useRef<HTMLDivElement>(null);
@@ -18,13 +40,16 @@ export function ImageCarousel({ items, dark = false, label = "Image carousel" }:
       <div
         ref={rail}
         className="image-carousel-rail"
+        tabIndex={0}
+        aria-label={`${label}. Use the left and right arrow keys to browse.`}
+        onKeyDown={handleRailKeys}
         onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); drag.current = { startX: event.clientX, startScroll: event.currentTarget.scrollLeft }; setDragging(true); }}
         onPointerMove={(event) => { if (dragging && rail.current) rail.current.scrollLeft = drag.current.startScroll - (event.clientX - drag.current.startX); }}
         onPointerUp={() => setDragging(false)}
         onPointerCancel={() => setDragging(false)}
         onPointerLeave={() => setDragging(false)}
       >
-        {items.map((item, index) => <article className="image-carousel-slide" key={`${item.src}-${index}`}><img src={item.src} alt={item.alt} draggable={false} /></article>)}
+        {items.map((item, index) => <CarouselSlide className="image-carousel-slide" item={item} index={index} key={`${item.src ?? "empty"}-${index}`} />)}
       </div>
     </section>
   );
@@ -57,6 +82,9 @@ export function FutureImageCarousel({ items }: { items: FutureImage[] }) {
       <div
         ref={rail}
         className="future-image-carousel-rail"
+        tabIndex={0}
+        aria-label="Future of X image cards. Use the left and right arrow keys to browse."
+        onKeyDown={handleRailKeys}
         onPointerDown={(event) => {
           event.currentTarget.setPointerCapture(event.pointerId);
           beginDrag(event.clientX);
@@ -67,9 +95,7 @@ export function FutureImageCarousel({ items }: { items: FutureImage[] }) {
         onPointerLeave={endDrag}
       >
         {items.map((item, index) => (
-          <article className="future-image-slide" key={`${item.src}-${index}`}>
-            <img src={item.src} alt={item.alt} draggable={false} />
-          </article>
+          <CarouselSlide className="future-image-slide" item={item} index={index} key={`${item.src ?? "empty"}-${index}`} />
         ))}
       </div>
     </section>

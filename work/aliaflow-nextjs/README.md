@@ -24,6 +24,14 @@ generic form component (`components/admin/DynamicSectionForm.tsx`) that renders 
 for any section purely from that schema — adding a new editable field means editing
 `lib/sections.schema.ts`, not building a new form.
 
+Visual card collections are managed as ordered CMS lists. Editors can add or remove
+cards, move them up or down, upload or replace each card image independently, and
+publish the resulting order. The Future of X rail uses complete, pre-designed card
+images; Business Loop and Culture tiles keep their image and text fields; Business
+Leadership and Technocratic Design statements each contain their own nested image-card
+list. Older JSON records are normalized in the editor so newly introduced image fields
+can be saved without re-seeding or losing legacy content.
+
 Uploaded images are stored under `storage/uploads/` (not `public/`, which Next.js
 snapshots at build time) and served through `app/uploads/[...path]/route.ts` — on
 a real deployment, `storage/uploads/` needs the same persistent-volume treatment

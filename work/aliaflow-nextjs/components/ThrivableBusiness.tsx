@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Fragment, type ReactNode } from "react";
+import { FutureImageCarousel } from "./FutureImageCarousel";
 
 function Lines({ text }: { text: string }) {
   return <>{text.split("\n").map((line, i) => <Fragment key={line}>{i > 0 ? <br /> : null}{line}</Fragment>)}</>;
@@ -30,12 +31,14 @@ function ServiceBlock({
   title,
   body,
   image,
+  imageAlt,
   mark,
 }: {
   number: string;
   title: string;
   body: string;
   image?: string;
+  imageAlt?: string;
   mark: ReactNode;
 }) {
   return (
@@ -45,26 +48,24 @@ function ServiceBlock({
         <p>{body}</p>
       </div>
       <div className="future-book-mark">
-        {image ? <Image src={image} alt="" fill sizes="130px" /> : mark}
+        {image ? <Image src={image} alt={imageAlt ?? ""} fill sizes="130px" /> : mark}
       </div>
     </article>
   );
 }
 
-function TileGrid({ items, contain = false }: { items: { image: string; label: string; title: string }[]; contain?: boolean }) {
-  const lorem =
-    "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet.";
+function TileGrid({ items, contain = false }: { items: { image: string; label: string; title: string; body: string; image_alt: string }[]; contain?: boolean }) {
   return (
     <div className="future-grid">
       {items.map((item) => (
         <article key={item.title} className="future-card">
           <div className={`future-map${contain ? " future-map-contain" : ""}`}>
-            <Image src={item.image} alt="" fill sizes="33vw" />
+            <Image src={item.image} alt={item.image_alt} fill sizes="33vw" />
           </div>
           <div className="future-card-copy">
             <small>{item.label}</small>
             <h3>{item.title}</h3>
-            <p>{lorem}</p>
+            <p>{item.body}</p>
           </div>
         </article>
       ))}
@@ -76,23 +77,41 @@ export type ThrivableBusinessData = {
   heading: string;
   question_image: string;
   question: string;
-  service_blocks: { number: string; title: string; body: string; image?: string }[];
-  futures_image: string;
-  futures: { title: string; heading: string; tags: string }[];
-  loops: { image: string; label: string; title: string }[];
-  cultures: { image: string; label: string; title: string }[];
+  question_image_alt: string;
+  question_section_label: string;
+  service_blocks: { number: string; title: string; body: string; image?: string; image_alt?: string }[];
+  /** Legacy shared artwork, kept so previously published records still render. */
+  futures_image?: string;
+  futures: {
+    image?: string;
+    alt?: string;
+    /** Legacy fields from the original HTML card implementation. */
+    title?: string;
+    heading?: string;
+    tags?: string;
+  }[];
+  loops: { image: string; label: string; title: string; body: string; image_alt: string }[];
+  cultures: { image: string; label: string; title: string; body: string; image_alt: string }[];
   magazine_heading: string;
   magazine_price: string;
   magazine_image: string;
+  magazine_image_alt: string;
+  magazine_cta_label: string;
+  magazine_cta_href: string;
   jam_heading: string;
   jam_date: string;
   jam_body: string;
   jam_image: string;
+  jam_image_alt: string;
+  jam_cta_label: string;
+  jam_cta_href: string;
 };
 
 export function ThrivableBusiness({
   heading,
   question_image,
+  question_image_alt,
+  question_section_label,
   question,
   service_blocks,
   futures_image,
@@ -106,8 +125,20 @@ export function ThrivableBusiness({
   jam_date,
   jam_body,
   jam_image,
+  magazine_image_alt,
+  magazine_cta_label,
+  magazine_cta_href,
+  jam_image_alt,
+  jam_cta_label,
+  jam_cta_href,
 }: ThrivableBusinessData) {
   const marks = [<Image key="cyborg" src="/assets/cyborg.png" alt="" fill sizes="130px" />, <LoopMark key="loop" />, <CultureMark key="culture" />];
+  const futureImages = futures
+    .filter((future) => future.image?.trim())
+    .map((future, index) => ({
+      src: future.image as string,
+      alt: future.alt?.trim() || future.title?.trim() || `Future of X card ${index + 1}`,
+    }));
 
   return (
     <section className="thrivable-business" aria-labelledby="thrivable-title">
@@ -116,40 +147,43 @@ export function ThrivableBusiness({
         <h2 id="thrivable-title">{heading}</h2>
       </header>
 
-      <section className="thrivable-question" aria-label="Where to play, how to win">
-        <Image src={question_image} alt="A leader standing at the intersection of business pathways" fill sizes="100vw" priority />
+      <section className="thrivable-question" aria-label={question_section_label}>
+        <Image src={question_image} alt={question_image_alt} fill sizes="100vw" priority />
         <h3><Lines text={question} /></h3>
       </section>
 
-      {service_blocks[0] ? <ServiceBlock number={service_blocks[0].number} title={service_blocks[0].title} body={service_blocks[0].body} image={service_blocks[0].image} mark={marks[0]} /> : null}
+      {service_blocks[0] ? <ServiceBlock {...service_blocks[0]} imageAlt={service_blocks[0].image_alt} mark={marks[0]} /> : null}
 
-      <div className="future-grid">
-        {futures.map((future) => (
-          <article key={future.title} className="future-card">
-            <div className="future-map" aria-hidden="true"><Image src={futures_image} alt="" fill sizes="33vw" /></div>
-            <div className="future-card-title">{future.title.replace(" ", "\n")}</div>
-            <div className="future-card-copy">
-              <small>Industry Name</small>
-              <h3><Lines text={future.heading} /></h3>
-              <p><Lines text={future.tags} /></p>
-            </div>
-          </article>
-        ))}
-      </div>
+      {futureImages.length > 0 ? (
+        <FutureImageCarousel items={futureImages} />
+      ) : futures_image ? (
+        <div className="future-grid">
+          {futures.map((future, index) => (
+            <article key={`${future.title ?? "future"}-${index}`} className="future-card">
+              <div className="future-map" aria-hidden="true"><Image src={futures_image} alt="" fill sizes="33vw" /></div>
+              <div className="future-card-title">{(future.title ?? "").replace(" ", "\n")}</div>
+              <div className="future-card-copy">
+                <h3><Lines text={future.heading ?? ""} /></h3>
+                <p><Lines text={future.tags ?? ""} /></p>
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : null}
 
-      {service_blocks[1] ? <ServiceBlock number={service_blocks[1].number} title={service_blocks[1].title} body={service_blocks[1].body} image={service_blocks[1].image} mark={marks[1]} /> : null}
+      {service_blocks[1] ? <ServiceBlock {...service_blocks[1]} imageAlt={service_blocks[1].image_alt} mark={marks[1]} /> : null}
       <TileGrid items={loops} contain />
 
-      {service_blocks[2] ? <ServiceBlock number={service_blocks[2].number} title={service_blocks[2].title} body={service_blocks[2].body} image={service_blocks[2].image} mark={marks[2]} /> : null}
+      {service_blocks[2] ? <ServiceBlock {...service_blocks[2]} imageAlt={service_blocks[2].image_alt} mark={marks[2]} /> : null}
       <TileGrid items={cultures} />
 
       <section className="magazine-promo">
         <div className="magazine-copy">
           <h2><Lines text={magazine_heading} /></h2>
           <p className="magazine-price">{magazine_price}</p>
-          <button type="button">Buy Magazine</button>
+          <a className="magazine-buy-button" href={magazine_cta_href}>{magazine_cta_label}</a>
         </div>
-        <div className="magazine-art"><Image src={magazine_image} alt="Future of Banking magazine spread" fill sizes="60vw" /></div>
+        <div className="magazine-art"><Image src={magazine_image} alt={magazine_image_alt} fill sizes="60vw" /></div>
       </section>
 
       <section className="jam-promo">
@@ -157,9 +191,9 @@ export function ThrivableBusiness({
           <h2><Lines text={jam_heading} /></h2>
           <p className="jam-date">{jam_date}</p>
           <p>{jam_body}</p>
-          <button type="button">Book Now</button>
+          <a className="magazine-buy-button" href={jam_cta_href}>{jam_cta_label}</a>
         </div>
-        <div className="jam-art"><Image src={jam_image} alt="Venue for the Banking Thrivability JAM" fill sizes="60vw" /></div>
+        <div className="jam-art"><Image src={jam_image} alt={jam_image_alt} fill sizes="60vw" /></div>
       </section>
     </section>
   );

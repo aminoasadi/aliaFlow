@@ -26,11 +26,21 @@ export function OutcomeStack({
   outcomes,
   manifestoHeading,
   manifestoWords,
+  manifestoShape,
+  titlePrefix,
+  titleSuffix,
+  detailPrefix,
+  detailConnector,
 }: {
   introHeading: string;
   outcomes: Outcome[];
   manifestoHeading: string;
   manifestoWords: string;
+  manifestoShape: string;
+  titlePrefix: string;
+  titleSuffix: string;
+  detailPrefix: string;
+  detailConnector: string;
 }) {
   const scope = useRef<HTMLDivElement>(null);
 
@@ -108,7 +118,7 @@ export function OutcomeStack({
       <article className="fig-outcome outcome-0">
         <div className="fig-outcome-screen outcomes-intro"><h2><Lines text={introHeading} /></h2></div>
       </article>
-      {outcomes.map((outcome, index) => <OutcomePanel key={outcome.emphasis} outcome={outcome} index={index} />)}
+      {outcomes.map((outcome, index) => <OutcomePanel key={outcome.emphasis} outcome={outcome} index={index} titlePrefix={titlePrefix} titleSuffix={titleSuffix} detailPrefix={detailPrefix} detailConnector={detailConnector} />)}
       <article className="fig-outcome outcome-manifesto">
         <div className="fig-outcome-screen">
           <div className="manifesto-heading"><h2><Lines text={manifestoHeading} /></h2></div>
@@ -117,7 +127,7 @@ export function OutcomeStack({
       <article className="fig-outcome outcome-manifesto-values">
         <div className="fig-outcome-screen manifesto-values-screen">
           <div className="manifesto-content">
-            <img className="fig-shape" src="/assets/subtract.svg" alt="" aria-hidden />
+            {manifestoShape ? <img className="fig-shape" src={manifestoShape} alt="" aria-hidden /> : null}
             <p><Lines text={manifestoWords} /></p>
           </div>
         </div>

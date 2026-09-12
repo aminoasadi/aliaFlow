@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { validateSectionData, type FieldSchema } from "./section-validation";
+import { normalizeSectionData, validateSectionData, type FieldSchema } from "./section-validation";
 
 describe("validateSectionData", () => {
   const fields: Record<string, FieldSchema> = {
@@ -59,5 +59,31 @@ describe("validateSectionData", () => {
       items: [{ label: "ok" }, { label: 5 }],
     });
     expect(issues).toEqual(["root.items[1].label: expected a string"]);
+  });
+
+  it("fills newly introduced fields in older nested records without dropping legacy data", () => {
+    const normalized = normalizeSectionData(fields, {
+      title: "Legacy title",
+      body: "Legacy body",
+      legacy: "keep me",
+      items: [{ legacyItem: true }],
+    });
+
+    expect(normalized).toEqual({
+      title: "Legacy title",
+      body: "Legacy body",
+      image: "",
+      legacy: "keep me",
+      items: [{ label: "", legacyItem: true }],
+    });
+    expect(validateSectionData(fields, normalized)).toEqual([]);
+  });
+
+  it("uses schema defaults for fields introduced after a section was published", () => {
+    const normalized = normalizeSectionData({
+      label: { type: "text", label: "Label", defaultValue: "Existing label" },
+    }, {});
+
+    expect(normalized).toEqual({ label: "Existing label" });
   });
 });

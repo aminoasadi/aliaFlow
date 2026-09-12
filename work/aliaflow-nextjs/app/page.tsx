@@ -40,7 +40,7 @@ export default async function Home() {
   ] = await Promise.all([
     requireSection<HeaderData>("header"),
     requireSection<HeroData>("hero"),
-    requireSection<{ intro_heading: string; items: Outcome[]; manifesto_heading: string; manifesto_words: string }>("outcomes"),
+    requireSection<{ intro_heading: string; items: Outcome[]; manifesto_heading: string; manifesto_words: string; manifesto_shape: string; title_prefix: string; title_suffix: string; detail_prefix: string; detail_connector: string }>("outcomes"),
     requireSection<{ heading: string; tabs: { number: string; label: string }[] }>("service-catalogue-nav"),
     requireSection<ThrivableBusinessData>("thrivable-business"),
     requireSection<Parameters<typeof BusinessLeadership>[0]>("business-leadership"),
@@ -61,6 +61,11 @@ export default async function Home() {
         outcomes={outcomes.items}
         manifestoHeading={outcomes.manifesto_heading}
         manifestoWords={outcomes.manifesto_words}
+        manifestoShape={outcomes.manifesto_shape}
+        titlePrefix={outcomes.title_prefix}
+        titleSuffix={outcomes.title_suffix}
+        detailPrefix={outcomes.detail_prefix}
+        detailConnector={outcomes.detail_connector}
       />
       <ServiceCatalogueNav {...serviceCatalogueNav} />
       <ThrivableBusiness {...thrivableBusiness} />

@@ -1,6 +1,6 @@
 import { prisma } from "./db";
 import { sectionSchemas } from "./sections.schema";
-import { validateSectionData } from "./section-validation";
+import { normalizeSectionData, validateSectionData } from "./section-validation";
 
 export class SectionValidationError extends Error {
   issues: string[];
@@ -15,7 +15,9 @@ export async function getSection(key: string): Promise<Record<string, unknown> |
   const row = await prisma.section.findUnique({ where: { key } });
   if (!row) return null;
   const source = row.status === "published" && row.publishedData ? row.publishedData : row.data;
-  return JSON.parse(source) as Record<string, unknown>;
+  const schema = sectionSchemas[key];
+  const parsed = JSON.parse(source) as Record<string, unknown>;
+  return schema ? normalizeSectionData(schema.fields, parsed) : parsed;
 }
 
 export async function getSectionDraft(key: string) {
@@ -24,7 +26,10 @@ export async function getSectionDraft(key: string) {
     include: { revisions: { orderBy: { createdAt: "desc" }, take: 8 } },
   });
   if (!row) return null;
-  return { ...row, data: JSON.parse(row.data) as Record<string, unknown> };
+  return {
+    ...row,
+    data: normalizeSectionData(sectionSchemas[key]?.fields ?? {}, JSON.parse(row.data)),
+  };
 }
 
 export async function updateSection(

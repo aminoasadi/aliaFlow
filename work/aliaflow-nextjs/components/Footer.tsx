@@ -1,4 +1,7 @@
 export type FooterData = {
+  logo: string;
+  logo_alt: string;
+  home_href: string;
   eyebrow: string;
   heading_line1: string;
   heading_emphasis: string;
@@ -8,7 +11,7 @@ export type FooterData = {
   copyright: string;
 };
 
-export function Footer({ eyebrow, heading_line1, heading_emphasis, email, description, social_links, copyright }: FooterData) {
+export function Footer({ logo, logo_alt, home_href, eyebrow, heading_line1, heading_emphasis, email, description, social_links, copyright }: FooterData) {
   return (
     <footer id="contact-us" className="footer section-dark">
       <div>
@@ -17,7 +20,7 @@ export function Footer({ eyebrow, heading_line1, heading_emphasis, email, descri
         <a href={`mailto:${email}`} className="cta">{email} <span>&#8599;</span></a>
       </div>
       <div className="footer-meta">
-        <a className="wordmark" href="#home" aria-label="Aliaflow home"><img src="/assets/aliaflow-logo.svg" alt="Aliaflow" /></a>
+        <a className="wordmark" href={home_href} aria-label={`${logo_alt} home`}><img src={logo} alt={logo_alt} /></a>
         <p>{description}</p>
         <div>
           {social_links.map((link) => <a key={link.label} href={link.href}>{link.label}</a>)}
