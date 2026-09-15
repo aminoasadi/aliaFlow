@@ -7,6 +7,8 @@ type Testimonial = {
   role: string;
   title: string;
   body: string;
+  image?: string;
+  image_alt?: string;
 };
 
 export function TestimonialCarousel({ slides }: { slides: Testimonial[] }) {
@@ -17,6 +19,7 @@ export function TestimonialCarousel({ slides }: { slides: Testimonial[] }) {
     role: "Cisco Manager",
     title: "Supporting after Sales",
     body: "",
+    image: "/assets/testimonial-ansari.png",
   };
   const sourceSlides = slides.length ? slides : [fallbackSlide];
   const displaySlides = [...sourceSlides];
@@ -57,7 +60,16 @@ export function TestimonialCarousel({ slides }: { slides: Testimonial[] }) {
               const index = pageIndex * 2 + cardIndex;
               const testimonial = displaySlides[index];
               return testimonial ? <article className="testimonial-carousel__slide" key={index} aria-label={`Testimonial ${index + 1} of ${cardCount}`}>
-                <img src="/assets/testimonial-ansari.png" alt={`Testimonial from ${testimonial.name}, ${testimonial.role}`} draggable={false} />
+                {testimonial.image ? (
+                  <img src={testimonial.image} alt={testimonial.image_alt || `Testimonial from ${testimonial.name}, ${testimonial.role}`} draggable={false} />
+                ) : (
+                  <div className="testimonial-carousel__slide-fallback">
+                    <p>{testimonial.title}</p>
+                    <span>&ldquo;{testimonial.body}&rdquo;</span>
+                    <b>{testimonial.name}</b>
+                    <small>{testimonial.role}</small>
+                  </div>
+                )}
               </article> : null;
             })}
           </div>

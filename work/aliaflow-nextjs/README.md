@@ -32,10 +32,16 @@ Leadership and Technocratic Design statements each contain their own nested imag
 list. Older JSON records are normalized in the editor so newly introduced image fields
 can be saved without re-seeding or losing legacy content.
 
-Uploaded images are stored under `storage/uploads/` (not `public/`, which Next.js
-snapshots at build time) and served through `app/uploads/[...path]/route.ts` — on
-a real deployment, `storage/uploads/` needs the same persistent-volume treatment
-`prisma/dev.db` does (see the deployment note below).
+Uploaded images are stored in ArvanCloud S3-compatible object storage
+(`https://aliaflow.s3.ir-thr-at1.arvanstorage.ir`) via `lib/storage.ts` — set
+`ARVAN_S3_ENDPOINT`, `ARVAN_S3_REGION`, `ARVAN_S3_BUCKET`, `ARVAN_S3_ACCESS_KEY`,
+and `ARVAN_S3_SECRET_KEY` in `.env` (see `.env.example`). Every uploaded image
+gets a public `https://aliaflow.s3.ir-thr-at1.arvanstorage.ir/<file>` URL that is
+stored directly in the section's JSON data, so no local file storage or
+persistent volume is needed for media in production. When the `ARVAN_S3_*`
+vars are unset (e.g. local dev without bucket credentials), uploads fall back
+to local disk under `storage/uploads/`, served through
+`app/uploads/[...path]/route.ts`.
 
 ## Tests
 

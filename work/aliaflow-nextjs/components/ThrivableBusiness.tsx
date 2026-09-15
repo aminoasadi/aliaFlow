@@ -54,7 +54,7 @@ function ServiceBlock({
   );
 }
 
-function TileGrid({ items, contain = false }: { items: { image: string; label: string; title: string; body: string; image_alt: string }[]; contain?: boolean }) {
+export function TileGrid({ items, contain = false }: { items: { image: string; label: string; title: string; body: string; image_alt: string }[]; contain?: boolean }) {
   return (
     <div className="future-grid">
       {items.map((item) => (
