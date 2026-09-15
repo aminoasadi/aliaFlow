@@ -2,12 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const entries = [1385, 1389, 1390, 1395, 1398];
+type TimelineEntry = { year: string; label: string };
 
-export function PortfolioTimeline() {
+export function PortfolioTimeline({ heading, timeline }: { heading: string; timeline: TimelineEntry[] }) {
   const rail = useRef<HTMLDivElement>(null);
   const drag = useRef({ x: 0, scroll: 0 });
-  const [active, setActive] = useState(2);
+  const entries = [timeline[0], ...timeline, timeline[timeline.length - 1]].filter((entry): entry is TimelineEntry => Boolean(entry));
+  const [active, setActive] = useState(Math.min(2, entries.length - 1));
   const [dragging, setDragging] = useState(false);
 
   const setNearest = () => {
@@ -28,13 +29,14 @@ export function PortfolioTimeline() {
   useEffect(() => {
     const container = rail.current;
     if (!container) return;
-    const initial = container.querySelectorAll<HTMLElement>("[data-timeline-card]")[2];
+    const initial = container.querySelectorAll<HTMLElement>("[data-timeline-card]")[Math.min(2, entries.length - 1)];
     if (initial) container.scrollLeft = initial.offsetLeft - (container.clientWidth - initial.offsetWidth) / 2;
     setNearest();
-  }, []);
+  }, [entries.length]);
 
   return (
     <section className={`portfolio-timeline${dragging ? " is-dragging" : ""}`} aria-label="Portfolio timeline">
+      <h2>{heading}</h2>
       <div
         ref={rail}
         className="portfolio-timeline-rail"
@@ -44,8 +46,8 @@ export function PortfolioTimeline() {
         onPointerUp={() => setDragging(false)}
         onPointerCancel={() => setDragging(false)}
       >
-        {entries.map((year, index) => <article data-timeline-card className={index === active ? "is-active" : ""} key={year}>
-          <h3>{year}</h3><strong>{index === 2 ? "Time Machine" : "Timeline Machine"}</strong>
+        {entries.map((entry, index) => <article data-timeline-card className={index === active ? "is-active" : ""} key={`${entry.year}-${index}`}>
+          <h3>{entry.year}</h3><strong>{entry.label}</strong>
           <p>Lorem ipsum dolor sit amet, consevbi adipiscing, sed do eiusmod sevbi hgseif adipiscing elit. Lorem ipsum dolor sit amet, consevbi hgseif adipiscing, sed do eiusmod sevbi hgseif adipiscing elit.</p>
         </article>)}
       </div>

@@ -1,0 +1,72 @@
+/* Why Trust Us — reference composition: an open gray field with stepped white cutouts. */
+.why-us::after { display: none; }
+
+.why-trust-us {
+  position: relative;
+  display: grid;
+  min-height: 90svh;
+  overflow: hidden;
+  place-items: center;
+  background: #aaa;
+  color: #3f3f3f;
+  text-align: center;
+}
+
+.why-trust-us__top-cutout,
+.why-trust-us__bottom-cutout {
+  position: absolute;
+  right: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.why-trust-us__top-cutout {
+  top: 0;
+  height: 68px;
+  background: linear-gradient(to right, #fff 0 26.8%, transparent 26.8% 73.1%, #fff 73.1% 100%);
+}
+
+.why-trust-us__bottom-cutout {
+  bottom: 0;
+  height: 78px;
+  background:
+    linear-gradient(to bottom, transparent 0 82%, #fff 82% 100%),
+    linear-gradient(to right, #fff 0 26.8%, transparent 26.8% 73.1%, #fff 73.1% 100%);
+}
+
+.why-trust-us__content {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  gap: 53px;
+  padding: 0 24px;
+  transform: translateY(-5px);
+}
+
+.why-trust-us h2 {
+  margin: 0;
+  font-size: clamp(56px, 6.05vw, 87px);
+  font-weight: 400;
+  line-height: .9;
+  letter-spacing: .015em;
+}
+
+.why-trust-us h2 strong { margin-inline: .14em; font-weight: 800; }
+
+.why-trust-us p {
+  margin: 0;
+  font-size: clamp(20px, 1.8vw, 26px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: .39em;
+}
+
+@media (max-width: 780px) {
+  .why-trust-us { min-height: 440px; }
+  .why-trust-us__top-cutout { height: 34px; }
+  .why-trust-us__bottom-cutout { height: 40px; }
+  .why-trust-us__content { gap: 31px; }
+  .why-trust-us h2 { font-size: clamp(39px, 12vw, 62px); }
+  .why-trust-us p { font-size: clamp(12px, 3.6vw, 17px); letter-spacing: .27em; }
+}

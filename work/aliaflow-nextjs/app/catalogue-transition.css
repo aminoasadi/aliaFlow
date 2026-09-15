@@ -36,7 +36,8 @@
     width: 52%;
     height: 44px;
     transform: translateX(-50%);
-    background: #fff;
+    /* Continue the gray Thrivable Business surface through the centre notch. */
+    background: #aaa;
   }
 
   .catalogue-nav h2 {

@@ -30,13 +30,13 @@ function CarouselSlide({ item, index, className }: { item: FutureImage; index: n
   );
 }
 
-export function ImageCarousel({ items, dark = false, label = "Image carousel" }: { items: FutureImage[]; dark?: boolean; label?: string }) {
+export function ImageCarousel({ items, dark = false, label = "Image carousel", className = "" }: { items: FutureImage[]; dark?: boolean; label?: string; className?: string }) {
   const rail = useRef<HTMLDivElement>(null);
   const drag = useRef({ startX: 0, startScroll: 0 });
   const [dragging, setDragging] = useState(false);
 
   return (
-    <section className={`image-carousel${dark ? " image-carousel-dark" : ""}${dragging ? " is-dragging" : ""}`} aria-label={label}>
+    <section className={`image-carousel${dark ? " image-carousel-dark" : ""}${dragging ? " is-dragging" : ""}${className ? ` ${className}` : ""}`} aria-label={label}>
       <div
         ref={rail}
         className="image-carousel-rail"
@@ -78,7 +78,7 @@ export function FutureImageCarousel({ items }: { items: FutureImage[] }) {
   const endDrag = () => setDragging(false);
 
   return (
-    <section className={`future-image-carousel${dragging ? " is-dragging" : ""}`} aria-label="Future of X image cards">
+    <section className={`future-image-carousel${items.length === 1 ? " future-image-carousel-single" : ""}${dragging ? " is-dragging" : ""}`} aria-label="Future of X image cards">
       <div
         ref={rail}
         className="future-image-carousel-rail"

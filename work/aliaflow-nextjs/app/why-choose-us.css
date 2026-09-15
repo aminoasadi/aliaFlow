@@ -1,50 +1,158 @@
-/* Why choose us: reference-matched framed editorial composition. */
-.why-us {
+/* Why Choose Us — desktop composition measured from the supplied frame. */
+.why-us.why-us {
   position: relative;
   overflow: hidden;
-  padding: 88px 3.4% 73px;
-  border: 2px solid #454545;
+  box-sizing: border-box;
+  padding: 112px 3.07% 89px;
+  border: 0;
   background: #fff;
   color: #394452;
   text-align: center;
 }
 
 .why-us::before,
-.why-us::after { position: absolute; left: 50%; width: 35%; height: 34px; transform: translateX(-50%); background: #414141; content: ""; }
-.why-us::before { top: 0; }
-.why-us::after { bottom: 0; background: #aaa; }
+.why-us::after {
+  position: absolute;
+  left: 50%;
+  display: block;
+  transform: translateX(-50%);
+  content: "";
+}
 
-.why-us > p { margin: 0 0 23px; font-size: 18px; line-height: 1; }
-.why-us > h2 { margin: 0; font-size: clamp(46px, 5.1vw, 68px); line-height: .98; font-weight: 700; letter-spacing: -.055em; }
+.why-us::before { top: 0; width: 35%; height: 42px; background: #414141; }
+.why-us::after { bottom: 0; width: 46.6%; height: 43px; background: #aaa; }
+
+.why-us-side-tab {
+  position: absolute;
+  top: 41.5vw;
+  z-index: 1;
+  display: block;
+  width: 16px;
+  height: 16.9vw;
+  max-height: 165px;
+  background: #414141;
+}
+
+.why-us-side-tab--left { left: 0; }
+.why-us-side-tab--right { right: 0; }
+
+.why-us.why-us > p {
+  position: relative;
+  z-index: 2;
+  margin: 0 0 34px;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.why-us.why-us > h2 {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  font-size: 68px;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -.055em;
+}
 
 .business-ring {
   position: relative;
+  z-index: 2;
+  box-sizing: border-box;
   display: grid;
-  width: 285px;
-  height: 285px;
+  width: 362px;
+  height: 362px;
   place-items: center;
-  margin: 77px auto 31px;
-  border: 32px solid #3f3f3f;
+  margin: 82px auto 38px;
+  border: 41px solid #3f3f3f;
   border-radius: 50%;
   color: #3f3f3f;
 }
 
-.business-ring strong { font-size: 24px; line-height: 1.22; font-weight: 400; }
-.ring-word { position: absolute; color: #fff; font-size: 14px; font-weight: 600; letter-spacing: .25em; }
-.ring-word-1 { left: -20px; top: 42%; transform: rotate(-90deg); }
-.ring-word-2 { right: -31px; top: 37%; transform: rotate(84deg); }
-.ring-word-3 { bottom: -15px; left: 50%; transform: translateX(-50%); }
+.business-ring strong { font-size: 34px; line-height: 1.18; font-weight: 400; }
+.ring-word { position: absolute; color: #fff; font-size: 17px; font-weight: 600; letter-spacing: .25em; }
+.ring-word-1 { left: -19px; top: 42%; transform: rotate(-90deg); }
+.ring-word-2 { right: -32px; top: 37%; transform: rotate(84deg); }
+.ring-word-3 { bottom: -17px; left: 50%; transform: translateX(-50%); }
 
-.why-list { display: grid; gap: 10px; margin: 0; text-align: left; }
+.why-list {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 2px;
+  width: 100%;
+  margin: 0;
+  text-align: left;
+}
+
+.why-list article {
+  display: block;
+  min-height: 0;
+  padding: 0;
+  background: transparent;
+  line-height: 0;
+}
+
 .why-list img { display: block; width: 100%; height: auto; }
 
-.event-copy .event-cta { display: inline-block; margin-top: 20px; padding: 17px 34px; background: #444; color: #fff; }
-
 @media (max-width: 780px) {
-  .why-us { padding: 68px 20px 56px; }
-  .why-us::before, .why-us::after { width: 45%; height: 22px; }
-  .why-us > h2 { font-size: 39px; }
+  .why-us.why-us { padding: 68px 20px 56px; }
+  .why-us::before { width: 45%; height: 22px; }
+  .why-us::after { width: 52%; height: 24px; }
+  .why-us-side-tab { top: 390px; width: 10px; height: 104px; }
+  .why-us.why-us > p { margin-bottom: 25px; font-size: 17px; }
+  .why-us.why-us > h2 { font-size: 39px; line-height: 1.04; }
   .business-ring { width: 220px; height: 220px; margin: 52px auto 28px; border-width: 25px; }
   .business-ring strong { font-size: 19px; }
   .ring-word { font-size: 10px; }
+}
+
+/* Why Choose Us — desktop measurements from the supplied 1440px frame. */
+@media (min-width: 781px) {
+  main .why-us.why-us {
+    min-height: 1224px;
+    padding: 93px 30px 88px;
+  }
+
+  main .why-us.why-us > p {
+    margin-bottom: 51px;
+    color: #414141;
+    font-size: 32px;
+    line-height: 1;
+  }
+
+  main .why-us.why-us > h2 {
+    color: #344150;
+    font-size: clamp(76px, 7.15vw, 103px);
+    line-height: 1.06;
+    letter-spacing: -.058em;
+  }
+
+main .why-us .business-ring {
+    width: 530px;
+    height: 530px;
+    margin: 132px auto 0;
+    border: 0;
+  }
+
+  main .why-us .business-ring img { display: block; width: 100%; height: 100%; }
+
+main .why-us .why-list {
+  width: min(93.86vw, 1344px);
+  margin: 56px auto 0;
+  gap: 4px;
+}
+
+  main .why-us .why-us-side-tab {
+    top: 523px;
+    width: 29px;
+    height: 243px;
+    max-height: none;
+    background: #3f3f3f;
+  }
+}
+
+/* Join the upper decorative tab to the preceding dark section. */
+@media (min-width: 1101px) {
+  main .why-us.why-us { overflow: visible; }
+  main .why-us.why-us::before { top: -87px; z-index: 2; }
 }

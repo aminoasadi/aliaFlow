@@ -316,6 +316,18 @@ const sections: Record<string, Record<string, unknown>> = {
         title: "Supporting after Sales",
         body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit",
       },
+      {
+        name: "Mr Ansari",
+        role: "Cisco Manager",
+        title: "Supporting after Sales",
+        body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit",
+      },
+      {
+        name: "Mr Bahadori",
+        role: "Cisco Manager",
+        title: "Supporting after Sales",
+        body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit",
+      },
     ],
     closing_heading: "WHAT\nIF...",
     closing_body: "You Could Change Your\nSuccessful Business to A\nThrivable Business",

@@ -85,6 +85,214 @@ body {
   box-shadow: 0 0 0 6px #202020;
 }
 
+.risk-setting {
+  --risk-line: #b6b6b6;
+  --risk-ink: #3d3d3f;
+  position: relative;
+  width: min(100%, 1440px);
+  margin-inline: auto;
+  overflow: hidden;
+  color: var(--risk-ink);
+  background: #fff;
+  border: 2px solid var(--risk-line);
+  border-bottom: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.risk-setting__cap {
+  width: 49.7%;
+  height: 34px;
+  margin-left: auto;
+  background: #a7a7a7;
+}
+
+.risk-setting__header {
+  display: flex;
+  min-height: 184px;
+  padding: 24px clamp(22px, 4.7vw, 72px) 22px;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+  border-bottom: 2px solid var(--risk-line);
+}
+
+.risk-setting__intro {
+  max-width: 566px;
+}
+
+.risk-setting__eyebrow,
+.risk-setting h2,
+.risk-setting__copy,
+.risk-card p,
+.risk-card h3 {
+  margin: 0;
+}
+
+.risk-setting__eyebrow {
+  display: inline;
+  margin-right: 18px;
+  font-size: clamp(42px, 5vw, 70px);
+  font-weight: 700;
+  letter-spacing: -0.06em;
+  line-height: 0.96;
+}
+
+.risk-setting h2 {
+  display: inline;
+  font-size: clamp(42px, 5vw, 70px);
+  font-weight: 700;
+  letter-spacing: -0.06em;
+  line-height: 0.96;
+}
+
+.risk-setting__copy {
+  max-width: 400px;
+  margin-top: 18px;
+  margin-left: 64px;
+  font-size: 12px;
+  line-height: 1.25;
+}
+
+.risk-setting__icon {
+  width: clamp(112px, 12vw, 166px);
+  aspect-ratio: 1;
+  margin-top: 0;
+  flex: none;
+  object-fit: cover;
+}
+
+.risk-setting__rail-wrap {
+  position: relative;
+}
+
+.risk-setting__rail {
+  display: flex;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: inline mandatory;
+  scrollbar-width: none;
+}
+
+.risk-setting__rail::-webkit-scrollbar {
+  display: none;
+}
+
+.risk-card {
+  width: 33.333%;
+  min-width: 33.333%;
+  scroll-snap-align: start;
+  border-right: 2px solid var(--risk-line);
+  background: #fff;
+}
+
+.risk-card:last-child {
+  border-right: 0;
+}
+
+.risk-card__image-frame {
+  aspect-ratio: 1 / 1.02;
+  overflow: hidden;
+  background: #f1f1f1;
+  border-bottom: 2px solid var(--risk-line);
+}
+
+.risk-card__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 18%;
+}
+
+.risk-card__body {
+  min-height: 143px;
+  padding: 14px clamp(20px, 2.2vw, 34px) 20px;
+}
+
+.risk-card__industry {
+  font-size: 12px;
+  line-height: 1.2;
+}
+
+.risk-card h3 {
+  margin-top: 20px;
+  font-size: clamp(20px, 2vw, 28px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+.risk-card__body > p:last-child {
+  max-width: 300px;
+  margin-top: 12px;
+  color: #59595b;
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.risk-setting__controls {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  z-index: 2;
+  display: flex;
+  gap: 8px;
+}
+
+.risk-setting__controls button {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  place-items: center;
+  color: #fff;
+  background: #3d3d3f;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.risk-setting__controls button:hover,
+.risk-setting__controls button:focus-visible {
+  color: #3d3d3f;
+  background: #e9e9e9;
+  outline: 2px solid #3d3d3f;
+  outline-offset: 2px;
+}
+
+@media (max-width: 720px) {
+  .risk-setting__header {
+    min-height: 0;
+    padding-block: 24px;
+    gap: 20px;
+  }
+
+  .risk-setting__eyebrow {
+    margin-right: 10px;
+  }
+
+  .risk-setting__copy {
+    margin-top: 22px;
+    margin-left: 0;
+    font-size: 11px;
+  }
+
+  .risk-setting__icon {
+    width: 84px;
+  }
+
+  .risk-card {
+    width: 82%;
+    min-width: 82%;
+  }
+
+  .risk-card__body {
+    min-height: 150px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   :root {
     scroll-behavior: auto;

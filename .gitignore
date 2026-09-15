@@ -5,6 +5,8 @@
 **/coverage/
 **/.next-dev/
 *.tsbuildinfo
+.pnpm-store/
+*.tar.gz
 
 # Local environment and runtime data
 **/.env

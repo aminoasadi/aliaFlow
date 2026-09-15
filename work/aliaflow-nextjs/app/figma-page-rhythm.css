@@ -1,0 +1,152 @@
+/*
+ * Desktop rhythm extracted from the 1440px Figma prototype.
+ * This file intentionally changes layout metrics only: components, image
+ * sources, and image-card behaviours remain owned by their existing styles.
+ */
+
+:root {
+  --figma-gutter: clamp(40px, 5.56vw, 80px);
+  --figma-wide-gutter: clamp(56px, 7.5vw, 108px);
+  --figma-line: 3px;
+  --figma-dark: #292929;
+}
+
+@media (min-width: 781px) {
+  .site-header {
+    height: 72px;
+    padding-inline: var(--figma-gutter);
+  }
+
+  .nav-list { gap: clamp(26px, 2.65vw, 38px); }
+
+  .hero { height: 831px; }
+  .hero-art { height: 831px; }
+  .hero-copy {
+    top: 286px;
+    width: min(710px, calc(100vw - 2 * var(--figma-gutter)));
+  }
+
+  .outcomes-intro,
+  .fig-outcome-title {
+    height: 831px;
+    min-height: 720px;
+  }
+
+  .manifesto-heading,
+  .manifesto-content {
+    min-height: 831px;
+  }
+
+  .catalogue-nav,
+  .section-heading,
+  .trust .section-heading,
+  .team-heading {
+    padding-inline: var(--figma-gutter);
+  }
+
+  .department-heading {
+    height: 278px;
+    padding: 42px var(--figma-gutter);
+    border-bottom-width: var(--figma-line);
+  }
+
+  .department-heading h2 {
+    font-size: clamp(58px, 5.55vw, 80px);
+    line-height: .88;
+  }
+
+  .question-hero {
+    height: 760px;
+  }
+
+  .question-hero > div {
+    padding-inline: var(--figma-wide-gutter);
+  }
+
+  .question-hero h2 {
+    margin-bottom: 48px;
+    font-size: clamp(48px, 4.05vw, 58px);
+  }
+
+  .question-hero h3 {
+    font-size: clamp(72px, 7.57vw, 109px);
+    line-height: .89;
+  }
+
+  .service-statement {
+    min-height: 430px;
+    padding-inline: var(--figma-wide-gutter);
+    border-bottom-width: var(--figma-line);
+  }
+
+  .service-statement h2 { font-size: clamp(50px, 4.3vw, 62px); }
+  .service-statement p { font-size: 15px; line-height: 1.22; }
+
+  .event-promo {
+    min-height: 620px;
+    border-bottom-width: var(--figma-line);
+  }
+
+  .event-copy { padding: 84px 5.55vw 48px; }
+  .event-copy h2 { margin-bottom: 52px; }
+
+  .execution-management {
+    min-height: 820px;
+    padding-top: 86px;
+  }
+
+  .execution-management h2 {
+    margin-bottom: 104px;
+    padding-left: var(--figma-gutter);
+    font-size: clamp(60px, 5.55vw, 80px);
+  }
+
+  .why-us { padding: 92px var(--figma-gutter) 96px; }
+  .why-us > p { margin-bottom: 44px; }
+  .why-us > h2 { font-size: clamp(54px, 4.95vw, 71px); }
+
+  .portfolio { padding-top: 94px; }
+  .portfolio > h2,
+  .partners > h2 { padding-inline: var(--figma-gutter); }
+
+  .partners > div:not(.testimonials) span.partner-card--art {
+    position: relative;
+    gap: 0;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .partners > div:not(.testimonials) span.partner-card--art img {
+    object-fit: cover;
+  }
+
+  .trust-banner { height: 620px; padding-top: 96px; }
+  .partners { padding-top: 92px; }
+  .what-if { min-height: 640px; padding-inline: var(--figma-wide-gutter); }
+
+  .brief-form-section {
+    gap: clamp(72px, 8vw, 116px);
+    padding: 96px var(--figma-gutter);
+  }
+
+  .footer {
+    min-height: 470px;
+    padding: 84px var(--figma-gutter) 34px;
+  }
+}
+
+@media (max-width: 780px) {
+  :root {
+    --figma-gutter: 24px;
+    --figma-wide-gutter: 28px;
+  }
+}
+
+.partners > div:not(.testimonials) span.partner-card--art {
+  position: relative;
+  gap: 0;
+  overflow: hidden;
+  padding: 0;
+}
+
+.partners > div:not(.testimonials) span.partner-card--art img { object-fit: cover; }

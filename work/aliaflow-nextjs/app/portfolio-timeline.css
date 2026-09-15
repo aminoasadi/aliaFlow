@@ -1,13 +1,103 @@
-.portfolio-timeline { position: relative; overflow: hidden; padding: 31px 0 76px; background: #fff; }
-.portfolio-timeline::before { position: absolute; top: 0; left: 50%; width: 43%; height: 60px; transform: translateX(-50%); background: #aaa; content: ""; }
-.portfolio-timeline-rail { display: flex; gap: 0; overflow-x: auto; padding: 100px 0 0; scrollbar-width: none; cursor: grab; scroll-snap-type: x mandatory; touch-action: pan-y; user-select: none; }
+.portfolio-timeline { position: relative; height: 781px; overflow: hidden; box-sizing: border-box; padding-top: 50px; background: #fff; }
+.portfolio-timeline > h2 { margin: 0 0 49px; padding-left: 4.8%; color: #3e3e3e; font-size: 61px; font-weight: 400; letter-spacing: .31em; line-height: 1; }
+.portfolio-timeline-rail { display: flex; gap: 0; overflow-x: auto; padding: 0; scrollbar-width: none; cursor: grab; scroll-snap-type: x mandatory; touch-action: pan-y; user-select: none; }
 .portfolio-timeline-rail::-webkit-scrollbar { display: none; }
 .portfolio-timeline.is-dragging .portfolio-timeline-rail { cursor: grabbing; scroll-snap-type: none; }
-.portfolio-timeline-rail article { flex: 0 0 330px; min-height: 430px; padding: 106px 34px 36px; color: #d7d7d7; text-align: center; scroll-snap-align: center; transition: color .18s ease, background .18s ease; }
-.portfolio-timeline-rail article.is-active { background: #f4f4f4; color: #3d3d3d; }
-.portfolio-timeline-rail h3 { margin: 0; font-size: 68px; line-height: .8; font-weight: 700; letter-spacing: -.07em; }
-.portfolio-timeline-rail strong { display: block; margin: 33px 0 62px; color: #86a8c4; font-size: 22px; font-weight: 400; }
+.portfolio-timeline-rail::before,
+.portfolio-timeline-rail::after { display: block; width: calc((100vw - min(33vw, 475px)) / 2); flex: 0 0 auto; content: ""; }
+.portfolio-timeline-rail article { flex: 0 0 min(33vw, 475px); min-height: 536px; box-sizing: border-box; padding: 122px 45px 40px; color: #d7d7d7; text-align: center; scroll-snap-align: center; transition: color .18s ease, background .18s ease; }
+.portfolio-timeline-rail article.is-active { background: #f3f3f3; color: #3d3d3d; }
+.portfolio-timeline-rail h3 { margin: 0; font-size: 100px; line-height: .8; font-weight: 700; letter-spacing: -.075em; }
+.portfolio-timeline-rail strong { display: block; margin: 41px 0 73px; color: #86a8c4; font-size: 24px; font-weight: 400; }
 .portfolio-timeline-rail article.is-active strong { color: #3f3f3f; }
-.portfolio-timeline-rail p { margin: 0; color: #333; font-size: 14px; line-height: 1.4; text-align: left; }
+.portfolio-timeline-rail p { margin: 0; color: #333; font-size: 16px; line-height: 1.5; text-align: left; }
 .portfolio-timeline-rail article:not(.is-active) p { opacity: .9; }
-@media (max-width: 780px) { .portfolio-timeline { padding-bottom: 42px; }.portfolio-timeline::before { height: 32px; }.portfolio-timeline-rail { padding-top: 55px; }.portfolio-timeline-rail article { flex-basis: 76vw; min-height: 350px; padding: 82px 28px 28px; }.portfolio-timeline-rail h3 { font-size: 56px; }.portfolio-timeline-rail strong { margin-bottom: 38px; } }
+@media (max-width: 780px) { .portfolio-timeline { height: 555px; padding-top: 37px; }.portfolio-timeline > h2 { margin-bottom: 35px; font-size: 35px; }.portfolio-timeline-rail::before,.portfolio-timeline-rail::after { width: 12vw; }.portfolio-timeline-rail article { flex-basis: 76vw; min-height: 385px; padding: 82px 28px 28px; }.portfolio-timeline-rail h3 { font-size: 70px; }.portfolio-timeline-rail strong { margin: 30px 0 46px; font-size: 18px; }.portfolio-timeline-rail p { font-size: 13px; } }
+
+/* People — full-width four-column roster from the supplied reference. */
+main .portfolio {
+  padding: 0;
+  background: #fff;
+}
+
+main .portfolio > h2 {
+  box-sizing: border-box;
+  display: flex;
+  height: 198px;
+  align-items: center;
+  margin: 0;
+  padding: 16px 3.7% 0;
+  color: #3d3d3d;
+  font-size: 61px;
+  font-weight: 400;
+  letter-spacing: .31em;
+  line-height: 1;
+}
+
+.people-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  height: 508px;
+  border: 0;
+  background: #fff;
+}
+
+.people-grid article {
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+  padding: 53px 34px 0;
+  border: 0;
+  border-right: 3px solid rgba(255, 255, 255, .12);
+}
+
+.people-grid article:last-child { border-right: 0; }
+.people-grid h3 { margin: 0 0 15px; color: #3d3d3d; font-size: 31px; font-weight: 400; letter-spacing: -.025em; line-height: 1; white-space: nowrap; }
+.people-grid p { margin: 0; color: #3d3d3d; font-size: 16px; line-height: 1.15; }
+.people-grid img { position: absolute; bottom: 0; left: 50%; width: auto; height: 342px; max-height: none; transform: translateX(-50%); object-fit: contain; object-position: bottom center; }
+
+main .portfolio .toolkits,
+main .portfolio .toolkits article { background: #fff; }
+
+/* Design toolkits — the supplied images contain the exact card artwork. */
+main .portfolio > h2.toolkits-heading {
+  height: clamp(180px, 15.6vw, 250px);
+  padding: 0 clamp(32px, 3.4vw, 54px);
+  color: #414143;
+  font-size: clamp(48px, 4.4vw, 70px);
+  letter-spacing: .22em;
+}
+
+main .portfolio .toolkits {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border: 0;
+  background: #f4f4f4;
+}
+
+main .portfolio .toolkits article {
+  position: relative;
+  min-height: 0;
+  padding: 0;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: #f4f4f4;
+  border: 0;
+  border-right: 4px solid #fff;
+}
+
+main .portfolio .toolkits article:last-child { border-right: 0; }
+main .portfolio .toolkits article img { object-fit: cover; }
+
+@media (max-width: 780px) {
+  main .portfolio > h2 { height: 112px; padding: 8px 24px 0; font-size: 34px; }
+  main .portfolio > h2.toolkits-heading { height: 150px; padding: 0 26px; font-size: 36px; letter-spacing: .14em; }
+  .people-grid { height: auto; grid-template-columns: 1fr 1fr; }
+  .people-grid article { height: 310px; padding: 30px 18px 0; border-bottom: 2px solid rgba(255, 255, 255, .12); }
+  .people-grid h3 { margin-bottom: 9px; font-size: 21px; white-space: normal; }
+  .people-grid p { font-size: 12px; }
+  .people-grid img { height: 208px; }
+  main .portfolio .toolkits { grid-template-columns: 1fr; }
+  main .portfolio .toolkits article { border-right: 0; border-bottom: 4px solid #fff; }
+  main .portfolio .toolkits article:last-child { border-bottom: 0; }
+}

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { MauticLoader } from "../components/MauticLoader";
 import { prisma } from "../lib/db";
 import "./globals.css";
 import "./figma-overrides.css";
@@ -10,7 +11,10 @@ import "./critical-business-loop.css";
 import "./brand-culture.css";
 import "./future-image-carousel.css";
 import "./why-choose-us.css";
+import "./why-trust-us.css";
 import "./portfolio-timeline.css";
+import "./testimonial-carousel.css";
+import "./figma-page-rhythm.css";
 
 export async function generateMetadata(): Promise<Metadata> {
   const rows = await prisma.setting.findMany();
@@ -32,5 +36,5 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" data-scroll-behavior="smooth"><body>{children}</body></html>;
+  return <html lang="en" data-scroll-behavior="smooth"><body>{children}<MauticLoader /></body></html>;
 }

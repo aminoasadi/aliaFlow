@@ -1,4 +1,5 @@
 import { Footer, type FooterData } from "../components/Footer";
+import { BriefForm } from "../components/BriefForm";
 import { Header, type HeaderData } from "../components/Header";
 import { Hero, type HeroData } from "../components/Hero";
 import { OutcomeStack } from "../components/OutcomeStack";
@@ -11,6 +12,7 @@ import {
   TechnocraticDesign,
   TestimonialsAndFooter,
   WhyChooseUs,
+  WhyTrustUs,
 } from "../components/FigmaSections";
 import { ThrivableBusiness, type ThrivableBusinessData } from "../components/ThrivableBusiness";
 import { getSection } from "../lib/sections";
@@ -48,7 +50,7 @@ export default async function Home() {
     requireSection<Parameters<typeof ExecutionManagement>[0]>("execution-management"),
     requireSection<Parameters<typeof WhyChooseUs>[0]>("why-choose-us"),
     requireSection<Parameters<typeof PortfolioAndPeople>[0]>("portfolio-people"),
-    requireSection<Parameters<typeof TestimonialsAndFooter>[0]>("testimonials-footer"),
+    requireSection<Parameters<typeof TestimonialsAndFooter>[0] & { trust_heading: string; trust_subheading: string }>("testimonials-footer"),
     requireSection<FooterData>("footer"),
   ]);
 
@@ -73,8 +75,10 @@ export default async function Home() {
       <TechnocraticDesign {...technocraticDesign} />
       <ExecutionManagement {...executionManagement} />
       <WhyChooseUs {...whyChooseUs} />
+      <WhyTrustUs heading={testimonialsFooter.trust_heading} subheading={testimonialsFooter.trust_subheading} />
       <PortfolioAndPeople {...portfolioPeople} />
       <TestimonialsAndFooter {...testimonialsFooter} />
+      <BriefForm />
       <Footer {...footer} />
     </main>
   );

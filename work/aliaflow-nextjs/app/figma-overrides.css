@@ -3,7 +3,28 @@
 .hero::after{display:none}
 .hero-art{inset:0 auto auto 0;width:100%;height:831px;overflow:hidden;clip-path:polygon(0 0,100% 0,100% calc(100% - 31px),76% calc(100% - 31px),76% 100%,24% 100%,24% calc(100% - 31px),0 calc(100% - 31px));pointer-events:none}
 @media(max-width:780px){.hero-art{height:642px;clip-path:polygon(0 0,100% 0,100% calc(100% - 22px),76% calc(100% - 22px),76% 100%,24% 100%,24% calc(100% - 22px),0 calc(100% - 22px))}}
+
+/* Business Game follows the dark reference card: an information header and
+   the existing three complete image cards beneath it. */
+@media(min-width:781px){.service-statement--business-game{position:relative;min-height:430px;padding:94px clamp(48px,7.2vw,108px) 62px;background:#292929;border-top:3px solid #555;border-bottom:3px solid #555;overflow:hidden}.service-statement--business-game::before{position:absolute;top:0;right:0;width:50%;height:64px;background:#414141;content:""}.service-statement--business-game>div:first-child{position:relative;z-index:1;max-width:600px}.service-statement--business-game h2{margin:0;color:#f5f5f5;font-size:clamp(56px,5.35vw,80px);line-height:.98;letter-spacing:-.055em}.service-statement--business-game h2::first-letter{font-weight:500}.service-statement--business-game p{max-width:450px;margin:42px 0 0 77px;color:#f5f5f5;font-size:16px;line-height:1.3}.service-statement--business-game .statement-mark{position:relative;z-index:1;width:232px;height:232px;margin-top:34px;background:#474747;color:#090909}.service-statement--business-game .statement-mark svg{width:118px;height:118px}.service-statement--business-game+.image-carousel{border-top:0;border-bottom:3px solid #555;background:#292929}.service-statement--business-game+.image-carousel .image-carousel-slide{border-right:3px solid #555;background:#292929}.service-statement--business-game+.image-carousel .image-carousel-slide:last-child{border-right:0}.business-game-carousel .image-carousel-slide{flex-basis:33.333%}.business-game-carousel .image-carousel-slide img{height:auto}}
+@media(min-width:781px){.service-statement--leadership-divider{position:relative;min-height:430px;padding:94px clamp(48px,7.2vw,108px) 62px;background:#292929;border-top:3px solid #555;border-bottom:3px solid #555;overflow:hidden}.service-statement--leadership-divider::before{position:absolute;top:0;right:0;width:50%;height:64px;background:#414141;content:""}.service-statement--leadership-divider>div:first-child{position:relative;z-index:1;max-width:600px}.service-statement--leadership-divider h2{margin:0;color:#f5f5f5;font-size:clamp(56px,5.35vw,80px);line-height:.98;letter-spacing:-.055em}.service-statement--leadership-divider p{max-width:450px;margin:42px 0 0 77px;color:#f5f5f5;font-size:16px;line-height:1.3}.service-statement--leadership-divider .statement-mark{position:relative;z-index:1;width:232px;height:232px;margin-top:34px;background:#474747;color:#f5f5f5}.service-statement--leadership-divider .statement-mark span{font-size:72px;font-weight:800}.service-statement--business-game .statement-mark{color:#090909}}
+@media(min-width:781px){.holocratic{display:flex;height:100svh;min-height:0;box-sizing:border-box;flex-direction:column;align-items:center;justify-content:center;gap:clamp(44px,5.2vh,68px);padding:72px 6%;background:#292929;border-top:3px solid #555;border-bottom:3px solid #555;color:#f5f5f5;text-align:center}.holocratic h2{margin:0;font-size:clamp(68px,7.25vw,106px);font-weight:400;line-height:1.25;letter-spacing:.29em;text-indent:.29em}.holocratic p{margin:0;font-size:clamp(24px,2.15vw,32px);font-weight:400;line-height:1.2}}
+
+/* Business Leadership department divider from the supplied desktop frame. */
+@media(min-width:781px){.department-heading--business-leadership{position:relative;box-sizing:border-box;height:296px;padding:0;align-items:center;justify-content:center;overflow:hidden;background:#aaa;border:0;border-bottom:3px solid #555}.department-heading--business-leadership::before{position:absolute;top:0;left:10.8%;width:78.4%;height:43px;background:#fff;content:""}.department-heading--business-leadership h2{position:relative;z-index:1;margin:0;color:#f5f5f5;font-size:clamp(64px,7vw,104px);font-weight:800;line-height:.9;letter-spacing:-.045em}}
 .outcomes-intro{position:relative}
+
+/* Technocratic Design, reconstructed from the supplied sectional reference. */
+.technocratic-intro{--tech-line:#a7a7a7;background:#aaa;border:2px solid var(--tech-line);color:#fff;font-family:Arial,Helvetica,sans-serif}.technocratic-intro__cap{width:75.4%;height:clamp(25px,3.28vw,47px);margin:0 auto;background:#292929}.technocratic-intro__heading{display:grid;height:clamp(120px,15.9vw,229px);place-items:center;padding:0 24px}.technocratic-intro__heading h2{margin:0;color:#f5f5f5;font-size:clamp(42px,6.56vw,94px);font-weight:800;letter-spacing:-.035em;line-height:1;text-align:center}.technocratic-intro__hero{position:relative;aspect-ratio:1.895/1;overflow:hidden;border:2px solid #fff;background:#171717}.technocratic-intro__hero>img{object-fit:cover;object-position:center;filter:brightness(.83)}.technocratic-intro__hero::after{position:absolute;inset:0;background:rgba(0,0,0,.16);content:""}.technocratic-intro__hero h3{position:absolute;z-index:1;top:33.5%;left:4.2%;margin:0;white-space:pre-line;color:#fff;font-size:clamp(43px,7.2vw,104px);font-weight:800;letter-spacing:-.07em;line-height:.91;text-shadow:0 2px 2px rgba(0,0,0,.36)}.technocratic-intro__pillars{display:grid;grid-template-columns:repeat(3,1fr);min-height:clamp(104px,13.65vw,196px);background:#fff;color:#3f3f3f}.technocratic-intro__pillar{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(10px,1.8vw,26px);padding:12px;text-align:center}.technocratic-intro__pillar svg{width:clamp(24px,3.4vw,49px);height:clamp(24px,3.4vw,49px);stroke:#2c2f33}.technocratic-intro__pillar b{font-size:clamp(15px,2.25vw,32px);font-weight:700;letter-spacing:-.035em;line-height:1.05}
+@media(max-width:780px){.technocratic-intro__cap{width:75%}.technocratic-intro__heading{height:124px}.technocratic-intro__heading h2{font-size:39px}.technocratic-intro__hero{aspect-ratio:1.25/1}.technocratic-intro__hero h3{top:35%;left:7%;font-size:42px;line-height:.93}.technocratic-intro__pillars{min-height:128px}.technocratic-intro__pillar{gap:11px}.technocratic-intro__pillar b{font-size:14px}.technocratic-intro__pillar svg{width:27px;height:27px}}
+
+/* Change Solving uses the reference’s compact white header and full-card rail. */
+@media(min-width:781px){.service-statement--change-solving{position:relative;min-height:clamp(294px,29.38vw,423px);padding:clamp(86px,7.94vw,114px) clamp(48px,4.6vw,66px) clamp(44px,4vw,58px);align-items:flex-start;overflow:hidden;background:#fff;border-top:3px solid #aaa;border-bottom:0;color:#414143}.service-statement--change-solving::before{position:absolute;top:0;right:0;width:49.5%;height:clamp(54px,4.51vw,65px);background:#aaa;content:""}.service-statement--change-solving>div:first-child{position:relative;z-index:1;max-width:570px}.service-statement--change-solving h2{margin:0;color:#414143;font-size:clamp(56px,5.34vw,77px);font-weight:700;letter-spacing:-.055em;line-height:.96}.service-statement--change-solving p{max-width:430px;margin:clamp(26px,2.65vw,38px) 0 0 clamp(48px,5.25vw,76px);color:#111;font-size:clamp(13px,1.08vw,16px);line-height:1.18}.service-statement--change-solving .statement-mark{position:relative;z-index:1;width:clamp(150px,15.5vw,223px);height:clamp(150px,15.5vw,223px);margin:clamp(-2px,-.5vw,0) clamp(8px,4.1vw,59px) 0 24px;overflow:hidden;border-radius:0;background:none;color:transparent}.service-statement--change-solving .statement-mark img{display:block;width:100%;height:100%;object-fit:cover}.change-solving-carousel{border-top:3px solid #aaa;border-bottom:3px solid #aaa}.change-solving-carousel .image-carousel-slide{border-color:#fff;background:#add6da}.change-solving-carousel .image-carousel-slide img{width:100%;height:auto}}
+@media(max-width:780px){.service-statement--change-solving{min-height:278px;padding:72px 26px 30px;align-items:flex-start}.service-statement--change-solving::before{width:50%;height:31px}.service-statement--change-solving h2{font-size:43px;line-height:.96}.service-statement--change-solving p{margin:24px 0 0;font-size:13px;line-height:1.26}.service-statement--change-solving .statement-mark{width:96px;height:96px;margin:0}.change-solving-carousel .image-carousel-slide{flex-basis:85vw;background:#add6da}.change-solving-carousel .image-carousel-slide img{width:100%;height:auto}}
+
+/* Risk Setting: lightweight white intro followed by the supplied full-card rail. */
+@media(min-width:781px){.service-statement--risk-setting{position:relative;box-sizing:border-box;height:220px;min-height:0;padding:54px 37px 28px;align-items:flex-start;overflow:hidden;background:#fff;border-top:3px solid #aaa;border-bottom:3px solid #aaa;color:#414143}.service-statement--risk-setting::before{position:absolute;top:0;right:0;width:49.5%;height:27px;background:#aaa;content:""}.service-statement--risk-setting>div:first-child{position:relative;z-index:1;max-width:500px}.service-statement--risk-setting h2{margin:0 0 19px;color:#414143;font-size:43px;font-weight:700;letter-spacing:-.055em;line-height:.94}.service-statement--risk-setting p{max-width:230px;margin:0 0 0 39px;color:#111;font-size:10px;line-height:1.18}.service-statement--risk-setting .statement-mark{position:relative;z-index:1;width:120px;height:120px;margin:9px 9px 0 24px;overflow:hidden;background:transparent;color:#929497}.service-statement--risk-setting .statement-mark img{width:100%;height:100%;object-fit:contain;object-position:center}.risk-setting-carousel{border-top:0;border-bottom:3px solid #aaa;background:#fff}.risk-setting-carousel .image-carousel-slide{flex-basis:33.333%;border-color:#aaa;background:#f4f4f4}.risk-setting-carousel .image-carousel-slide img{display:block;width:100%;height:auto}}
+@media(max-width:780px){.service-statement--risk-setting{position:relative;min-height:280px;padding:66px 25px 34px;align-items:flex-start;overflow:hidden;background:#fff;border-top:2px solid #aaa;border-bottom:2px solid #aaa}.service-statement--risk-setting::before{position:absolute;top:0;right:0;width:50%;height:31px;background:#aaa;content:""}.service-statement--risk-setting h2{margin:0 0 23px;color:#414143;font-size:43px;line-height:.95;letter-spacing:-.055em}.service-statement--risk-setting p{max-width:255px;margin:0 0 0 22px;font-size:12px;line-height:1.24}.service-statement--risk-setting .statement-mark{width:96px;height:96px;margin:0;overflow:hidden;background:#f0f0f0}.service-statement--risk-setting .statement-mark img{width:100%;height:100%;object-fit:none;object-position:92.5% 12.7%}.risk-setting-carousel{border-top:0;border-bottom:3px solid #111}.risk-setting-carousel .image-carousel-slide{flex-basis:100%;border-right:0;background:#f4f4f4}.risk-setting-carousel .image-carousel-slide img{display:block;width:100%;height:auto}}
 
 /* GSAP controls the slide-in stack and circle entrance. */
 .outcome-stack{position:relative}
@@ -50,9 +71,9 @@
 .future-grid+.future-book{border-top:2px solid #555}
 .future-map-contain{background:#fff}.future-map-contain img{object-fit:contain;padding:26px}
 .future-grid{display:grid;grid-template-columns:repeat(3,1fr);border-left:2px solid #555;background:#fff}
-.future-card{position:relative;min-width:0;border-right:2px solid #555}.future-map{height:275px;position:relative;overflow:hidden;border-top:0;border-bottom:2px solid #555;background:#f7f7f7}.future-map img{object-fit:cover}
+.future-card{position:relative;min-width:0;border-right:2px solid #555}.future-map{height:275px;position:relative;overflow:hidden;border-top:0;border-bottom:0;background:#f7f7f7}.future-map img{object-fit:cover}
 .future-card-title{position:absolute;top:108px;left:50%;z-index:1;width:90%;transform:translateX(-50%);white-space:pre-line;color:#050505;text-align:center;font-size:27px;line-height:1.12;font-weight:800;letter-spacing:-.04em}
-.future-card-copy{min-height:153px;padding:16px 28px 24px}.future-card-copy small{font-size:12px;color:#222}.future-card-copy h3{margin:25px 0 11px;white-space:pre-line;font-size:23px;line-height:.96;letter-spacing:-.045em}.future-card-copy p{margin:0;white-space:pre-line;font-size:12px;line-height:1.16;color:#555}
+.future-card-copy{min-height:153px;padding:16px 28px 24px;border-top:3px solid #555}.future-card-copy small{font-size:12px;color:#222}.future-card-copy h3{margin:25px 0 11px;white-space:pre-line;font-size:23px;line-height:.96;letter-spacing:-.045em}.future-card-copy p{margin:0;white-space:pre-line;font-size:12px;line-height:1.16;color:#555}
 
 /* Service catalogue heading with its four department tabs. */
 .catalogue-nav{padding:64px 5% 38px;background:#fff;text-align:center}
@@ -65,11 +86,181 @@
 .magazine-promo{position:relative;display:block;aspect-ratio:5728/2476;overflow:hidden;background:#e7e7e7;border:2px solid #555;border-top:0}
 .magazine-promo>img{object-fit:cover;object-position:center}
 .magazine-buy-button{display:inline-block;padding:11px 26px;background:#333;color:#fff;font-size:14px;cursor:pointer}
-.magazine-buy-button{position:absolute;z-index:1;top:62%;left:4%;min-width:150px}
+.magazine-promo .magazine-buy-button{position:absolute;z-index:1;top:62%;left:4%;min-width:150px}
 .jam-promo{display:grid;grid-template-columns:40% 60%;align-items:center;min-height:430px;background:#fff;border:2px solid #555;border-top:0}
+.jam-promo .magazine-buy-button{position:static;min-width:150px}
 .jam-copy{padding:48px 6% 48px 6%}
 .jam-copy h2{margin:0 0 26px;color:#1d1d1d;font-size:46px;line-height:1.08;font-weight:700;letter-spacing:-.03em}
 .jam-date{margin:0 0 14px;color:#1d1d1d;font-size:15px;font-weight:700}
 .jam-copy p{max-width:330px;margin:0 0 26px;color:#555;font-size:12px;line-height:1.3}
 .jam-art{position:relative;align-self:stretch;min-height:430px}.jam-art img{object-fit:contain;object-position:right center}
-@media(max-width:780px){.thrivable-heading{height:115px}.thrivable-heading h2{font-size:30px}.thrivable-question{height:310px}.thrivable-question h3{font-size:44px}.future-book{grid-template-columns:1fr 100px;min-height:220px}.future-book-copy{padding:30px 18px}.future-book h3{font-size:29px}.future-book h3 b{margin-right:6px}.future-book p{margin-left:0;font-size:10px}.future-book-mark{width:75px;height:75px}.future-grid{grid-template-columns:1fr}.future-card{border-bottom:2px solid #555}.future-map{height:220px}.future-card-title{top:82px;font-size:24px}.future-card-copy{min-height:145px}.future-book-mark svg{width:38px;height:38px}.catalogue-nav{padding:44px 6% 28px}.catalogue-nav h2{font-size:31px;margin-bottom:24px}.catalogue-nav ul{grid-template-columns:1fr 1fr;gap:9px}.catalogue-nav li{padding:10px 12px;font-size:12px}.catalogue-nav li span{font-size:16px}.jam-promo{grid-template-columns:1fr;min-height:0}.magazine-buy-button{top:63%;left:4%;min-width:0;padding:7px 13px;font-size:10px}.jam-art{min-height:280px}.jam-copy{padding:36px 8%}.jam-copy h2{font-size:32px}}
+@media(min-width:781px){.jam-promo{grid-template-columns:38% 62%;height:100svh;min-height:0;box-sizing:border-box;border-color:#aaa;border-bottom:0;scroll-snap-align:start}.jam-copy{display:flex;align-self:stretch;flex-direction:column;align-items:flex-start;justify-content:center;padding:0 clamp(48px,7.75vw,112px)}.jam-copy h2{max-width:470px;margin:0 0 clamp(44px,5.2vh,68px);font-size:clamp(52px,4.15vw,64px);line-height:1.04;letter-spacing:-.045em}.jam-date{margin:0 0 26px;font-size:clamp(16px,1.35vw,20px)}.jam-copy p:not(.jam-date){max-width:420px;margin:0 0 44px;font-size:clamp(14px,1.1vw,17px);line-height:1.35}.jam-promo .magazine-buy-button{min-width:200px;padding:17px 34px;font-size:18px;text-align:center}.jam-art{min-height:0;height:100%}.jam-art img{object-fit:contain;object-position:center}}
+@media(max-width:780px){.thrivable-heading{height:115px}.thrivable-heading h2{font-size:30px}.thrivable-question{height:310px}.thrivable-question h3{font-size:44px}.future-book{grid-template-columns:1fr 100px;min-height:220px}.future-book-copy{padding:30px 18px}.future-book h3{font-size:29px}.future-book h3 b{margin-right:6px}.future-book p{margin-left:0;font-size:10px}.future-book-mark{width:75px;height:75px}.future-grid{grid-template-columns:1fr}.future-card{border-bottom:2px solid #555}.future-map{height:220px}.future-card-title{top:82px;font-size:24px}.future-card-copy{min-height:145px}.future-book-mark svg{width:38px;height:38px}.catalogue-nav{padding:44px 6% 28px}.catalogue-nav h2{font-size:31px;margin-bottom:24px}.catalogue-nav ul{grid-template-columns:1fr 1fr;gap:9px}.catalogue-nav li{padding:10px 12px;font-size:12px}.catalogue-nav li span{font-size:16px}.jam-promo{grid-template-columns:1fr;min-height:0}.magazine-promo .magazine-buy-button{top:63%;left:4%;min-width:0;padding:7px 13px;font-size:10px}.jam-promo .magazine-buy-button{min-width:0;padding:7px 13px;font-size:10px}.jam-art{min-height:280px}.jam-copy{padding:36px 8%}.jam-copy h2{font-size:32px}}
+
+/* Future Leadership JAM: supplied event frame and portrait source. */
+@media(min-width:781px){.event-promo--future-leadership{position:relative;display:grid;grid-template-columns:36% 64%;height:clamp(640px,53.6vw,757px);min-height:0;overflow:visible;background:#292929;border-top:3px solid #008bd2;border-bottom:4px solid #555;isolation:isolate}.event-promo--future-leadership .event-copy{position:relative;z-index:2;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:0 clamp(40px,3.8vw,54px);background:transparent;color:#f5f5f5}.event-promo--future-leadership .event-copy h2{max-width:440px;margin:0 0 clamp(42px,3.8vw,54px);color:#f5f5f5;font-size:clamp(53px,4.25vw,60px);font-weight:800;letter-spacing:-.06em;line-height:.96}.event-promo--future-leadership .event-copy p{height:auto;margin:0;writing-mode:horizontal-tb}.event-promo--future-leadership .event-copy p:nth-child(2){margin-bottom:20px;color:#f5f5f5;font-size:clamp(20px,1.7vw,24px);line-height:1.1}.event-promo--future-leadership .event-copy p:nth-child(3){max-width:380px;margin-bottom:clamp(36px,3.7vw,52px);color:#f5f5f5;font-size:clamp(13px,1.05vw,15px);line-height:1.25}.event-promo--future-leadership .event-cta{display:inline-flex;align-items:center;justify-content:center;min-width:164px;padding:15px 32px;background:#4b4b4b;color:#fff;font-size:16px;line-height:1;text-decoration:none}.event-promo--future-leadership .event-image{position:relative;min-height:0;background:#292929}.event-promo--future-leadership .event-image img{object-fit:contain;object-position:right bottom}.event-promo--future-leadership::after{position:absolute;z-index:1;bottom:-45px;left:12.5%;width:75%;height:45px;background:#292929;content:""}}
+@media(max-width:780px){.event-promo--future-leadership{display:flex;min-height:0;flex-direction:column;background:#292929;border-top:3px solid #008bd2;border-bottom:3px solid #555;color:#f5f5f5}.event-promo--future-leadership .event-copy{order:2;padding:48px 26px 52px}.event-promo--future-leadership .event-copy h2{margin:0 0 30px;font-size:45px;line-height:.96}.event-promo--future-leadership .event-copy p:nth-child(2){margin:0 0 16px;font-size:18px}.event-promo--future-leadership .event-copy p:nth-child(3){margin:0 0 30px;font-size:13px;line-height:1.35}.event-promo--future-leadership .event-cta{display:inline-flex;padding:14px 27px;background:#4b4b4b;color:#fff;text-decoration:none}.event-promo--future-leadership .event-image{position:relative;order:1;min-height:340px}.event-promo--future-leadership .event-image img{object-fit:contain;object-position:center bottom}}
+
+/* Future Leadership JAM: remove the blue divider and blend the black source
+   backdrop into the charcoal event surface. */
+@media(min-width:781px){.event-promo--future-leadership{border-top:0}.event-promo--future-leadership .event-image{background:#292929}.event-promo--future-leadership .event-image img{mix-blend-mode:screen;-webkit-mask-image:radial-gradient(ellipse 74% 86% at 50% 54%,#000 56%,transparent 100%);mask-image:radial-gradient(ellipse 74% 86% at 50% 54%,#000 56%,transparent 100%)}}
+@media(max-width:780px){.event-promo--future-leadership{border-top:0}.event-promo--future-leadership .event-image{background:#292929}.event-promo--future-leadership .event-image img{mix-blend-mode:screen;-webkit-mask-image:radial-gradient(ellipse 74% 86% at 50% 54%,#000 56%,transparent 100%);mask-image:radial-gradient(ellipse 74% 86% at 50% 54%,#000 56%,transparent 100%)}}
+
+/* The page rhythm sheet gives ordinary event descriptions a vertical treatment.
+   This supplied JAM composition keeps its copy horizontal at every breakpoint. */
+.event-promo.event-promo--future-leadership .event-copy p:nth-child(3){height:auto!important;writing-mode:horizontal-tb!important}
+
+/* Loaded before the page rhythm sheet, so the extra class keeps this compact
+   reference panel from inheriting that sheet's generic 430px service height. */
+@media(min-width:781px){.service-statement.service-statement--risk-setting{box-sizing:border-box;height:clamp(360px,29.38vw,423px);min-height:0;padding:clamp(86px,7.94vw,114px) clamp(48px,4.6vw,66px) clamp(44px,4vw,58px)}.service-statement.service-statement--risk-setting::before{height:clamp(54px,4.51vw,65px)}.service-statement.service-statement--risk-setting>div:first-child{max-width:570px}.service-statement.service-statement--risk-setting h2{margin:0;color:#414143;font-size:clamp(56px,5.34vw,77px);line-height:.96}.service-statement.service-statement--risk-setting p{max-width:430px;margin:clamp(26px,2.65vw,38px) 0 0 clamp(48px,5.25vw,76px);font-size:clamp(13px,1.08vw,16px);line-height:1.18}.service-statement.service-statement--risk-setting .statement-mark{width:clamp(150px,15.5vw,223px);height:clamp(150px,15.5vw,223px);margin:clamp(-2px,-.5vw,0) clamp(8px,4.1vw,59px) 0 24px}}
+
+/* Change Solving follows the larger type scale in the supplied Figma frame. */
+@media(min-width:781px){.service-statement.service-statement--change-solving h2{font-size:82px;line-height:.96}.service-statement.service-statement--change-solving p{font-size:18px;line-height:1.22}}
+
+/* Performance Testing: expansive information panel and results-card carousel. */
+@media(min-width:781px){.service-statement.service-statement--performance-testing{position:relative;box-sizing:border-box;height:337px;min-height:0;padding:84px 52px 35px;align-items:flex-start;overflow:hidden;background:#fff;border-top:3px solid #aaa;border-bottom:3px solid #aaa;color:#414143}.service-statement.service-statement--performance-testing::before{position:absolute;top:0;right:0;width:49.5%;height:48px;background:#aaa;content:""}.service-statement.service-statement--performance-testing>div:first-child{position:relative;z-index:1;max-width:650px}.service-statement.service-statement--performance-testing h2{margin:0;color:#414143;font-size:64px;font-weight:700;letter-spacing:-.055em;line-height:.94}.service-statement.service-statement--performance-testing p{max-width:322px;margin:32px 0 0 58px;color:#111;font-size:12px;line-height:1.32}.service-statement.service-statement--performance-testing .statement-mark{position:relative;z-index:1;width:180px;height:180px;margin:15px 25px 0 24px;overflow:hidden;background:#f0f0f0}.service-statement.service-statement--performance-testing .statement-mark img{width:100%;height:100%;object-fit:none;object-position:89.5% 15.1%}.performance-testing-carousel{border-top:0;border-bottom:3px solid #aaa;background:#fff}.performance-testing-carousel .image-carousel-slide{flex-basis:33.333%;border-color:#aaa;background:#f7f7f7}.performance-testing-carousel .image-carousel-slide img{display:block;width:100%;height:auto}}
+
+/* Technocratic Design For Leadership JAM supplied event frame. */
+@media(min-width:1101px){.event-promo--technocratic-leadership{position:relative;display:grid;grid-template-columns:33.8% 66.2%;height:758px;min-height:0;overflow:hidden;background:#fff;border-top:3px solid #aaa;border-bottom:4px solid #aaa}.event-promo--technocratic-leadership::before{position:absolute;z-index:2;top:-3px;left:0;width:33.8%;height:6px;background:#0b8fda;content:""}.event-promo--technocratic-leadership .event-copy{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:0 52px;background:#fff;color:#5b5b5d}.event-promo--technocratic-leadership .event-copy h2{max-width:440px;margin:0 0 42px;color:#5b5b5d;font-size:60px;font-weight:800;letter-spacing:-.065em;line-height:.98}.event-promo--technocratic-leadership .event-copy p{height:auto;margin:0;writing-mode:horizontal-tb}.event-promo--technocratic-leadership .event-copy p:nth-child(2){margin-bottom:20px;color:#5b5b5d;font-size:24px;line-height:1.1}.event-promo--technocratic-leadership .event-copy p:nth-child(3){max-width:380px;margin-bottom:42px;color:#4b4b4b;font-size:14px;line-height:1.25}.event-promo--technocratic-leadership .event-cta{display:inline-flex;align-items:center;justify-content:center;min-width:164px;padding:15px 32px;background:#464646;color:#fff;font-size:16px;line-height:1;text-decoration:none}.event-promo--technocratic-leadership .event-image{position:relative;min-height:0;background:#fff}.event-promo--technocratic-leadership .event-image img{object-fit:contain;object-position:center bottom}}
+@media(min-width:1101px){.event-promo--technocratic-leadership::before{display:none}}
+@media(min-width:781px) and (max-width:1100px){.event-promo--technocratic-leadership{position:relative;display:grid;grid-template-columns:41% 59%;height:560px;min-height:0;overflow:hidden;background:#fff;border-top:3px solid #aaa;border-bottom:3px solid #aaa}.event-promo--technocratic-leadership::before{position:absolute;z-index:2;top:-3px;left:0;width:41%;height:6px;background:#0b8fda;content:""}.event-promo--technocratic-leadership .event-copy{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:0 40px;background:#fff;color:#5b5b5d}.event-promo--technocratic-leadership .event-copy h2{margin:0 0 28px;color:#5b5b5d;font-size:45px;line-height:.96;letter-spacing:-.06em}.event-promo--technocratic-leadership .event-copy p{height:auto;margin:0;writing-mode:horizontal-tb}.event-promo--technocratic-leadership .event-copy p:nth-child(2){margin-bottom:14px;font-size:18px;line-height:1.15}.event-promo--technocratic-leadership .event-copy p:nth-child(3){margin-bottom:28px;font-size:12px;line-height:1.25}.event-promo--technocratic-leadership .event-cta{padding:13px 25px;background:#464646;color:#fff;text-decoration:none}.event-promo--technocratic-leadership .event-image{position:relative;min-height:0;background:#fff}.event-promo--technocratic-leadership .event-image img{object-fit:contain;object-position:center bottom}}
+@media(min-width:781px) and (max-width:1100px){.event-promo--technocratic-leadership::before{display:none}}
+@media(max-width:780px){.event-promo--technocratic-leadership{display:flex;min-height:0;flex-direction:column;background:#fff;border-top:3px solid #0b8fda;border-bottom:3px solid #aaa;color:#5b5b5d}.event-promo--technocratic-leadership .event-copy{order:2;padding:44px 26px 52px}.event-promo--technocratic-leadership .event-copy h2{margin:0 0 28px;font-size:44px;line-height:.96;letter-spacing:-.06em}.event-promo--technocratic-leadership .event-copy p:nth-child(2){margin:0 0 16px;font-size:18px}.event-promo--technocratic-leadership .event-copy p:nth-child(3){margin:0 0 30px;font-size:13px;line-height:1.35}.event-promo--technocratic-leadership .event-cta{display:inline-flex;padding:14px 27px;background:#464646;color:#fff;text-decoration:none}.event-promo--technocratic-leadership .event-image{position:relative;order:1;min-height:340px}.event-promo--technocratic-leadership .event-image img{object-fit:contain;object-position:center bottom}}
+@media(max-width:780px){.event-promo--technocratic-leadership{border-top-color:#aaa}}
+.event-promo--technocratic-leadership::before{display:none!important}
+
+/* Execution Management exact desktop composition from the supplied frame. */
+@media(min-width:1101px){.execution-management.execution-management{position:relative;box-sizing:border-box;height:1028px;min-height:0;padding:0;overflow:hidden;background:#404040;border:0;color:#f4f4f4}.execution-management.execution-management::before{position:absolute;z-index:1;top:0;left:12.25%;width:75.6%;height:45px;background:#fff;content:""}.execution-management.execution-management::after{position:absolute;z-index:1;bottom:0;left:0;width:100%;height:65px;background:#fff;clip-path:polygon(0 0,32.5% 0,32.5% 100%,67.3% 100%,67.3% 0,100% 0,100% 100%,0 100%);content:""}.execution-management.execution-management h2{position:absolute;z-index:2;top:155px;left:5.95%;margin:0;padding:0;color:#f4f4f4;font-size:96px;font-weight:800;letter-spacing:.035em;line-height:.95;text-shadow:0 2px 3px rgba(0,0,0,.38);white-space:nowrap}.execution-management.execution-management .execution-orbits{position:absolute;top:371px;left:0;display:block;width:100%;min-width:0;height:350px;transform:none}.execution-management.execution-management .execution-orbits>*{position:absolute;display:grid;box-sizing:border-box;place-items:center;margin:0;border:1px solid #b9b9b9;border-radius:50%;color:#c4c4c4;text-align:center;font-size:25px;font-weight:400;line-height:1.28}.execution-management.execution-management .execution-orbits span{width:16.57vw;height:16.57vw}.execution-management.execution-management .execution-orbits span:nth-child(1){top:51px;left:-2.05%}.execution-management.execution-management .execution-orbits span:nth-child(2){top:51px;left:17.07%}.execution-management.execution-management .execution-orbits strong{top:0;left:37.82%;width:24.79vw;height:24.79vw;background:#2b2b2b;color:#f7f7f7;font-size:31px;font-weight:400;line-height:1.25}.execution-management.execution-management .execution-orbits span:nth-child(4){top:51px;left:66.22%}.execution-management.execution-management .execution-orbits span:nth-child(5){top:51px;left:85.2%}.execution-management.execution-management>p{position:absolute;z-index:2;top:748px;left:39.6%;width:292px;margin:0;color:#f5f5f5;font-size:16px;line-height:1.22}}
+@media(min-width:781px) and (max-width:1100px){.execution-management.execution-management{position:relative;box-sizing:border-box;height:800px;min-height:0;padding:0;overflow:hidden;background:#404040;color:#f4f4f4}.execution-management.execution-management::before{position:absolute;top:0;left:12%;width:76%;height:36px;background:#fff;content:""}.execution-management.execution-management h2{margin:0;padding:125px 0 0 6%;font-size:62px;letter-spacing:.025em;line-height:.95}.execution-management.execution-management .execution-orbits{position:absolute;top:300px;left:50%;display:flex;width:1100px;min-width:1100px;height:260px;align-items:center;justify-content:space-between;transform:translateX(-50%)}.execution-management.execution-management .execution-orbits>*{width:172px;height:172px;margin:0;border:1px solid #b9b9b9;color:#c4c4c4;font-size:19px}.execution-management.execution-management .execution-orbits strong{width:260px;height:260px;background:#2b2b2b;color:#f7f7f7;font-size:26px}.execution-management.execution-management>p{position:absolute;top:610px;left:50%;width:286px;margin:0;transform:translateX(-50%);font-size:15px;line-height:1.25}}
+@media(max-width:780px){.execution-management.execution-management{position:relative;min-height:760px;padding:0 24px 60px;overflow:hidden;background:#404040;color:#f4f4f4}.execution-management.execution-management::before{position:absolute;top:0;left:12%;width:76%;height:26px;background:#fff;content:""}.execution-management.execution-management h2{margin:0;padding-top:94px;font-size:43px;letter-spacing:.02em;line-height:.95}.execution-management.execution-management .execution-orbits{display:flex;gap:16px;justify-content:flex-start;min-width:max-content;margin:58px -24px 0;transform:translateX(-135px)}.execution-management.execution-management .execution-orbits>*{width:140px;height:140px;margin:0;border:1px solid #b9b9b9;color:#c4c4c4;font-size:16px}.execution-management.execution-management .execution-orbits strong{width:210px;height:210px;background:#2b2b2b;color:#f7f7f7;font-size:22px}.execution-management.execution-management>p{width:270px;margin:42px auto 0;font-size:14px;line-height:1.3}}
+@media(max-width:780px){.service-statement--performance-testing{position:relative;min-height:310px;padding:72px 26px 38px;align-items:flex-start;overflow:hidden;background:#fff;border-top:2px solid #aaa;border-bottom:2px solid #aaa}.service-statement--performance-testing::before{position:absolute;top:0;right:0;width:50%;height:34px;background:#aaa;content:""}.service-statement--performance-testing h2{max-width:330px;margin:0 0 27px;color:#414143;font-size:47px;line-height:.94;letter-spacing:-.055em}.service-statement--performance-testing p{max-width:265px;margin:0 0 0 22px;font-size:12px;line-height:1.25}.service-statement--performance-testing .statement-mark{width:112px;height:112px;margin:0;overflow:hidden;background:#f0f0f0}.service-statement--performance-testing .statement-mark img{width:100%;height:100%;object-fit:none;object-position:89.5% 15.1%}.performance-testing-carousel{border-top:0;border-bottom:3px solid #111}.performance-testing-carousel .image-carousel-slide{flex-basis:100%;border-right:0;background:#f7f7f7}.performance-testing-carousel .image-carousel-slide img{display:block;width:100%;height:auto}}
+@media(min-width:781px) and (max-width:1100px){.service-statement.service-statement--performance-testing{height:420px;padding:64px 52px 34px}.service-statement.service-statement--performance-testing h2{max-width:440px;margin-bottom:25px;font-size:54px;line-height:.92}.service-statement.service-statement--performance-testing p{max-width:330px;margin-left:52px;font-size:13px;line-height:1.2}.service-statement.service-statement--performance-testing .statement-mark{width:156px;height:156px;margin:18px 20px 0}.service-statement--performance-testing::before{height:42px}}
+
+/* Execution Management — measured against the 1440 × 1044 supplied frame. */
+@media (min-width:1101px) {
+  .execution-management.execution-management { height: 1044px; }
+  .execution-management.execution-management::before { left: 12.64%; width: 75.56%; }
+  .execution-management.execution-management::after { height: 64px; }
+  .execution-management.execution-management .execution-orbits span:nth-child(1) { top: 58px; left: -1.53%; }
+  .execution-management.execution-management .execution-orbits span:nth-child(2) { top: 58px; left: 17.43%; }
+  .execution-management.execution-management .execution-orbits strong { top: 7px; left: 38.12%; }
+  .execution-management.execution-management .execution-orbits span:nth-child(4) { top: 58px; left: 66.6%; }
+  .execution-management.execution-management .execution-orbits span:nth-child(5) { top: 58px; left: 85.55%; }
+  .execution-management.execution-management > p { top: 761px; left: 39.93%; }
+}
+
+/* Wide desktop frame: 2048 × 890 reference. */
+@media (min-width: 1600px) and (min-aspect-ratio: 16/8) {
+  .execution-management.execution-management { height: 100svh; }
+  .execution-management.execution-management::before { left: 12.79%; width: 75.39%; height: 38px; }
+  .execution-management.execution-management::after { height: 87px; }
+  .execution-management.execution-management h2 {
+    top: 135px;
+    left: 6.2%;
+    font-size: 80px;
+  }
+  .execution-management.execution-management .execution-orbits { top: 304px; }
+  .execution-management.execution-management .execution-orbits span:nth-child(1) { top: 49px; left: -1.3%; }
+  .execution-management.execution-management .execution-orbits span:nth-child(2) { top: 49px; left: 17.5%; }
+  .execution-management.execution-management .execution-orbits strong { top: 7px; left: 38.28%; }
+  .execution-management.execution-management .execution-orbits span:nth-child(4) { top: 49px; left: 66.65%; }
+  .execution-management.execution-management .execution-orbits span:nth-child(5) { top: 49px; left: 85.6%; }
+  .execution-management.execution-management > p {
+    top: 624px;
+    left: 39.97%;
+    width: 270px;
+    font-size: 14px;
+    line-height: 1.2;
+  }
+}
+
+/* Keep the long section title inside its canvas at browser zoom levels too. */
+@media (min-width: 1101px) {
+  .execution-management.execution-management h2 {
+    max-width: calc(100% - 10%);
+    font-size: clamp(72px, 6.25vw, 90px);
+    letter-spacing: .02em;
+  }
+}
+
+@media (min-width: 1600px) and (min-aspect-ratio: 16/8) {
+  .execution-management.execution-management h2 { font-size: 80px; }
+}
+/* Keep the supplied Risk Setting SVG intact at every viewport size. */
+@media (max-width: 780px) {
+  .service-statement--risk-setting .statement-mark { background: transparent; }
+  .service-statement--risk-setting .statement-mark img { object-fit: contain; object-position: center; }
+}
+
+/* The supplied Performance Testing SVG is a complete, self-contained mark. */
+.service-statement--performance-testing .statement-mark { background: transparent; }
+.service-statement--performance-testing .statement-mark img { object-fit: contain; object-position: center; }
+
+/* The Technocratic Leadership JAM ends cleanly, without a divider rule. */
+.event-promo--technocratic-leadership { border-bottom: 0; }
+
+/* Remove the dark centre tab that previously projected into Why choose us. */
+@media (min-width: 1101px) {
+  .execution-management.execution-management::after { clip-path: none; }
+}
+
+/* What if — exact two-column callout proportion from the supplied Figma frame. */
+@media (min-width: 781px) {
+  .what-if {
+    position: relative;
+    box-sizing: border-box;
+    display: block;
+    height: clamp(600px, 53.5vw, 766px);
+    min-height: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  .what-if h2 {
+    position: absolute;
+    top: 18.2%;
+    left: 5.6%;
+    margin: 0;
+    color: #404040;
+    font-size: clamp(82px, 7.55vw, 108px);
+    font-weight: 800;
+    letter-spacing: -.06em;
+    line-height: 1.04;
+  }
+
+  .what-if p {
+    position: absolute;
+    top: 23%;
+    left: 50.1%;
+    width: min(31vw, 450px);
+    margin: 0;
+    color: #4a4a4a;
+    font-size: clamp(22px, 2vw, 29px);
+    font-weight: 400;
+    line-height: 1.45;
+    text-align: center;
+  }
+
+  .what-if::before,
+  .what-if::after {
+    position: absolute;
+    bottom: 0;
+    width: clamp(62px, 4.4vw, 64px);
+    height: clamp(60px, 4.5vw, 65px);
+    background: #aaa;
+    content: "";
+  }
+
+  .what-if::before { left: 0; }
+  .what-if::after { right: 0; }
+}
+
+@media (max-width: 780px) {
+  .what-if { position: relative; min-height: 500px; padding: 90px 26px 76px; overflow: hidden; }
+  .what-if h2 { margin: 0; font-size: 70px; line-height: 1.02; }
+  .what-if p { margin: 46px 0 0; font-size: 25px; line-height: 1.35; text-align: center; }
+  .what-if::before,.what-if::after { position: absolute; bottom: 0; width: 44px; height: 44px; background: #aaa; content: ""; }
+  .what-if::before { left: 0; }
+  .what-if::after { right: 0; }
+}

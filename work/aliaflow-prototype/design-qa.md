@@ -1,74 +1,71 @@
-# Design QA
+# Design QA — Risk Setting carousel
 
 **Source visual truth path**
 
-`/Users/mac/Documents/Codex/2026-09-05/hdk-x20/work/pdf-pages/aliaflow-reference.png`
+`/var/folders/vq/9cn4z2r911vc7xhryc7k99y40000gn/T/codex-clipboard-0a824f3c-c148-441a-bef5-193413ef3eae.png`
 
 **Implementation screenshot path**
 
-Unavailable pending permission to run a browser capture.
+Codex in-app browser capture of `http://localhost:4173/#risk-setting`.
 
 **Viewport**
 
-Target: 1440 CSS px wide. Full source height: 33,697 px.
+906 × 822 CSS px desktop browser viewport.
 
 **Pixel dimensions and density normalization**
 
-- Source render: 1440 x 33,697 RGB pixels at 1x.
-- Embedded implementation artwork: 15 lossless WebP slices, each 1440 px wide; combined height 33,697 px at 1x.
-- Offline decoded-pixel comparison: pixel-identical; `ImageChops.difference(...).getbbox()` returned `None`.
-- Browser-rendered dimensions and density: not yet captured.
+- Source reference: 762 × 622 px.
+- Implementation browser capture: 906 × 822 CSS px, reviewed at 1× browser density.
+- Comparison was normalized by proportion rather than pixel equality because the implementation is responsive and adds carousel items beyond the source’s three visible cards.
 
 **State**
 
-Default landing-page state at the top of the page.
+Desktop default state, with a second check after activating the next-card control.
 
 **Full-view comparison evidence**
 
-The image payload embedded in the final standalone HTML decodes to a full 1440 x 33,697 image that is pixel-identical to the source render. This verifies source artwork, copy, colors, typography rasterization, spacing, image crops, and page order before browser layout.
+The browser-rendered section was compared against the supplied reference: the grey top cap, compact white heading panel, circular strategy illustration, three-column bordered card grid, and card hierarchy match. The people asset supplied by the user is used directly for every card.
 
 **Focused region comparison evidence**
 
-Source crops were visually inspected in 2,400 px-high regions. Browser-rendered focused-region evidence is unavailable pending permission to run Playwright.
+Focused review covered the heading/copy/icon row and the first three cards. The initial header was too tall; it was reduced to the source proportion and the cards were changed to near-square image slots.
 
 **Findings**
 
-- [P2] Browser-rendered evidence is missing.
-  Location: final standalone HTML at 1440 px viewport.
-  Evidence: the embedded artwork is pixel-identical offline, but no browser screenshot has been captured.
-  Impact: CSS sizing, seams between image slices, and browser decoding cannot be formally signed off from browser evidence.
-  Fix: capture the local page at 1440 px, compare the result with the source in a combined image, and record the result.
+- No actionable P0/P1/P2 differences remain for the new risk-setting section.
 
 **Required fidelity surfaces**
 
-- Fonts and typography: preserved in the lossless source-derived raster; browser presentation pending capture.
-- Spacing and layout rhythm: preserved in the lossless source-derived raster; CSS uses block images with zero gaps; browser presentation pending capture.
-- Colors and visual tokens: embedded pixels match the source exactly; browser color presentation pending capture.
-- Image quality and asset fidelity: source-derived lossless WebP slices are embedded directly and decode pixel-identically.
-- Copy and content: preserved exactly from the source render.
+- Fonts and typography: Arial/Helvetica system stack, bold display title, compact metadata, and small body copy match the reference’s neutral sans-serif hierarchy.
+- Spacing and layout rhythm: notched cap, 2 px grid lines, header-to-rail transition, three desktop cards, and mobile single-card peek are implemented.
+- Colors and visual tokens: white canvas, light-grey image panels, medium-grey rule/cap, and charcoal text follow the supplied reference.
+- Image quality and asset fidelity: the supplied people image is used directly in every card, with top-aligned cover cropping; the circular strategy illustration is sourced from the supplied reference image.
+- Copy and content: source headings and card labels are retained; additional cards make the carousel scrollable.
 
 **Primary interactions tested**
 
-Static inspection confirms transparent semantic anchors are present for the primary navigation and four service-catalogue controls. Browser click behavior has not yet been exercised.
+The next-card control was exercised in the browser and shifted the rail by 301 px. The focusable rail also supports keyboard arrows, drag/scroll, and snap behavior.
 
 **Console errors checked**
 
-Not yet; requires browser inspection.
+No console errors observed in the browser preview.
 
 **Comparison history**
 
-- Initial offline pass: source and embedded pixels match exactly. Browser capture remains the only blocking P2 item.
+- Initial pass: header was over-tall relative to the reference.
+- Fixed: header reduced to a compact 184 px composition and card image areas changed to near-square proportions.
+- Final browser pass: no actionable P0/P1/P2 differences.
 
 **Implementation checklist**
 
-- Capture the page at a 1440 px viewport.
-- Verify all 15 slices render without seams.
-- Exercise primary navigation and service-catalogue anchors.
-- Check the browser console.
-- Run a combined source/implementation visual comparison.
+- [x] Responsive risk-setting section implemented.
+- [x] Supplied team image added to the public asset bundle.
+- [x] Horizontal drag/scroll rail with snap behavior and controls implemented.
+- [x] Browser preview checked and control interaction exercised.
+- [x] Production build and Sites worker tests passed.
 
 **Follow-up polish**
 
-None identified from the source-derived artwork.
+- [P3] Replace the duplicated demo copy and image with per-service CMS content when those assets are available.
 
-final result: blocked
+final result: passed

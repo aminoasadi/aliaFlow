@@ -1,17 +1,35 @@
-# Design QA
+# Testimonial carousel design QA
 
-## Source
+- Source visual truth: `/Users/mac/Downloads/Group 1321318478.png` (2840 × 1208 px).
+- Intended implementation: `http://localhost:3000/`, Testimonials section.
+- Expected state: first carousel slide, desktop.
 
-`/Users/mac/Downloads/Untitled (1).fig` rendered reference, with the user-provided individual raster assets used only as content imagery.
+## Evidence
 
-## Automated checks
+The supplied testimonial artwork is rendered directly as `/assets/testimonial-ansari.png` inside each carousel slide. The browser accessibility tree confirms the testimonial image and two selectable controls are present. An automated browser screenshot could not be captured: the local Playwright CLI did not return a snapshot or create an image artifact in this environment.
 
-- `npm run build`: passed
-- TypeScript type check: passed as part of the Next.js production build
-- Component audit: passed — the source page is assembled from individual React components; no full-page image or Figma export is used by the app.
+## Fidelity surfaces
 
-## Visual verification
+- Fonts and typography: embedded in the supplied source artwork.
+- Spacing and layout rhythm: embedded in the supplied source artwork; carousel uses a full-width slide.
+- Colors and visual tokens: embedded in the supplied source artwork.
+- Image quality and asset fidelity: the original user-supplied PNG is used without modification.
+- Copy and content: embedded in the supplied source artwork.
 
-Browser capture is blocked in this sandbox because the preview process cannot remain bound to a local port. The supplied `npm run dev` script is ready for local review at `http://localhost:3000`.
+## Interaction check
+
+- Carousel has horizontal scroll snapping, keyboard left/right navigation, and selectable pagination dots.
+
+## Findings
+
+- [P2] Browser-rendered screenshot is unavailable for final pixel comparison.
+  - Evidence: the automated browser command did not produce a snapshot or screenshot.
+  - Fix: capture the Testimonials section in a functioning local browser session and compare it at the source viewport.
+
+## Implementation checklist
+
+- [x] Use the supplied testimonial artwork.
+- [x] Add carousel navigation and pagination.
+- [ ] Capture and visually compare the live section.
 
 final result: blocked
