@@ -184,10 +184,12 @@
 .image-carousel-dark { border-color: #aaa; background: #292929; }
 .image-carousel-dark .image-carousel-slide { border-color: #aaa; background: #292929; }
 
+/* Keep the same carousel-of-cards feel as desktop (a peek of the next card
+   invites swiping) instead of one nearly-full-width card per screen. */
 @media (max-width: 780px) {
-  .image-carousel-slide { flex-basis: 85vw; border-right-width: 2px; }
+  .image-carousel-slide { flex-basis: 66vw; border-right-width: 2px; }
 }
 
 @media (max-width: 780px) {
-  .future-image-slide { flex-basis: min(88vw, 620px); border-right-width: 2px; }
+  .future-image-slide { flex-basis: min(68vw, 460px); border-right-width: 2px; }
 }

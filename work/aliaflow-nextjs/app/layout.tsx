@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { MauticLoader } from "../components/MauticLoader";
 import { prisma } from "../lib/db";
 import "./globals.css";
@@ -15,6 +15,13 @@ import "./why-trust-us.css";
 import "./portfolio-timeline.css";
 import "./testimonial-carousel.css";
 import "./figma-page-rhythm.css";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
 
 export async function generateMetadata(): Promise<Metadata> {
   const rows = await prisma.setting.findMany();
