@@ -95,13 +95,13 @@ export const sectionSchemas: Record<string, SectionSchema> = {
         image: image("Icon image (leave blank to use the default icon)"),
         image_alt: text("Icon image description"),
       }),
-      futures: list("Future of X image cards", "Image card", {
-        image: image(
-          "Complete card image",
-          "Upload the finished card artwork. Its title, copy, and visual design should already be part of the image.",
-        ),
-        alt: text("Image description", "A short description for screen readers."),
-      }, "Add, remove, and reorder the images in the draggable card rail."),
+      futures: list("Future of X tiles", "Tile", {
+        image: image("Card image", "Used in this card only."),
+        label: text("Label"),
+        title: text("Title"),
+        body: textarea("Body"),
+        image_alt: text("Card image description"),
+      }, "Add, remove, and reorder the Future of X Book cards."),
       loops: list("Business loop tiles", "Loop", {
         image: image("Card image", "Used in this card only."),
         label: text("Label"),

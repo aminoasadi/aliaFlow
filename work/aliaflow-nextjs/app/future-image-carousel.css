@@ -74,18 +74,7 @@
   .future-book-experience .future-book p { max-width: 500px; margin: 0 0 0 52px; font-size: 14px; line-height: 1.24; }
   .future-book-experience .future-book-mark { align-self: center; width: 190px; height: 190px; }
 
-  .future-book-experience .future-image-carousel,
-  .future-book-experience .future-image-carousel-rail { height: 100%; min-height: 0; }
-
-  .future-book-experience .future-image-carousel { border: 0; }
-  .future-book-experience .future-image-slide { min-height: 0; height: 100%; flex-basis: 33.333%; }
-  .future-book-experience .future-image-slide img { height: 100%; object-fit: cover; object-position: top center; }
-  .future-book-experience .future-image-carousel-single .future-image-slide { flex-basis: 100%; }
-  .future-book-experience .future-image-carousel-single .future-image-slide img { object-fit: contain; }
-
-  .future-book-experience .future-map { height: 318px; }
-  .future-book-experience .future-card-copy { min-height: 284px; }
-
+  .future-book-experience,
   .critical-business-loop-experience,
   .brand-culture-experience {
     display: grid;
@@ -102,6 +91,7 @@
   .critical-business-loop-experience { grid-template-rows: 27% 73%; }
   .brand-culture-experience { grid-template-rows: 28% 72%; }
 
+  .future-book-experience > .future-book,
   .critical-business-loop-experience > .future-book,
   .brand-culture-experience > .future-book {
     min-height: 0;
@@ -109,6 +99,7 @@
     border-bottom: 3px solid #555;
   }
 
+  .future-book-experience > .future-grid,
   .critical-business-loop-experience > .future-grid,
   .brand-culture-experience > .future-grid {
     height: 100%;
@@ -116,6 +107,7 @@
     overflow: hidden;
   }
 
+  .future-book-experience .future-card,
   .critical-business-loop-experience .future-card,
   .brand-culture-experience .future-card {
     display: grid;
@@ -123,12 +115,14 @@
     grid-template-rows: 65% 35%;
   }
 
+  .future-book-experience .future-map,
   .critical-business-loop-experience .future-map,
   .brand-culture-experience .future-map {
     height: auto;
     min-height: 0;
   }
 
+  .future-book-experience .future-card-copy,
   .critical-business-loop-experience .future-card-copy,
   .brand-culture-experience .future-card-copy {
     box-sizing: border-box;
@@ -137,6 +131,7 @@
     padding: clamp(14px, 1.6vw, 24px) clamp(18px, 2vw, 30px);
   }
 
+  .future-book-experience .future-card-copy h3,
   .critical-business-loop-experience .future-card-copy h3,
   .brand-culture-experience .future-card-copy h3 { margin-top: clamp(16px, 2vw, 28px); }
 }
@@ -151,8 +146,6 @@
   .future-book-experience .future-book h3 { margin-bottom: 24px; font-size: clamp(56px, 6.1vw, 72px); }
   .future-book-experience .future-book p { margin-left: 56px; font-size: 15px; }
   .future-book-experience .future-book-mark { width: 190px; height: 190px; }
-  .future-book-experience .future-map { height: 275px; }
-  .future-book-experience .future-card-copy { min-height: 245px; }
 }
 
 /* All other service examples use the same image-only, draggable treatment. */

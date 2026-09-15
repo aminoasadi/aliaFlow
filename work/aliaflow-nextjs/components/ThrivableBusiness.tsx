@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { Fragment, type ReactNode } from "react";
-import { FutureImageCarousel } from "./FutureImageCarousel";
 
 function Lines({ text }: { text: string }) {
   return <>{text.split("\n").map((line, i) => <Fragment key={line}>{i > 0 ? <br /> : null}{line}</Fragment>)}</>;
@@ -80,16 +79,7 @@ export type ThrivableBusinessData = {
   question_image_alt: string;
   question_section_label: string;
   service_blocks: { number: string; title: string; body: string; image?: string; image_alt?: string }[];
-  /** Legacy shared artwork, kept so previously published records still render. */
-  futures_image?: string;
-  futures: {
-    image?: string;
-    alt?: string;
-    /** Legacy fields from the original HTML card implementation. */
-    title?: string;
-    heading?: string;
-    tags?: string;
-  }[];
+  futures: { image: string; label: string; title: string; body: string; image_alt: string }[];
   loops: { image: string; label: string; title: string; body: string; image_alt: string }[];
   cultures: { image: string; label: string; title: string; body: string; image_alt: string }[];
   magazine_heading: string;
@@ -114,7 +104,6 @@ export function ThrivableBusiness({
   question_section_label,
   question,
   service_blocks,
-  futures_image,
   futures,
   loops,
   cultures,
@@ -133,12 +122,6 @@ export function ThrivableBusiness({
   jam_cta_href,
 }: ThrivableBusinessData) {
   const marks = [<Image key="cyborg" src="/assets/cyborg.png" alt="" fill sizes="130px" />, <LoopMark key="loop" />, <CultureMark key="culture" />];
-  const futureImages = futures
-    .filter((future) => future.image?.trim())
-    .map((future, index) => ({
-      src: future.image as string,
-      alt: future.alt?.trim() || future.title?.trim() || `Future of X card ${index + 1}`,
-    }));
 
   return (
     <section className="thrivable-business" aria-labelledby="thrivable-title">
@@ -154,22 +137,7 @@ export function ThrivableBusiness({
 
       {service_blocks[0] ? <section className="future-book-experience" aria-label="Future of X Book">
         <ServiceBlock {...service_blocks[0]} imageAlt={service_blocks[0].image_alt} mark={marks[0]} />
-        {futureImages.length > 0 ? (
-          <FutureImageCarousel items={futureImages} />
-        ) : futures_image ? (
-          <div className="future-grid">
-            {futures.map((future, index) => (
-              <article key={`${future.title ?? "future"}-${index}`} className="future-card">
-                <div className="future-map" aria-hidden="true"><Image src={futures_image} alt="" fill sizes="33vw" /></div>
-                <div className="future-card-title">{(future.title ?? "").replace(" ", "\n")}</div>
-                <div className="future-card-copy">
-                  <h3><Lines text={future.heading ?? ""} /></h3>
-                  <p><Lines text={future.tags ?? ""} /></p>
-                </div>
-              </article>
-            ))}
-          </div>
-        ) : null}
+        <TileGrid items={futures} contain />
       </section> : null}
 
       <section className="critical-business-loop-experience" aria-label="Critical Business Loop">

@@ -103,10 +103,9 @@ const sections: Record<string, Record<string, unknown>> = {
       },
     ],
     futures: [
-      {
-        image: "/assets/future-of-banking-card.png",
-        alt: "Future of Banking in a Technocratic World",
-      },
+      { image: "/assets/future-of-banking-card.png", image_alt: "Future of Banking in a Technocratic World", label: "Industry Name", title: "Future of Banking", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet." },
+      { image: "/assets/future-of-banking-card.png", image_alt: "Future of Governance in a Technocratic World", label: "Industry Name", title: "Future of Governance", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet." },
+      { image: "/assets/future-of-banking-card.png", image_alt: "Future of Education in a Technocratic World", label: "Industry Name", title: "Future of Education", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet." },
     ],
     loops: [
       { image: "/assets/aliasys-loop.png", image_alt: "Aliasys business loop", label: "ICT Infrastructure", title: "Aliasys Business Loop", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet." },
