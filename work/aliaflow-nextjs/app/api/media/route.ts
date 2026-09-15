@@ -3,6 +3,7 @@ import { randomUUID } from "node:crypto";
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { UPLOAD_DIR, MIME_EXTENSIONS } from "../../../lib/media";
+import { isS3Configured, putPublicObject } from "../../../lib/storage";
 
 const MAX_BYTES = 5 * 1024 * 1024;
 
@@ -22,9 +23,14 @@ export async function POST(request: NextRequest) {
   }
 
   const filename = `${randomUUID()}${extension}`;
-  await mkdir(UPLOAD_DIR, { recursive: true });
   const buffer = Buffer.from(await file.arrayBuffer());
-  await writeFile(path.join(UPLOAD_DIR, filename), buffer);
 
+  if (isS3Configured) {
+    const url = await putPublicObject(filename, buffer, file.type);
+    return NextResponse.json({ path: url });
+  }
+
+  await mkdir(UPLOAD_DIR, { recursive: true });
+  await writeFile(path.join(UPLOAD_DIR, filename), buffer);
   return NextResponse.json({ path: `/uploads/${filename}` });
 }

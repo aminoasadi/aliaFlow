@@ -52,5 +52,25 @@ describe("sectionSchemas", () => {
       expect(cards?.type, `${key}.statements.cards should be a list`).toBe("list");
       if (cards?.type === "list") expect(cards.fields.image?.type).toBe("image");
     }
+
+    const whyChooseUsPoints = sectionSchemas["why-choose-us"].fields.points;
+    expect(whyChooseUsPoints.type).toBe("list");
+    if (whyChooseUsPoints.type === "list") expect(whyChooseUsPoints.fields.image?.type).toBe("image");
+
+    const portfolioPeople = sectionSchemas["portfolio-people"].fields;
+    for (const key of ["people", "toolkits"]) {
+      const collection = portfolioPeople[key];
+      expect(collection.type, `${key} should be a list`).toBe("list");
+      if (collection.type === "list") expect(collection.fields.image?.type).toBe("image");
+    }
+
+    const testimonialsFooter = sectionSchemas["testimonials-footer"].fields;
+    const testimonials = testimonialsFooter.testimonials;
+    expect(testimonials.type).toBe("list");
+    if (testimonials.type === "list") expect(testimonials.fields.image?.type).toBe("image");
+
+    const partners = testimonialsFooter.partners;
+    expect(partners.type).toBe("list");
+    if (partners.type === "list") expect(partners.fields.logo?.type).toBe("image");
   });
 });

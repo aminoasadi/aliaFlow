@@ -1,6 +1,7 @@
 import path from "node:path";
 import { readdir } from "node:fs/promises";
 import { prisma } from "./db";
+import { isS3Configured, listObjectKeys, urlForKey } from "./storage";
 
 export const UPLOAD_DIR = path.join(process.cwd(), "storage", "uploads");
 
@@ -22,6 +23,14 @@ export const CONTENT_TYPES: Record<string, string> = {
 export type UploadedFile = { filename: string; url: string };
 
 export async function listUploadedFiles(): Promise<UploadedFile[]> {
+  if (isS3Configured) {
+    const keys = await listObjectKeys();
+    return keys
+      .filter((key) => !key.endsWith("/"))
+      .sort()
+      .map((key) => ({ filename: key, url: urlForKey(key) }));
+  }
+
   let entries: string[];
   try {
     entries = await readdir(UPLOAD_DIR);

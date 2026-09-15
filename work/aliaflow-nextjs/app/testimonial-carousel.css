@@ -32,6 +32,20 @@
   user-select: none;
 }
 
+.testimonial-carousel__slide-fallback {
+  display: grid;
+  gap: 10px;
+  align-content: center;
+  min-height: 260px;
+  padding: 42px 6%;
+  background: #f3f3f3;
+}
+
+.testimonial-carousel__slide-fallback p { margin: 0; font-size: 17px; font-weight: 600; }
+.testimonial-carousel__slide-fallback span { color: #555; font-size: 15px; line-height: 1.4; }
+.testimonial-carousel__slide-fallback b { font-size: 20px; }
+.testimonial-carousel__slide-fallback small { color: #777; }
+
 .testimonial-carousel__dots {
   position: absolute;
   bottom: 4.1%;
