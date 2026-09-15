@@ -201,14 +201,6 @@ export const sectionSchemas: Record<string, SectionSchema> = {
     fields: {
       eyebrow: text("Eyebrow"),
       heading: textarea("Heading"),
-      ring_center_label: textarea("Ring center label", undefined, "BUSINESS\nTHRIVABILITY"),
-      points: list("Points", "Point", {
-        label: text("Label", "Small category text above the title (e.g. \"ICT Infrastructure\")."),
-        title: text("Title", "Card headline (e.g. \"Aliasys Business Loop\")."),
-        body: textarea("Body"),
-        image: image("Card image", "Complete ring/diagram artwork for this card."),
-        image_alt: text("Card image description"),
-      }, "Add, remove, and reorder the business loop cards."),
     },
   },
 

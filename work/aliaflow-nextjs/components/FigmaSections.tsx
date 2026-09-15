@@ -4,7 +4,6 @@ import { BookOpen, Gamepad2, House } from "lucide-react";
 import { ImageCarousel, type FutureImage } from "./FutureImageCarousel";
 import { PortfolioTimeline } from "./PortfolioTimeline";
 import { TestimonialCarousel } from "./TestimonialCarousel";
-import { TileGrid } from "./ThrivableBusiness";
 
 type Item = { title: string; image?: string; text?: string };
 
@@ -206,19 +205,16 @@ export function ExecutionManagement({
 export function WhyChooseUs({
   eyebrow,
   heading,
-  points,
 }: {
   eyebrow: string;
   heading: string;
-  ring_center_label: string;
-  points: { label: string; title: string; body: string; image: string; image_alt: string }[];
 }) {
   return <section className="why-us">
     <span className="why-us-side-tab why-us-side-tab--left" aria-hidden="true" />
     <span className="why-us-side-tab why-us-side-tab--right" aria-hidden="true" />
     <p>{eyebrow}</p>
     <h2><Lines text={heading} /></h2>
-    <TileGrid items={points} contain />
+    <img className="why-us-cards" src="/assets/why-choose-us.svg" alt="Business Thrivability: different, competitive, and scalable — reason to believe." />
   </section>;
 }
 

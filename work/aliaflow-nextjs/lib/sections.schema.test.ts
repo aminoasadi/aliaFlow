@@ -53,10 +53,6 @@ describe("sectionSchemas", () => {
       if (cards?.type === "list") expect(cards.fields.image?.type).toBe("image");
     }
 
-    const whyChooseUsPoints = sectionSchemas["why-choose-us"].fields.points;
-    expect(whyChooseUsPoints.type).toBe("list");
-    if (whyChooseUsPoints.type === "list") expect(whyChooseUsPoints.fields.image?.type).toBe("image");
-
     const portfolioPeople = sectionSchemas["portfolio-people"].fields;
     for (const key of ["people", "toolkits"]) {
       const collection = portfolioPeople[key];

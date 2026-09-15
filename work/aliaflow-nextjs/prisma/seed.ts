@@ -242,30 +242,6 @@ const sections: Record<string, Record<string, unknown>> = {
   "why-choose-us": {
     eyebrow: "Why choose us?",
     heading: "Enabling Business\nThrivability through\nTechnocratic\nInnovation",
-    ring_center_label: "BUSINESS\nTHRIVABILITY",
-    points: [
-      {
-        label: "Reason to believe",
-        title: "Different",
-        body: "Business Continuity refers to an organization’s ability to maintain essential functions during and after a disaster, disruption, or unexpected event.",
-        image: "/assets/why-different.svg",
-        image_alt: "Different illustration",
-      },
-      {
-        label: "Reason to believe",
-        title: "Competitive",
-        body: "Business Continuity refers to an organization’s ability to maintain essential functions during and after a disaster, disruption, or unexpected event.",
-        image: "/assets/why-competitive.svg",
-        image_alt: "Competitive illustration",
-      },
-      {
-        label: "Reason to believe",
-        title: "Scalable",
-        body: "Business Continuity refers to an organization’s ability to maintain essential functions during and after a disaster, disruption, or unexpected event.",
-        image: "/assets/why-scalable.svg",
-        image_alt: "Scalable illustration",
-      },
-    ],
   },
 
   "portfolio-people": {
