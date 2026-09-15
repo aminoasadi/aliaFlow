@@ -137,12 +137,12 @@ export function ThrivableBusiness({
 
       {service_blocks[0] ? <section className="future-book-experience" aria-label="Future of X Book">
         <ServiceBlock {...service_blocks[0]} imageAlt={service_blocks[0].image_alt} mark={marks[0]} />
-        <TileGrid items={futures} contain />
+        <TileGrid items={futures} />
       </section> : null}
 
       <section className="critical-business-loop-experience" aria-label="Critical Business Loop">
         {service_blocks[1] ? <ServiceBlock {...service_blocks[1]} imageAlt={service_blocks[1].image_alt} mark={marks[1]} /> : null}
-        <TileGrid items={loops} contain />
+        <TileGrid items={loops} />
       </section>
 
       <section className="brand-culture-experience" aria-label="Brand Culture and XP">
