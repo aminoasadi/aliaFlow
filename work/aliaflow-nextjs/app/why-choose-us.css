@@ -56,8 +56,8 @@
   letter-spacing: -.055em;
 }
 
-/* The frame is inert on desktop and only becomes a pannable viewport on a
-   phone, where the artwork has to stay larger than the screen to stay legible. */
+/* The frame wraps the artwork img so future markup (e.g. a caption) has a
+   place to live; it stays inert (no layout effect) at every breakpoint. */
 .why-us-cards-frame { display: contents; }
 
 .why-us-cards {

@@ -387,23 +387,14 @@
 
   .execution-management.execution-management > p { width: min(84vw, 300px); margin-top: 46px; }
 
-  /* Why choose us is a single 1344px artwork with body copy baked into it.
-     Scaled to 375px that copy is unreadable, so keep it at twice the screen
-     width inside a pannable frame instead of shrinking or cropping it. */
+  /* Why choose us is a single 1344px artwork (the ring plus its three reason
+     cards, all one vector image). Scale it down to the screen's own width
+     instead of panning — it is pure vector art, so it stays crisp small. */
   .why-us.why-us { padding: 62px 0 54px; overflow: hidden; }
   .why-us.why-us > p,
   .why-us.why-us > h2 { padding: 0 24px; }
 
-  .why-us-cards-frame {
-    display: block;
-    overflow-x: auto;
-    scrollbar-width: none;
-    touch-action: pan-x pan-y;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .why-us-cards-frame::-webkit-scrollbar { display: none; }
-  main .why-us .why-us-cards { width: 200vw; max-width: none; margin: 32px 0 0; }
+  main .why-us .why-us-cards { width: 100%; max-width: 100%; margin: 32px 0 0; }
 
   /* Thrivable Business chapter heads. */
   .thrivable-question { height: 62vw; min-height: 260px; }
