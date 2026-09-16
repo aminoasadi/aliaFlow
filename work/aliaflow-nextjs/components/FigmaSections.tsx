@@ -8,7 +8,7 @@ import { ImageCarousel, type FutureImage } from "./FutureImageCarousel";
 import { PortfolioTimeline } from "./PortfolioTimeline";
 import { TestimonialCarousel } from "./TestimonialCarousel";
 
-type Item = { title: string; image?: string; text?: string; heading?: string; slug?: string };
+export type Item = { title: string; image?: string; text?: string; heading?: string; slug?: string };
 
 function BusinessGameMark() {
   return <svg viewBox="0 0 96 96" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

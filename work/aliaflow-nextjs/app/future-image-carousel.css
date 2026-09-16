@@ -40,112 +40,16 @@
   pointer-events: none;
 }
 
-/* The Future of X Book is one complete, viewport-sized chapter: introduction
-   above, its industry cards below. The next service starts only after it. */
+/* Future of X Book / Critical Business Loop / Brand Culture & XP no longer
+   pin to one full viewport screen: their cards are now the same fixed-size
+   composed-image carousel as every other card section (ThreeCards /
+   ImageCarousel below), which is taller than the old 65/35 chapter split
+   could hold. They flow as normal blocks instead, like Business Game etc. */
 @media (min-width: 781px) {
-  /* Keep the full-screen landmarks, but do not trap the reader between them:
-     `mandatory` prevents reaching the sections immediately before and after. */
+  /* Keep the full-screen landmarks below (e.g. .jam-promo), but do not trap
+     the reader between them: `mandatory` prevents reaching the sections
+     immediately before and after. */
   html { scroll-snap-type: y proximity; }
-
-  .future-book-experience {
-    display: grid;
-    /* Each service story occupies one complete screen, rather than revealing
-       the following story at the bottom of the viewport. */
-    grid-template-rows: 32.5% 67.5%;
-    height: 100svh;
-    min-height: 0;
-    overflow: hidden;
-    box-sizing: border-box;
-    border-bottom: 3px solid #555;
-    scroll-snap-align: start;
-    background: #fff;
-  }
-
-  .future-book-experience > .future-book {
-    min-height: 0;
-    grid-template-columns: minmax(0, 1fr) minmax(230px, 28vw);
-    align-items: start;
-    border: 0;
-    border-bottom: 3px solid #555;
-  }
-
-  .future-book-experience .future-book-copy { padding: 28px 8% 18px 6.4%; }
-  .future-book-experience .future-book h3 { margin-bottom: 20px; font-size: clamp(56px, 4.9vw, 74px); }
-  .future-book-experience .future-book p { max-width: 500px; margin: 0 0 0 52px; font-size: 14px; line-height: 1.24; }
-  .future-book-experience .future-book-mark { align-self: center; width: 190px; height: 190px; }
-
-  .future-book-experience,
-  .critical-business-loop-experience,
-  .brand-culture-experience {
-    display: grid;
-    height: 100svh;
-    min-height: 0;
-    overflow: hidden;
-    box-sizing: border-box;
-    border-bottom: 3px solid #555;
-    scroll-snap-align: start;
-    scroll-snap-stop: normal;
-    background: #fff;
-  }
-
-  .critical-business-loop-experience { grid-template-rows: 27% 73%; }
-  .brand-culture-experience { grid-template-rows: 28% 72%; }
-
-  .future-book-experience > .future-book,
-  .critical-business-loop-experience > .future-book,
-  .brand-culture-experience > .future-book {
-    min-height: 0;
-    grid-template-columns: minmax(0, 1fr) minmax(190px, 24vw);
-    border-bottom: 3px solid #555;
-  }
-
-  .future-book-experience > .future-grid,
-  .critical-business-loop-experience > .future-grid,
-  .brand-culture-experience > .future-grid {
-    height: 100%;
-    min-height: 0;
-    overflow: hidden;
-  }
-
-  .future-book-experience .future-card,
-  .critical-business-loop-experience .future-card,
-  .brand-culture-experience .future-card {
-    display: grid;
-    height: 100%;
-    grid-template-rows: 65% 35%;
-  }
-
-  .future-book-experience .future-map,
-  .critical-business-loop-experience .future-map,
-  .brand-culture-experience .future-map {
-    height: auto;
-    min-height: 0;
-  }
-
-  .future-book-experience .future-card-copy,
-  .critical-business-loop-experience .future-card-copy,
-  .brand-culture-experience .future-card-copy {
-    box-sizing: border-box;
-    min-height: 0;
-    height: auto;
-    padding: clamp(14px, 1.6vw, 24px) clamp(18px, 2vw, 30px);
-  }
-
-  .future-book-experience .future-card-copy h3,
-  .critical-business-loop-experience .future-card-copy h3,
-  .brand-culture-experience .future-card-copy h3 { margin-top: clamp(16px, 2vw, 28px); }
-}
-
-@media (min-width: 781px) and (max-width: 1180px) {
-  .future-book-experience {
-    grid-template-rows: 32.5% 67.5%;
-    height: 100svh;
-  }
-
-  .future-book-experience .future-book-copy { padding: 24px 56px 16px; }
-  .future-book-experience .future-book h3 { margin-bottom: 24px; font-size: clamp(56px, 6.1vw, 72px); }
-  .future-book-experience .future-book p { margin-left: 56px; font-size: 15px; }
-  .future-book-experience .future-book-mark { width: 190px; height: 190px; }
 }
 
 /* All other service examples use the same image-only, draggable treatment. */

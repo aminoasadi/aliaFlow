@@ -59,12 +59,6 @@ describe("CARD_PAGE_SECTIONS", () => {
     expect(findSection("risk-setting")?.sectionKey).toBe("technocratic-design");
     expect(findSection("nope")).toBeUndefined();
   });
-
-  it("marks the three photograph sections and the six composed ones", () => {
-    const composed = CARD_PAGE_SECTIONS.filter((s) => s.cardArt === "composed");
-    expect(composed).toHaveLength(6);
-    expect(composed.every((s) => s.statement !== undefined)).toBe(true);
-  });
 });
 
 describe("extractCards", () => {

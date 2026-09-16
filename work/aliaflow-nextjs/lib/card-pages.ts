@@ -18,24 +18,18 @@ export type CardPageSection = {
   number: string;
   label: string;
   anchor: string;
-  /**
-   * "photo" cards carry a plain photograph and crop well. "composed" cards are
-   * complete pre-designed cards with their text baked into the pixels, so they
-   * must be shown whole rather than cropped.
-   */
-  cardArt: "photo" | "composed";
 };
 
 export const CARD_PAGE_SECTIONS: CardPageSection[] = [
-  { segment: "future-of-x-book", sectionKey: "thrivable-business", list: "futures", theme: "light", number: "1", label: "Future of X Book", anchor: "/#thrivable-title", cardArt: "photo" },
-  { segment: "critical-business-loop", sectionKey: "thrivable-business", list: "loops", theme: "light", number: "2", label: "Critical Business Loop", anchor: "/#thrivable-title", cardArt: "photo" },
-  { segment: "brand-culture-xp", sectionKey: "thrivable-business", list: "cultures", theme: "light", number: "3", label: "Brand Culture & XP", anchor: "/#thrivable-title", cardArt: "photo" },
-  { segment: "business-game", sectionKey: "business-leadership", statement: "4", theme: "dark", number: "4", label: "Business Game", anchor: "/#business-leadership", cardArt: "composed" },
-  { segment: "strategic-roles", sectionKey: "business-leadership", statement: "5", theme: "dark", number: "5", label: "Strategic Roles", anchor: "/#business-leadership", cardArt: "composed" },
-  { segment: "leadership-model", sectionKey: "business-leadership", statement: "6", theme: "dark", number: "6", label: "Leadership Model", anchor: "/#business-leadership", cardArt: "composed" },
-  { segment: "risk-setting", sectionKey: "technocratic-design", statement: "7", theme: "light", number: "7", label: "Risk Setting", anchor: "/#technocratic-design-heading", cardArt: "composed" },
-  { segment: "change-solving", sectionKey: "technocratic-design", statement: "8", theme: "light", number: "8", label: "Change Solving", anchor: "/#technocratic-design-heading", cardArt: "composed" },
-  { segment: "performance-testing", sectionKey: "technocratic-design", statement: "9", theme: "light", number: "9", label: "Performance Testing", anchor: "/#technocratic-design-heading", cardArt: "composed" },
+  { segment: "future-of-x-book", sectionKey: "thrivable-business", list: "futures", theme: "light", number: "1", label: "Future of X Book", anchor: "/#thrivable-title" },
+  { segment: "critical-business-loop", sectionKey: "thrivable-business", list: "loops", theme: "light", number: "2", label: "Critical Business Loop", anchor: "/#thrivable-title" },
+  { segment: "brand-culture-xp", sectionKey: "thrivable-business", list: "cultures", theme: "light", number: "3", label: "Brand Culture & XP", anchor: "/#thrivable-title" },
+  { segment: "business-game", sectionKey: "business-leadership", statement: "4", theme: "dark", number: "4", label: "Business Game", anchor: "/#business-leadership" },
+  { segment: "strategic-roles", sectionKey: "business-leadership", statement: "5", theme: "dark", number: "5", label: "Strategic Roles", anchor: "/#business-leadership" },
+  { segment: "leadership-model", sectionKey: "business-leadership", statement: "6", theme: "dark", number: "6", label: "Leadership Model", anchor: "/#business-leadership" },
+  { segment: "risk-setting", sectionKey: "technocratic-design", statement: "7", theme: "light", number: "7", label: "Risk Setting", anchor: "/#technocratic-design-heading" },
+  { segment: "change-solving", sectionKey: "technocratic-design", statement: "8", theme: "light", number: "8", label: "Change Solving", anchor: "/#technocratic-design-heading" },
+  { segment: "performance-testing", sectionKey: "technocratic-design", statement: "9", theme: "light", number: "9", label: "Performance Testing", anchor: "/#technocratic-design-heading" },
 ];
 
 export function findSection(segment: string): CardPageSection | undefined {

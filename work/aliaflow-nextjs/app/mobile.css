@@ -220,7 +220,6 @@
      ------------------------------------------------------------------ */
   .image-carousel-rail,
   .future-image-carousel-rail,
-  .future-grid,
   .card-article-related-grid,
   .people-grid,
   .toolkits,
@@ -278,36 +277,13 @@
   .image-carousel-dark .carousel-dots button { background: #5a5a5a; }
   .image-carousel-dark .carousel-dots button[aria-current="true"] { background: #f0f0f0; }
 
-  /* Future of X / Critical Business Loop / Brand Culture tiles. */
-  .future-grid {
-    display: flex;
-    overflow-x: auto;
-    border-left: 0;
-    scrollbar-width: none;
-  }
-
-  .future-grid::-webkit-scrollbar { display: none; }
-
-  .future-card {
-    flex: 0 0 100vw;
-    width: 100vw;
-    border-right: 0;
-    border-bottom: 0;
-    scroll-snap-align: center;
-    scroll-snap-stop: always;
-  }
-
-  .future-map { height: 58vw; }
-  .future-card-title { top: 22vw; font-size: clamp(22px, 6.4vw, 28px); }
-  .future-card-copy { min-height: 0; padding: 20px 26px 26px; }
-  .future-card-copy h3 { margin: 18px 0 10px; font-size: clamp(22px, 6.2vw, 27px); }
-  .future-card-copy p { font-size: 14px; line-height: 1.32; }
-  .future-card-copy small { font-size: 13px; }
+  /* Future of X Book / Critical Business Loop / Brand Culture & XP now use
+     the shared .image-carousel / ThreeCards system directly (see
+     ThrivableBusiness.tsx), so they need no dedicated mobile rules here. */
 
   /* Card article "More in <section>" rail: same one-card-per-swipe carousel
-     as every other card row, in whichever presentation the section uses —
-     image-with-copy for the three structured sections, artwork-only for the
-     six composed-card sections (see ArticleFooter.tsx / card-page.css). */
+     as every other card row. Every section is a single uploaded card image
+     with no HTML copy overlay (see ArticleFooter.tsx / card-page.css). */
   .card-article-related-grid {
     display: flex;
     overflow-x: auto;

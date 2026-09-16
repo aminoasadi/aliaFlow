@@ -100,13 +100,26 @@ describe("article fields on card lists", () => {
     }
   });
 
-  it("image-card sections gain heading, label and body", () => {
-    for (const sectionKey of ["business-leadership", "technocratic-design"]) {
-      const fields = cardFields(sectionKey, "statements");
-      for (const name of ["heading", "label", "body"]) {
-        expect(fields[name], `${sectionKey}.${name}`).toBeDefined();
+  it("every card list carries heading, label and body, with title kept as alt text", () => {
+    for (const [sectionKey, lists] of cardLists) {
+      for (const listKey of lists) {
+        const fields = cardFields(sectionKey, listKey);
+        for (const name of ["heading", "label", "body"]) {
+          expect(fields[name], `${sectionKey}.${listKey}.${name}`).toBeDefined();
+        }
+        expect(fields.title, `${sectionKey}.${listKey}.title still present`).toBeDefined();
       }
-      expect(fields.title, `${sectionKey}.title still present`).toBeDefined();
+    }
+  });
+
+  it("thrivable-business tiles no longer carry the old image_alt field", () => {
+    // Future of X Book / Critical Business Loop / Brand Culture & XP cards
+    // moved from structured label+title+body overlays to a single uploaded
+    // card image, matching the other six card sections: title now serves as
+    // the alt text itself, so a separate image_alt field would be redundant.
+    for (const listKey of ["futures", "loops", "cultures"]) {
+      const fields = cardFields("thrivable-business", listKey);
+      expect(fields.image_alt, `thrivable-business.${listKey}.image_alt`).toBeUndefined();
     }
   });
 

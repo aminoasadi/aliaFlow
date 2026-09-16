@@ -1,9 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
 import { Fragment, type ReactNode } from "react";
-import { CardRail } from "./CardRail";
 import { EventBookingModal } from "./EventBookingModal";
-import { cardSlug } from "../lib/card-pages";
+import { ThreeCards, type Item } from "./FigmaSections";
 
 function Lines({ text }: { text: string }) {
   return <>{text.split("\n").map((line, i) => <Fragment key={line}>{i > 0 ? <br /> : null}{line}</Fragment>)}</>;
@@ -57,37 +55,6 @@ function ServiceBlock({
   );
 }
 
-export type Tile = { image: string; label: string; title: string; body: string; image_alt: string; slug?: string; heading?: string };
-
-export function TileGrid({ items, contain = false, segment }: { items: Tile[]; contain?: boolean; segment?: string }) {
-  return (
-    <CardRail className="future-grid">
-      {items.map((item) => {
-        const href = segment ? `/services/${segment}/${cardSlug(item)}` : undefined;
-        const inner = (
-          <>
-            <div className={`future-map${contain ? " future-map-contain" : ""}`}>
-              <Image src={item.image} alt={item.image_alt} fill sizes="33vw" />
-            </div>
-            <div className="future-card-copy">
-              <small>{item.label}</small>
-              <h3>{item.title}</h3>
-              <p>{item.body}</p>
-            </div>
-          </>
-        );
-        /* Written as two branches rather than a dynamic tag: a `Link | "article"`
-           union does not typecheck, because `href` is required on one arm. */
-        return href ? (
-          <Link key={item.title} className="future-card" href={href}>{inner}</Link>
-        ) : (
-          <article key={item.title} className="future-card">{inner}</article>
-        );
-      })}
-    </CardRail>
-  );
-}
-
 export type ThrivableBusinessData = {
   heading: string;
   question_image: string;
@@ -95,9 +62,9 @@ export type ThrivableBusinessData = {
   question_image_alt: string;
   question_section_label: string;
   service_blocks: { number: string; title: string; body: string; image?: string; image_alt?: string }[];
-  futures: Tile[];
-  loops: Tile[];
-  cultures: Tile[];
+  futures: Item[];
+  loops: Item[];
+  cultures: Item[];
   magazine_heading: string;
   magazine_price: string;
   magazine_image: string;
@@ -153,17 +120,17 @@ export function ThrivableBusiness({
 
       {service_blocks[0] ? <section className="future-book-experience" aria-label="Future of X Book">
         <ServiceBlock {...service_blocks[0]} imageAlt={service_blocks[0].image_alt} mark={marks[0]} />
-        <TileGrid items={futures} segment="future-of-x-book" />
+        <ThreeCards segment="future-of-x-book" realCount={futures.length} items={[...futures, ...futures.slice(0, 2)]} />
       </section> : null}
 
       <section className="critical-business-loop-experience" aria-label="Critical Business Loop">
         {service_blocks[1] ? <ServiceBlock {...service_blocks[1]} imageAlt={service_blocks[1].image_alt} mark={marks[1]} /> : null}
-        <TileGrid items={loops} segment="critical-business-loop" />
+        <ThreeCards segment="critical-business-loop" realCount={loops.length} items={[...loops, ...loops.slice(0, 2)]} />
       </section>
 
       <section className="brand-culture-experience" aria-label="Brand Culture and XP">
         {service_blocks[2] ? <ServiceBlock {...service_blocks[2]} imageAlt={service_blocks[2].image_alt} mark={marks[2]} /> : null}
-        <TileGrid items={cultures} segment="brand-culture-xp" />
+        <ThreeCards segment="brand-culture-xp" realCount={cultures.length} items={[...cultures, ...cultures.slice(0, 2)]} />
       </section>
 
       <section className="magazine-promo">

@@ -169,29 +169,20 @@
   border-right: 2px solid #555;
 }
 .card-article-related-card:last-child { border-right: 0; }
+/* Every related card is a whole composed artwork in portrait 5:8. Shown at
+   the full width of its cell it would tower over the page, so it is capped
+   and centred: the card keeps its own proportions without setting the
+   rail's height, and is contained rather than cropped since a crop would
+   cut through the design's own baked-in text. */
 .card-article-related-image {
   position: relative;
-  height: 275px;
-  overflow: hidden;
-  background: #f7f7f7;
-}
-.card-article-related-image img { object-fit: cover; transition: transform .4s ease; }
-/* Composed artwork is a whole card design in portrait 5:8. Shown at the full
-   width of its cell it would tower over the page, so it is capped and centred:
-   the card keeps its own proportions without setting the rail's height. */
-.card-article-related-image--contain {
   width: min(100%, 300px);
   height: auto;
   aspect-ratio: 5 / 8;
   margin: 40px auto;
   background: transparent;
 }
-.card-article-related-image--contain img { object-fit: contain; }
-.card-article-related-copy { padding: 16px 28px 30px; border-top: 3px solid #555; }
-.card-article-related-copy small { font-size: 12px; }
-.card-article-related-copy h3 { margin: 22px 0 10px; font-size: 23px; line-height: .96; letter-spacing: -.045em; }
-.card-article-related-copy p { margin: 0; font-size: 12px; line-height: 1.16; color: #555; }
-.card-article--dark .card-article-related-copy p { color: #d3d3d3; }
+.card-article-related-image img { object-fit: contain; transition: transform .4s ease; }
 
 @media (hover: hover) {
   .card-article-related-card:hover .card-article-related-image img { transform: scale(1.03); }

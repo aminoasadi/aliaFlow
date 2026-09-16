@@ -73,10 +73,7 @@ export default async function CardArticlePage({ params }: { params: Promise<Para
     .filter((item) => cardSlug(item) !== slug)
     .map((item) => ({
       image: str(item, "image"),
-      label: str(item, "label"),
       title: displayTitle(item),
-      body: str(item, "body"),
-      image_alt: str(item, "image_alt") || str(item, "title"),
       href: `/services/${section.segment}/${cardSlug(item)}`,
     }));
 
