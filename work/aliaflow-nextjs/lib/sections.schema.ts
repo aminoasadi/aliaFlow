@@ -21,6 +21,31 @@ function list(
   return { type: "list", label, itemLabel, fields, description };
 }
 
+/**
+ * Article content for a card's detail page at /services/<section>/<slug>.
+ * Every field is optional: a card with none of them still renders on the
+ * landing page and still produces a (sparse) article page.
+ */
+function articleFields(): Record<string, FieldSchema> {
+  return {
+    slug: text("URL slug", "Leave blank to derive it from the title."),
+    hero_image: image("Article hero image", "Leave blank to use this section's question image."),
+    hero_image_alt: text("Article hero image description"),
+    lead: textarea("Article lead paragraph"),
+    sections: list("Article sections", "Section", {
+      heading: text("Heading"),
+      body: textarea("Body"),
+    }, "The body of the article, in order."),
+    key_points: list("Key points", "Point", {
+      title: text("Title"),
+      body: textarea("Body"),
+    }, "Shown as a numbered row beneath the article body."),
+    cta_heading: text("Closing call-to-action heading"),
+    cta_label: text("Closing button label", undefined, "Start a conversation"),
+    cta_href: text("Closing button URL", undefined, "#contact-us"),
+  };
+}
+
 export const sectionSchemas: Record<string, SectionSchema> = {
   header: {
     label: "Header",
@@ -101,6 +126,7 @@ export const sectionSchemas: Record<string, SectionSchema> = {
         title: text("Title"),
         body: textarea("Body"),
         image_alt: text("Card image description"),
+        ...articleFields(),
       }, "Add, remove, and reorder the Future of X Book cards."),
       loops: list("Business loop tiles", "Loop", {
         image: image("Card image", "Used in this card only."),
@@ -108,6 +134,7 @@ export const sectionSchemas: Record<string, SectionSchema> = {
         title: text("Title"),
         body: textarea("Body"),
         image_alt: text("Card image description"),
+        ...articleFields(),
       }, "Add, remove, and reorder the Critical Business Loop cards."),
       cultures: list("Culture tiles", "Culture", {
         image: image("Card image", "Used in this card only."),
@@ -115,6 +142,7 @@ export const sectionSchemas: Record<string, SectionSchema> = {
         title: text("Title"),
         body: textarea("Body"),
         image_alt: text("Card image description"),
+        ...articleFields(),
       }, "Add, remove, and reorder the Brand Culture & XP cards."),
       magazine_heading: textarea("Magazine heading"),
       magazine_price: text("Magazine price"),
@@ -146,6 +174,10 @@ export const sectionSchemas: Record<string, SectionSchema> = {
         cards: list("Cards", "Card", {
           title: text("Image description", "Used as accessible alternative text and for an empty-card placeholder."),
           image: image("Complete card image", "Upload the finished card artwork for this card only."),
+          heading: text("Article title", "Shown on this card's detail page. The image description above stays as alt text."),
+          label: text("Article label", "Small label above the article title, such as the industry."),
+          body: textarea("Article summary"),
+          ...articleFields(),
         }, "Add, remove, and reorder the image cards shown under this statement."),
       }),
       holocratic_line: text("Holocratic line"),
@@ -174,6 +206,10 @@ export const sectionSchemas: Record<string, SectionSchema> = {
         cards: list("Cards", "Card", {
           title: text("Image description", "Used as accessible alternative text and for an empty-card placeholder."),
           image: image("Complete card image", "Upload the finished card artwork for this card only."),
+          heading: text("Article title", "Shown on this card's detail page. The image description above stays as alt text."),
+          label: text("Article label", "Small label above the article title, such as the industry."),
+          body: textarea("Article summary"),
+          ...articleFields(),
         }, "Add, remove, and reorder the image cards shown under this statement."),
       }),
       event_title: text("Event title"),

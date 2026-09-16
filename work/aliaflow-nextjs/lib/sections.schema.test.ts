@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { validateSectionData } from "./section-validation";
+import { normalizeSectionData, validateSectionData } from "./section-validation";
 import { sectionSchemas } from "./sections.schema";
 
 const EXPECTED_KEYS = [
@@ -68,5 +68,53 @@ describe("sectionSchemas", () => {
     const partners = testimonialsFooter.partners;
     expect(partners.type).toBe("list");
     if (partners.type === "list") expect(partners.fields.logo?.type).toBe("image");
+  });
+});
+
+describe("article fields on card lists", () => {
+  const cardLists: [string, string[]][] = [
+    ["thrivable-business", ["futures", "loops", "cultures"]],
+    ["business-leadership", ["statements"]],
+    ["technocratic-design", ["statements"]],
+  ];
+
+  function cardFields(sectionKey: string, listKey: string) {
+    const list = sectionSchemas[sectionKey].fields[listKey];
+    if (list.type !== "list") throw new Error(`${listKey} is not a list`);
+    if (listKey !== "statements") return list.fields;
+    const cards = list.fields.cards;
+    if (cards.type !== "list") throw new Error("cards is not a list");
+    return cards.fields;
+  }
+
+  it("every card list carries the article fields", () => {
+    for (const [sectionKey, lists] of cardLists) {
+      for (const listKey of lists) {
+        const fields = cardFields(sectionKey, listKey);
+        for (const name of ["slug", "hero_image", "hero_image_alt", "lead", "cta_heading", "cta_label", "cta_href"]) {
+          expect(fields[name], `${sectionKey}.${listKey}.${name}`).toBeDefined();
+        }
+        expect(fields.sections?.type, `${sectionKey}.${listKey}.sections`).toBe("list");
+        expect(fields.key_points?.type, `${sectionKey}.${listKey}.key_points`).toBe("list");
+      }
+    }
+  });
+
+  it("image-card sections gain heading, label and body", () => {
+    for (const sectionKey of ["business-leadership", "technocratic-design"]) {
+      const fields = cardFields(sectionKey, "statements");
+      for (const name of ["heading", "label", "body"]) {
+        expect(fields[name], `${sectionKey}.${name}`).toBeDefined();
+      }
+      expect(fields.title, `${sectionKey}.title still present`).toBeDefined();
+    }
+  });
+
+  it("a card carrying no article content still validates once normalized", () => {
+    const schema = sectionSchemas["business-leadership"];
+    const normalized = normalizeSectionData(schema.fields, {
+      statements: [{ number: "4", title: "t", body: "b", cards: [{ title: "alt", image: "/a.png" }] }],
+    });
+    expect(validateSectionData(schema.fields, normalized)).toEqual([]);
   });
 });
