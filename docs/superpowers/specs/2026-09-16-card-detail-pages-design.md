@@ -139,11 +139,13 @@ The route renders these blocks in order. Each is a presentational component in
    construction. Each carries a numeral at `88px / .7 / -.08em` in `#aaa`, lifted
    from `.why-list b`.
 7. **CTA band** — `#aaa` ground, centred heading, the existing square button.
-8. **Related rail** — the sibling cards of the same section, rendered with the
-   same component the landing page uses for that section: `TileGrid` for the three
-   structured sections, the image slide for the six image-card sections. The reader
-   is handed back the same object they clicked, in the form they clicked it. The
-   rail omits the current card, and omits the duplicated padding slides entirely.
+8. **Related rail** — the sibling cards of the same section, minus the current
+   one, in a single shared card presentation. Once the six image-card sections
+   gain `label` and `heading`, every card has the same three pieces of metadata,
+   so one rail serves all nine sections rather than two rails serving one each.
+   The rail respects the registry's `cardArt` flag: `photo` images fill and crop
+   their frame, `composed` images are shown whole, because a composed card is a
+   finished design whose text a crop would cut through.
 9. **Footer** — the existing `<Footer />` component with its seeded data.
 
 ### Typography deviation
