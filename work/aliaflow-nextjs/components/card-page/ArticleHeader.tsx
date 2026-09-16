@@ -25,13 +25,8 @@ export function ArticleHeader({
         <span aria-current="page">{title}</span>
       </nav>
       <div className="card-article-title-band">
-        <div>
-          {label ? <p className="card-article-label">{label}</p> : null}
-          <h1>{title}</h1>
-        </div>
-        <div className="card-article-mark" aria-hidden="true">
-          <span>{section.number}</span>
-        </div>
+        {label ? <p className="card-article-label">{label}</p> : null}
+        <h1>{title}</h1>
       </div>
       {heroImage ? (
         <div className="card-article-hero">

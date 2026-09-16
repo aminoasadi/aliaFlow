@@ -23,10 +23,6 @@
 .card-article--dark .card-article-crumbs [aria-current="page"] { color: #fff; }
 
 .card-article-title-band {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 48px;
   padding: 54px 7% 70px;
 }
 .card-article-label {
@@ -45,18 +41,6 @@
   font-weight: 800;
   letter-spacing: -.075em;
 }
-.card-article-mark {
-  width: 175px;
-  height: 175px;
-  flex: 0 0 auto;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: #f1f1f1;
-  color: #c0c0c0;
-}
-.card-article-mark span { font-size: 72px; font-weight: 800; }
-.card-article--dark .card-article-mark { background: #474747; color: #f5f5f5; }
 
 .card-article-hero {
   position: relative;
@@ -193,10 +177,8 @@
 
 @media (max-width: 780px) {
   .card-article-crumbs { padding-top: 84px; }
-  .card-article-title-band { flex-direction: column; align-items: flex-start; gap: 34px; padding: 40px 10% 52px; }
+  .card-article-title-band { padding: 40px 10% 52px; }
   .card-article-title-band h1 { max-width: none; }
-  .card-article-mark { width: 120px; height: 120px; }
-  .card-article-mark span { font-size: 48px; }
   .card-article-hero { height: 46svh; }
   .card-article-lead { padding: 56px 10% 0; }
   .card-article-body { padding: 44px 10% 64px; }
