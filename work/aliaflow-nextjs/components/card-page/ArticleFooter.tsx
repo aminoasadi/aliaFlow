@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { CardRail } from "../CardRail";
 import type { CardPageSection } from "../../lib/card-pages";
 
 export type RelatedCard = {
@@ -50,7 +51,7 @@ export function ArticleFooter({
       {related.length > 0 ? (
         <section className="card-article-related" aria-labelledby="card-article-related-heading">
           <h2 id="card-article-related-heading">More in {section.label}</h2>
-          <div className="card-article-related-grid">
+          <CardRail className="card-article-related-grid">
             {related.map((card) => (
               <Link
                 key={card.href}
@@ -74,7 +75,7 @@ export function ArticleFooter({
                 )}
               </Link>
             ))}
-          </div>
+          </CardRail>
         </section>
       ) : null}
     </>

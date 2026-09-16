@@ -210,9 +210,8 @@
   .card-article-points article:last-child { border-bottom: 0; }
   .card-article-cta { padding: 72px 10%; }
   .card-article-related h2 { padding: 0 10% 28px; }
-  .card-article-related-grid { grid-template-columns: 1fr; }
-  .card-article-related-card { border-right: 0; border-bottom: 2px solid #555; }
-  .card-article-related-card:last-child { border-bottom: 0; }
+  /* The related rail's own carousel conversion lives in mobile.css, next to
+     every other card row on the site that becomes a one-card swipe there. */
 }
 
 /* Landing cards became links. The image lift is the only hover affordance on

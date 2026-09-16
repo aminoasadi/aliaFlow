@@ -221,6 +221,7 @@
   .image-carousel-rail,
   .future-image-carousel-rail,
   .future-grid,
+  .card-article-related-grid,
   .people-grid,
   .toolkits,
   .portfolio-timeline-rail,
@@ -302,6 +303,35 @@
   .future-card-copy h3 { margin: 18px 0 10px; font-size: clamp(22px, 6.2vw, 27px); }
   .future-card-copy p { font-size: 14px; line-height: 1.32; }
   .future-card-copy small { font-size: 13px; }
+
+  /* Card article "More in <section>" rail: same one-card-per-swipe carousel
+     as every other card row, in whichever presentation the section uses —
+     image-with-copy for the three structured sections, artwork-only for the
+     six composed-card sections (see ArticleFooter.tsx / card-page.css). */
+  .card-article-related-grid {
+    display: flex;
+    overflow-x: auto;
+    border-top: 0;
+    border-bottom: 0;
+    scrollbar-width: none;
+  }
+
+  .card-article-related-grid::-webkit-scrollbar { display: none; }
+
+  .card-article-related-card {
+    flex: 0 0 100vw;
+    width: 100vw;
+    border-right: 0;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+
+  .card-article-related-image { height: 58vw; }
+  .card-article-related-image--contain { width: min(72vw, 320px); aspect-ratio: 5 / 8; }
+  .card-article-related-copy { padding: 20px 26px 26px; }
+  .card-article-related-copy h3 { margin: 18px 0 10px; font-size: clamp(22px, 6.2vw, 27px); }
+  .card-article-related-copy p { font-size: 14px; line-height: 1.32; }
+  .card-article-related-copy small { font-size: 13px; }
 
   /* People and toolkit rosters. */
   main .portfolio .people-grid,
