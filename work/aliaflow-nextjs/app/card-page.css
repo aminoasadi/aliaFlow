@@ -79,6 +79,12 @@
 }
 .card-article--dark .card-article-body p { color: #d3d3d3; }
 
+/* Key points are 0-N author-defined items, shown three to a row and hidden
+   entirely when none are defined (see ArticleBody.tsx). The row divider and
+   the "last column"/"last row" border removal below use the standard CSS
+   grid trick so any count wraps correctly: a full row of 3, a partial last
+   row of 1 or 2, and every multiple of 3 all draw the right lines with no
+   JavaScript needed to know the count. */
 .card-article-points {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -88,9 +94,26 @@
 .card-article-points article {
   min-width: 0;
   padding: 44px 36px 52px;
-  border-right: 2px solid #555;
 }
-.card-article-points article:last-child { border-right: 0; }
+/* Scoped to desktop only so it can never fight the mobile single-column
+   border rules further down on specificity: at this width the grid really
+   is 3 columns, so these are the only rules that need to reason about rows. */
+@media (min-width: 781px) {
+  .card-article-points article {
+    border-right: 2px solid #555;
+    border-bottom: 2px solid #555;
+  }
+  .card-article-points article:nth-child(3n),
+  .card-article-points article:last-child {
+    border-right: 0;
+  }
+  /* Selects the first item of the final row (last-3 AND column-1) and every
+     item after it — the whole final row, whether it has 1, 2 or 3 items. */
+  .card-article-points article:nth-last-child(-n+3):nth-child(3n+1),
+  .card-article-points article:nth-last-child(-n+3):nth-child(3n+1) ~ article {
+    border-bottom: 0;
+  }
+}
 .card-article-points b {
   display: block;
   font-size: 88px;
