@@ -41,7 +41,7 @@ export function PortfolioTimeline({ heading, timeline }: { heading: string; time
         ref={rail}
         className="portfolio-timeline-rail"
         onScroll={setNearest}
-        onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); drag.current = { x: event.clientX, scroll: event.currentTarget.scrollLeft }; setDragging(true); }}
+        onPointerDown={(event) => { if (event.pointerType !== "mouse") return; event.currentTarget.setPointerCapture(event.pointerId); drag.current = { x: event.clientX, scroll: event.currentTarget.scrollLeft }; setDragging(true); }}
         onPointerMove={(event) => { if (dragging && rail.current) rail.current.scrollLeft = drag.current.scroll - (event.clientX - drag.current.x); }}
         onPointerUp={() => setDragging(false)}
         onPointerCancel={() => setDragging(false)}

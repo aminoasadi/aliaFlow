@@ -56,6 +56,10 @@
   letter-spacing: -.055em;
 }
 
+/* The frame is inert on desktop and only becomes a pannable viewport on a
+   phone, where the artwork has to stay larger than the screen to stay legible. */
+.why-us-cards-frame { display: contents; }
+
 .why-us-cards {
   position: relative;
   z-index: 2;

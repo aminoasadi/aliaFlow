@@ -1,0 +1,523 @@
+/*
+ * Mobile composition (<= 780px).
+ *
+ * Loaded last so it can retune the desktop-derived sheets without editing the
+ * measured Figma geometry they own. Three rules shape everything here:
+ *   1. The opening slide-scroll chapters each fill one phone screen, exactly
+ *      like the full-height screens they are on desktop.
+ *   2. Any row of cards becomes a horizontal snap carousel that shows one
+ *      whole card at a time, at the card's own designed proportion.
+ *   3. Nothing below 781px changes a single desktop rule.
+ */
+
+/* Carousel position dots are a mobile-only affordance. */
+.carousel-dots { display: none; }
+
+@media (max-width: 780px) {
+  /* ------------------------------------------------------------------
+     1. Navigation
+     ------------------------------------------------------------------ */
+  .site-header { padding: 0 20px; }
+
+  .menu-toggle {
+    min-width: 64px;
+    min-height: 40px;
+    padding: 0 12px;
+    border: 1px solid rgba(255, 255, 255, .55);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .06em;
+  }
+
+  /* The toggle had no open state on mobile, so the links were unreachable. */
+  .nav-list.open {
+    position: absolute;
+    top: 62px;
+    right: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 4px 0 10px;
+    background: rgba(24, 24, 24, .96);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+
+  .nav-list.open a {
+    padding: 14px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, .13);
+    color: #fff;
+    font-size: 16px;
+  }
+
+  .nav-list.open a:last-child { border-bottom: 0; }
+
+  /* ------------------------------------------------------------------
+     2. Full-screen scroll chapters
+     The hero and every pinned outcome screen are one phone screen tall,
+     so the GSAP slide-over reads the same as it does on desktop.
+     ------------------------------------------------------------------ */
+  .hero { height: 100svh; min-height: 520px; }
+  .hero-art { height: calc(100svh + 22px); min-height: 542px; }
+
+  .hero-copy {
+    top: 50%;
+    width: min(88%, 420px);
+    transform: translate(-50%, -54%);
+  }
+
+  .hero-copy .eyebrow { font-size: clamp(14px, 4.6vw, 19px); }
+  .hero h1 { font-size: clamp(34px, 10.4vw, 46px); line-height: 1.06; }
+
+  .outcomes-intro,
+  .fig-outcome-title,
+  .manifesto-heading,
+  .manifesto-content {
+    height: 100svh;
+    min-height: 100svh;
+  }
+
+  /* The detail screens run past the fold on purpose: on desktop they are a
+     1800px screen inside an 831px viewport, and that extra length is what
+     holds each composition still before the next title slides over it. The
+     artwork lives in the first 100svh; the rest is pinned dwell. */
+  .fig-outcome-detail { height: 200svh; min-height: 200svh; }
+
+  .outcomes-intro { padding: 0 8vw; }
+  .outcomes-intro h2 { font-size: clamp(38px, 11.6vw, 58px); line-height: 1.04; }
+
+  .fig-outcome-title { padding: 0 8vw; }
+  .fig-outcome-title p { margin-bottom: clamp(28px, 6vh, 54px); font-size: clamp(19px, 5.6vw, 26px); }
+  .fig-outcome-title h3 { font-size: clamp(54px, 17.5vw, 88px); }
+
+  .manifesto-heading { padding: 0 8vw; }
+  .manifesto-heading h2 { font-size: clamp(28px, 8.6vw, 42px); line-height: 1.16; }
+
+  .manifesto-content {
+    flex-direction: column;
+    justify-content: center;
+    gap: clamp(26px, 5vh, 46px);
+    padding: 0 8vw;
+  }
+
+  .fig-shape { width: min(42vw, 190px); height: auto; }
+  .manifesto-content p { font-size: clamp(26px, 7.6vw, 36px); line-height: 1.28; text-align: center; }
+
+  /* ------------------------------------------------------------------
+     3. Outcome detail screens: shape on top, copy beneath, dot field behind
+     ------------------------------------------------------------------ */
+  .outcome-1 .detail-placeholder,
+  .outcome-2 .detail-placeholder,
+  .outcome-3 .detail-placeholder {
+    left: 21vw !important;
+    right: auto !important;
+    top: 11svh !important;
+    width: 58vw;
+    height: 58vw;
+    transform: none;
+  }
+
+  .outcome-1 .detail-placeholder { border-radius: 50%; }
+  .outcome-2 .detail-placeholder { border-radius: 0; }
+  .outcome-3 .detail-placeholder { border-radius: 9vw 9vw 9vw 4.4vw; }
+
+  .outcome-1 .outcome-detail,
+  .outcome-2 .outcome-detail,
+  .outcome-3 .outcome-detail {
+    left: 8% !important;
+    right: auto !important;
+    top: 56svh !important;
+    bottom: auto;
+    width: 84%;
+  }
+
+  .outcome-detail .outcome-label { font-size: 12px; letter-spacing: .14em; }
+  .outcome-detail h4 { margin: 0 0 10px; font-size: clamp(25px, 7.4vw, 32px); }
+  .outcome-detail .outcome-copy { margin-top: 14px; font-size: 15px; line-height: 1.38; }
+
+  .circle-field i { background: #1b1b1b; }
+
+  .outcome-1 .circle-field i:nth-child(-n+22){display:block}
+  .outcome-1 .circle-field i:nth-child(n+23){display:none}
+  .outcome-1 .circle-field i:nth-child(1){left:-14.34vw;top:1.70svh;width:21.97vw;height:auto;aspect-ratio:1}
+  .outcome-1 .circle-field i:nth-child(2){left:6.98vw;top:91.63svh;width:21.36vw;height:auto;aspect-ratio:1}
+  .outcome-1 .circle-field i:nth-child(3){left:27.90vw;top:69.99svh;width:21.03vw;height:auto;aspect-ratio:1}
+  .outcome-1 .circle-field i:nth-child(4){left:56.79vw;top:35.65svh;width:18.78vw;height:auto;aspect-ratio:1}
+  .outcome-1 .circle-field i:nth-child(5){left:40.66vw;top:54.29svh;width:16.50vw;height:auto;aspect-ratio:1}
+  .outcome-1 .circle-field i:nth-child(6){left:12.75vw;top:83.03svh;width:16.33vw;height:auto;aspect-ratio:1}
+  .outcome-1 .circle-field i:nth-child(7){left:82.75vw;top:15.18svh;width:13.64vw;height:auto;aspect-ratio:1}
+  .outcome-1 .circle-field i:nth-child(8){left:-10.17vw;top:66.60svh;width:13.55vw;height:auto;aspect-ratio:1}
+  .outcome-1 .circle-field i:nth-child(9){left:-1.58vw;top:56.69svh;width:12.20vw;height:auto;aspect-ratio:1}
+  .outcome-1 .circle-field i:nth-child(10){left:-11.20vw;top:14.43svh;width:8.37vw;height:auto;aspect-ratio:1}
+  .outcome-1 .circle-field i:nth-child(11){left:58.74vw;top:14.51svh;width:8.15vw;height:auto;aspect-ratio:1}
+  .outcome-1 .circle-field i:nth-child(12){left:8.83vw;top:73.83svh;width:7.99vw;height:auto;aspect-ratio:1}
+  .outcome-1 .circle-field i:nth-child(13){left:32.50vw;top:83.97svh;width:7.55vw;height:auto;aspect-ratio:1}
+  .outcome-1 .circle-field i:nth-child(14){left:21.88vw;top:8.46svh;width:6.97vw;height:auto;aspect-ratio:1}
+  .outcome-1 .circle-field i:nth-child(15){left:60.45vw;top:24.29svh;width:6.00vw;height:auto;aspect-ratio:1}
+  .outcome-1 .circle-field i:nth-child(16){left:15.07vw;top:68.11svh;width:5.85vw;height:auto;aspect-ratio:1}
+  .outcome-1 .circle-field i:nth-child(17){left:89.06vw;top:65.08svh;width:5.82vw;height:auto;aspect-ratio:1}
+  .outcome-1 .circle-field i:nth-child(18){left:47.20vw;top:25.14svh;width:5.58vw;height:auto;aspect-ratio:1}
+  .outcome-1 .circle-field i:nth-child(19){left:34.65vw;top:62.96svh;width:5.21vw;height:auto;aspect-ratio:1}
+  .outcome-1 .circle-field i:nth-child(20){left:33.95vw;top:8.48svh;width:4.19vw;height:auto;aspect-ratio:1}
+  .outcome-1 .circle-field i:nth-child(21){left:51.53vw;top:91.16svh;width:3.71vw;height:auto;aspect-ratio:1}
+  .outcome-1 .circle-field i:nth-child(22){left:17.49vw;top:18.29svh;width:3.55vw;height:auto;aspect-ratio:1}
+
+  .outcome-2 .circle-field i:nth-child(-n+22){display:block}
+  .outcome-2 .circle-field i:nth-child(n+23){display:none}
+  .outcome-2 .circle-field i:nth-child(1){left:17.97vw;top:20.50svh;width:20.54vw;height:auto;aspect-ratio:1}
+  .outcome-2 .circle-field i:nth-child(2){left:93.03vw;top:86.27svh;width:14.57vw;height:auto;aspect-ratio:1}
+  .outcome-2 .circle-field i:nth-child(3){left:84.56vw;top:31.42svh;width:14.00vw;height:auto;aspect-ratio:1}
+  .outcome-2 .circle-field i:nth-child(4){left:-3.99vw;top:1.57svh;width:13.32vw;height:auto;aspect-ratio:1}
+  .outcome-2 .circle-field i:nth-child(5){left:81.25vw;top:97.97svh;width:12.98vw;height:auto;aspect-ratio:1}
+  .outcome-2 .circle-field i:nth-child(6){left:59.23vw;top:43.06svh;width:12.34vw;height:auto;aspect-ratio:1}
+  .outcome-2 .circle-field i:nth-child(7){left:-0.98vw;top:26.65svh;width:10.77vw;height:auto;aspect-ratio:1}
+  .outcome-2 .circle-field i:nth-child(8){left:0.77vw;top:17.66svh;width:10.44vw;height:auto;aspect-ratio:1}
+  .outcome-2 .circle-field i:nth-child(9){left:46.42vw;top:21.80svh;width:8.34vw;height:auto;aspect-ratio:1}
+  .outcome-2 .circle-field i:nth-child(10){left:99.90vw;top:95.67svh;width:8.15vw;height:auto;aspect-ratio:1}
+  .outcome-2 .circle-field i:nth-child(11){left:18.14vw;top:79.92svh;width:7.95vw;height:auto;aspect-ratio:1}
+  .outcome-2 .circle-field i:nth-child(12){left:49.37vw;top:64.27svh;width:7.63vw;height:auto;aspect-ratio:1}
+  .outcome-2 .circle-field i:nth-child(13){left:45.12vw;top:29.09svh;width:7.40vw;height:auto;aspect-ratio:1}
+  .outcome-2 .circle-field i:nth-child(14){left:60.34vw;top:-1.57svh;width:6.84vw;height:auto;aspect-ratio:1}
+  .outcome-2 .circle-field i:nth-child(15){left:58.40vw;top:95.36svh;width:6.84vw;height:auto;aspect-ratio:1}
+  .outcome-2 .circle-field i:nth-child(16){left:29.25vw;top:15.21svh;width:6.53vw;height:auto;aspect-ratio:1}
+  .outcome-2 .circle-field i:nth-child(17){left:66.97vw;top:52.46svh;width:6.00vw;height:auto;aspect-ratio:1}
+  .outcome-2 .circle-field i:nth-child(18){left:85.88vw;top:3.83svh;width:5.49vw;height:auto;aspect-ratio:1}
+  .outcome-2 .circle-field i:nth-child(19){left:94.54vw;top:15.81svh;width:5.25vw;height:auto;aspect-ratio:1}
+  .outcome-2 .circle-field i:nth-child(20){left:98.58vw;top:11.34svh;width:4.96vw;height:auto;aspect-ratio:1}
+  .outcome-2 .circle-field i:nth-child(21){left:78.61vw;top:27.09svh;width:4.21vw;height:auto;aspect-ratio:1}
+  .outcome-2 .circle-field i:nth-child(22){left:33.30vw;top:50.86svh;width:3.51vw;height:auto;aspect-ratio:1}
+
+  .outcome-3 .circle-field i:nth-child(-n+22){display:block}
+  .outcome-3 .circle-field i:nth-child(n+23){display:none}
+  .outcome-3 .circle-field i:nth-child(1){left:57.03vw;top:47.78svh;width:23.54vw;height:auto;aspect-ratio:1}
+  .outcome-3 .circle-field i:nth-child(2){left:86.49vw;top:24.29svh;width:23.03vw;height:auto;aspect-ratio:1}
+  .outcome-3 .circle-field i:nth-child(3){left:24.09vw;top:29.10svh;width:22.67vw;height:auto;aspect-ratio:1}
+  .outcome-3 .circle-field i:nth-child(4){left:86.01vw;top:83.43svh;width:18.96vw;height:auto;aspect-ratio:1}
+  .outcome-3 .circle-field i:nth-child(5){left:49.48vw;top:-0.79svh;width:18.59vw;height:auto;aspect-ratio:1}
+  .outcome-3 .circle-field i:nth-child(6){left:96.77vw;top:-2.35svh;width:17.21vw;height:auto;aspect-ratio:1}
+  .outcome-3 .circle-field i:nth-child(7){left:7.39vw;top:94.29svh;width:13.48vw;height:auto;aspect-ratio:1}
+  .outcome-3 .circle-field i:nth-child(8){left:35.63vw;top:15.42svh;width:12.61vw;height:auto;aspect-ratio:1}
+  .outcome-3 .circle-field i:nth-child(9){left:1.22vw;top:32.40svh;width:11.53vw;height:auto;aspect-ratio:1}
+  .outcome-3 .circle-field i:nth-child(10){left:17.27vw;top:83.85svh;width:11.49vw;height:auto;aspect-ratio:1}
+  .outcome-3 .circle-field i:nth-child(11){left:73.14vw;top:72.45svh;width:10.68vw;height:auto;aspect-ratio:1}
+  .outcome-3 .circle-field i:nth-child(12){left:-7.64vw;top:20.44svh;width:9.52vw;height:auto;aspect-ratio:1}
+  .outcome-3 .circle-field i:nth-child(13){left:6.05vw;top:6.33svh;width:9.30vw;height:auto;aspect-ratio:1}
+  .outcome-3 .circle-field i:nth-child(14){left:65.50vw;top:7.47svh;width:9.23vw;height:auto;aspect-ratio:1}
+  .outcome-3 .circle-field i:nth-child(15){left:80.62vw;top:99.42svh;width:8.03vw;height:auto;aspect-ratio:1}
+  .outcome-3 .circle-field i:nth-child(16){left:50.79vw;top:9.37svh;width:7.01vw;height:auto;aspect-ratio:1}
+  .outcome-3 .circle-field i:nth-child(17){left:95.68vw;top:11.00svh;width:6.99vw;height:auto;aspect-ratio:1}
+  .outcome-3 .circle-field i:nth-child(18){left:63.97vw;top:100.61svh;width:4.73vw;height:auto;aspect-ratio:1}
+  .outcome-3 .circle-field i:nth-child(19){left:44.01vw;top:98.42svh;width:4.33vw;height:auto;aspect-ratio:1}
+  .outcome-3 .circle-field i:nth-child(20){left:88.34vw;top:19.97svh;width:3.85vw;height:auto;aspect-ratio:1}
+  .outcome-3 .circle-field i:nth-child(21){left:47.23vw;top:44.80svh;width:3.72vw;height:auto;aspect-ratio:1}
+  .outcome-3 .circle-field i:nth-child(22){left:78.04vw;top:62.69svh;width:3.62vw;height:auto;aspect-ratio:1}
+
+  /* ------------------------------------------------------------------
+     4. Card rows become one-card-per-swipe carousels
+     Every rail below keeps the card's designed proportion and snaps so a
+     swipe always lands on exactly one whole card.
+     ------------------------------------------------------------------ */
+  .image-carousel-rail,
+  .future-image-carousel-rail,
+  .future-grid,
+  .people-grid,
+  .toolkits,
+  .portfolio-timeline-rail,
+  .testimonial-carousel__rail {
+    /* Let the browser own the horizontal fling; the pointer-drag fallback in
+       the components is limited to mouse input. */
+    touch-action: pan-x pan-y;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .image-carousel .image-carousel-slide,
+  .future-image-carousel .future-image-slide {
+    flex: 0 0 100vw;
+    width: 100vw;
+    height: auto;
+    /* 475 x 760 is the card frame the desktop carousel is built on. */
+    aspect-ratio: 475 / 760;
+    border-right: 0;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+
+  .image-carousel .image-carousel-slide img,
+  .future-image-carousel .future-image-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .image-carousel .image-carousel-placeholder { min-height: 0; height: 100%; }
+
+  /* Position indicator: the only cue that more cards follow, now that a
+     neighbouring card is never half-visible. */
+  .carousel-dots {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    padding: 14px 0 16px;
+  }
+
+  .carousel-dots button {
+    width: 22px;
+    height: 4px;
+    padding: 0;
+    border: 0;
+    border-radius: 2px;
+    background: #cfcfcf;
+    cursor: pointer;
+  }
+
+  .carousel-dots button[aria-current="true"] { background: #4a4a4a; }
+  .image-carousel-dark .carousel-dots button { background: #5a5a5a; }
+  .image-carousel-dark .carousel-dots button[aria-current="true"] { background: #f0f0f0; }
+
+  /* Future of X / Critical Business Loop / Brand Culture tiles. */
+  .future-grid {
+    display: flex;
+    overflow-x: auto;
+    border-left: 0;
+    scrollbar-width: none;
+  }
+
+  .future-grid::-webkit-scrollbar { display: none; }
+
+  .future-card {
+    flex: 0 0 100vw;
+    width: 100vw;
+    border-right: 0;
+    border-bottom: 0;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+
+  .future-map { height: 58vw; }
+  .future-card-title { top: 22vw; font-size: clamp(22px, 6.4vw, 28px); }
+  .future-card-copy { min-height: 0; padding: 20px 26px 26px; }
+  .future-card-copy h3 { margin: 18px 0 10px; font-size: clamp(22px, 6.2vw, 27px); }
+  .future-card-copy p { font-size: 14px; line-height: 1.32; }
+  .future-card-copy small { font-size: 13px; }
+
+  /* People and toolkit rosters. */
+  main .portfolio .people-grid,
+  main .portfolio .toolkits {
+    display: flex;
+    height: auto;
+    grid-template-columns: none;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  main .portfolio .people-grid::-webkit-scrollbar,
+  main .portfolio .toolkits::-webkit-scrollbar { display: none; }
+
+  main .portfolio .people-grid article,
+  main .portfolio .toolkits article {
+    flex: 0 0 100vw;
+    width: 100vw;
+    border-right: 0;
+    border-bottom: 0;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+
+  main .portfolio .people-grid article { height: auto; aspect-ratio: 1 / 1; padding: 34px 26px 0; }
+  main .portfolio .people-grid h3 { margin-bottom: 10px; font-size: 27px; }
+  main .portfolio .people-grid p { font-size: 15px; }
+  main .portfolio .people-grid img { height: 68%; }
+
+  /* Portfolio timeline: one year per swipe. */
+  .portfolio-timeline { height: auto; padding: 34px 0 30px; }
+  .portfolio-timeline > h2 { margin-bottom: 28px; padding-left: 24px; font-size: clamp(28px, 8vw, 38px); letter-spacing: .2em; }
+  .portfolio-timeline-rail::before,
+  .portfolio-timeline-rail::after { width: 0; }
+
+  .portfolio-timeline-rail article {
+    flex: 0 0 100vw;
+    width: 100vw;
+    min-height: 0;
+    padding: 56px 28px 40px;
+    scroll-snap-stop: always;
+  }
+
+  .portfolio-timeline-rail h3 { font-size: clamp(62px, 19vw, 84px); }
+  .portfolio-timeline-rail strong { margin: 26px 0 34px; font-size: 19px; }
+  .portfolio-timeline-rail p { font-size: 14px; }
+
+  /* Partner marks stay a grid — they are logos, not cards. */
+  .partners > div:not(.testimonials) { grid-template-columns: repeat(2, 1fr); }
+  .partners > div:not(.testimonials) span { min-height: 116px; }
+  .partners > h2 { padding: 26px 24px; font-size: clamp(28px, 7.6vw, 38px); letter-spacing: .14em; }
+
+  /* ------------------------------------------------------------------
+     5. Remaining section polish
+     ------------------------------------------------------------------ */
+  /* Execution Management: the desktop orbit row used to be pushed off-screen
+     by a fixed translate. Lay it out as 2 + 1 + 2 instead. */
+  .execution-management.execution-management { min-height: 0; padding: 0 24px 64px; }
+  .execution-management.execution-management h2 { padding-top: 86px; font-size: clamp(34px, 10.4vw, 46px); }
+
+  .execution-management.execution-management .execution-orbits {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(14px, 4.4vw, 22px);
+    justify-items: center;
+    min-width: 0;
+    margin: 46px 0 0;
+    transform: none;
+  }
+
+  .execution-management.execution-management .execution-orbits > * {
+    width: min(40vw, 158px);
+    height: min(40vw, 158px);
+    font-size: clamp(13px, 3.7vw, 16px);
+  }
+
+  .execution-management.execution-management .execution-orbits strong {
+    grid-column: 1 / -1;
+    width: min(58vw, 226px);
+    height: min(58vw, 226px);
+    font-size: clamp(18px, 5.2vw, 23px);
+  }
+
+  .execution-management.execution-management > p { width: min(84vw, 300px); margin-top: 46px; }
+
+  /* Why choose us is a single 1344px artwork with body copy baked into it.
+     Scaled to 375px that copy is unreadable, so keep it at twice the screen
+     width inside a pannable frame instead of shrinking or cropping it. */
+  .why-us.why-us { padding: 62px 0 54px; overflow: hidden; }
+  .why-us.why-us > p,
+  .why-us.why-us > h2 { padding: 0 24px; }
+
+  .why-us-cards-frame {
+    display: block;
+    overflow-x: auto;
+    scrollbar-width: none;
+    touch-action: pan-x pan-y;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .why-us-cards-frame::-webkit-scrollbar { display: none; }
+  main .why-us .why-us-cards { width: 200vw; max-width: none; margin: 32px 0 0; }
+
+  /* Thrivable Business chapter heads. */
+  .thrivable-question { height: 62vw; min-height: 260px; }
+  .thrivable-question h3 { font-size: clamp(36px, 11.4vw, 52px); }
+  .thrivable-heading h2 { font-size: clamp(26px, 8vw, 34px); }
+
+  .future-book { grid-template-columns: 1fr 96px; min-height: 0; }
+  .future-book-copy { padding: 28px 18px; }
+  .future-book h3 { font-size: clamp(25px, 7.6vw, 32px); }
+  .future-book p { font-size: 12px; line-height: 1.34; }
+
+  .catalogue-nav h2 { font-size: clamp(26px, 8vw, 34px); }
+
+  /* Question hero and department heads. */
+  .question-hero { height: 100svh; min-height: 520px; }
+  .question-hero > div { padding: 0 24px; }
+  .question-hero h2 { margin-bottom: 34px; font-size: clamp(30px, 8.6vw, 40px); }
+  .question-hero h3 { font-size: clamp(54px, 16.5vw, 82px); }
+
+  .department-heading { height: auto; min-height: 148px; padding: 28px 24px; }
+  .department-heading h2 { font-size: clamp(34px, 10.4vw, 46px); }
+
+  /* The leadership statements still carried desktop metrics — a 62px heading
+     and a 175px mark — which together overhang a 375px screen and gave the
+     whole page a horizontal scrollbar. */
+  .service-statement.statement-dark { gap: 18px; padding: 72px 26px 34px; align-items: flex-start; }
+  .service-statement.statement-dark > div:first-child { min-width: 0; }
+  .service-statement.statement-dark h2 { margin: 0 0 24px; font-size: clamp(34px, 10.2vw, 44px); line-height: .96; }
+  .service-statement.statement-dark p { max-width: none; font-size: 13px; line-height: 1.28; }
+
+  .service-statement.statement-dark .statement-mark {
+    flex: 0 0 auto;
+    width: 104px;
+    height: 104px;
+    overflow: hidden;
+  }
+
+  .service-statement.statement-dark .statement-mark span { font-size: 44px; }
+  .service-statement.statement-dark .statement-mark svg { width: 60px; height: 60px; }
+
+  /* Let every statement's copy column shrink, so the mark beside it always
+     lands inside the gutter instead of being clipped by the section. */
+  .service-statement > div:first-child { min-width: 0; }
+  .service-statement > div:first-child p { max-width: none; }
+  /* "Performance" is the longest word of any statement heading, so it needs a
+     smaller step and a smaller mark to sit beside it on a 375px screen. */
+  .service-statement--performance-testing h2 { max-width: none; font-size: clamp(30px, 9vw, 38px); }
+  .service-statement--performance-testing .statement-mark { width: 88px; height: 88px; }
+
+  /* The supplied Change Solving artwork is only sized inside the desktop
+     block, so on a phone it rendered at its natural 188px. */
+  .service-statement--change-solving .statement-mark { overflow: hidden; }
+  .service-statement--change-solving .statement-mark img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+  .holocratic { height: auto; min-height: 320px; padding: 60px 24px; text-align: center; }
+  .holocratic h2 { font-size: clamp(30px, 9vw, 40px); }
+  .holocratic p { font-size: clamp(17px, 5vw, 22px); }
+
+  /* Closing chapters. */
+  .why-trust-us { min-height: 62svh; }
+  .brief-form-section { padding: 64px 24px; }
+  .brief-form-intro h2 { font-size: clamp(38px, 11.6vw, 52px); }
+  .footer { padding: 64px 24px 30px; }
+  .footer h2 { font-size: clamp(40px, 12.4vw, 56px); }
+  .what-if {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: clamp(28px, 6vh, 46px);
+    min-height: 460px;
+    padding: 76px 24px 70px;
+  }
+
+  .what-if h2 { font-size: clamp(52px, 16vw, 72px); }
+  .what-if p { width: 100%; margin: 0; font-size: clamp(19px, 5.6vw, 25px); text-align: left; }
+}
+
+/* A phone in landscape has almost no vertical room: hold the full-screen
+   chapters at a readable fixed height instead of squeezing them into it. */
+@media (max-width: 900px) and (max-height: 540px) {
+  .hero,
+  .outcomes-intro,
+  .fig-outcome-title,
+  .manifesto-heading,
+  .manifesto-content,
+  .question-hero {
+    height: 560px;
+    min-height: 560px;
+  }
+
+  .fig-outcome-detail { height: 1120px; min-height: 1120px; }
+  .hero-art { height: 582px; min-height: 582px; }
+}
+
+/* Landscape phones read the outcome screens side by side, since stacking the
+   shape above the copy would not fit the short viewport. */
+@media (max-width: 780px) and (max-height: 540px) {
+  .outcome-1 .detail-placeholder,
+  .outcome-2 .detail-placeholder,
+  .outcome-3 .detail-placeholder {
+    left: 6vw !important;
+    top: 14svh !important;
+    width: 32vw;
+    height: 32vw;
+  }
+
+  .outcome-1 .outcome-detail,
+  .outcome-2 .outcome-detail,
+  .outcome-3 .outcome-detail {
+    left: 46% !important;
+    top: 12svh !important;
+    width: 48%;
+  }
+
+  .outcome-detail h4 { font-size: 22px; }
+  .outcome-detail .outcome-copy { font-size: 13px; }
+}

@@ -1,12 +1,16 @@
 "use client";
 
-import { Fragment, useRef } from "react";
+import { Fragment, useEffect, useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { OutcomePanel, type Outcome } from "./OutcomePanel";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
+
+// A mobile browser resizes the viewport when its address bar collapses. Without
+// this, every pinned outcome screen would be re-measured mid-scroll and jump.
+ScrollTrigger.config({ ignoreMobileResize: true });
 
 function Lines({ text }: { text: string }) {
   return (
@@ -43,6 +47,20 @@ export function OutcomeStack({
   detailConnector: string;
 }) {
   const scope = useRef<HTMLDivElement>(null);
+
+  // `ignoreMobileResize` also suppresses the refresh a real rotation needs, so
+  // re-measure whenever the width actually changes and stay quiet when only the
+  // height does (that is the address bar collapsing, mid-scroll).
+  useEffect(() => {
+    let width = window.innerWidth;
+    const onResize = () => {
+      if (window.innerWidth === width) return;
+      width = window.innerWidth;
+      ScrollTrigger.refresh();
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
 
   useGSAP(() => {
     const panels = gsap.utils.toArray<HTMLElement>(".fig-outcome", scope.current);

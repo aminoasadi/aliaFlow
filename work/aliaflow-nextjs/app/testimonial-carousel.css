@@ -14,16 +14,15 @@
 
 .testimonial-carousel__rail::-webkit-scrollbar { display: none; }
 
-.testimonial-carousel__page {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  flex: 0 0 100%;
+/* Two cards fill the rail on desktop; the 8px rule between them is a border
+   rather than a gap so one page is exactly the rail's own width. */
+.testimonial-carousel__slide {
+  box-sizing: border-box;
+  flex: 0 0 50%;
   min-width: 0;
-  gap: 8px;
+  border-right: 8px solid #fff;
   scroll-snap-align: start;
 }
-
-.testimonial-carousel__slide { min-width: 0; }
 
 .testimonial-carousel__slide img {
   display: block;
@@ -69,7 +68,7 @@
 .testimonial-carousel__dots button:focus-visible { outline: 2px solid #1f5884; outline-offset: 3px; }
 
 @media (max-width: 780px) {
-  .testimonial-carousel__page { grid-template-columns: 1fr; }
+  .testimonial-carousel__slide { flex-basis: 100%; border-right: 0; scroll-snap-stop: always; }
   .testimonial-carousel__dots { gap: 3px; }
   .testimonial-carousel__dots button { width: 12px; height: 6px; }
 }

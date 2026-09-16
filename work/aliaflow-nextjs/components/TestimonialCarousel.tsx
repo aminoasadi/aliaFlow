@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Testimonial = {
   name: string;
@@ -24,13 +24,31 @@ export function TestimonialCarousel({ slides }: { slides: Testimonial[] }) {
   const sourceSlides = slides.length ? slides : [fallbackSlide];
   const displaySlides = [...sourceSlides];
 
-  // Keep two cards on each page and provide a second page for carousel testing.
+  // Pad out to four cards so the rail always has a second page to travel to.
   while (displaySlides.length < 4) {
     displaySlides.push(sourceSlides[displaySlides.length % sourceSlides.length]);
   }
 
   const cardCount = displaySlides.length;
-  const pageCount = Math.ceil(cardCount / 2);
+  // How many cards fit in the rail is a CSS decision (two on desktop, one on a
+  // phone), so measure it rather than duplicating the breakpoint here.
+  const [perView, setPerView] = useState(2);
+
+  useEffect(() => {
+    const rail = railRef.current;
+    if (!rail) return;
+    const measure = () => {
+      const slide = rail.firstElementChild as HTMLElement | null;
+      if (!slide?.offsetWidth) return;
+      setPerView(Math.max(1, Math.round(rail.clientWidth / slide.offsetWidth)));
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(rail);
+    return () => observer.disconnect();
+  }, []);
+
+  const pageCount = Math.max(1, Math.ceil(cardCount / perView));
 
   const goTo = (index: number) => {
     const rail = railRef.current;
@@ -54,25 +72,19 @@ export function TestimonialCarousel({ slides }: { slides: Testimonial[] }) {
           if (event.key === "ArrowLeft") goTo(Math.max(active - 1, 0));
         }}
       >
-        {Array.from({ length: pageCount }, (_, pageIndex) => (
-          <div className="testimonial-carousel__page" key={pageIndex}>
-            {Array.from({ length: 2 }, (_, cardIndex) => {
-              const index = pageIndex * 2 + cardIndex;
-              const testimonial = displaySlides[index];
-              return testimonial ? <article className="testimonial-carousel__slide" key={index} aria-label={`Testimonial ${index + 1} of ${cardCount}`}>
-                {testimonial.image ? (
-                  <img src={testimonial.image} alt={testimonial.image_alt || `Testimonial from ${testimonial.name}, ${testimonial.role}`} draggable={false} />
-                ) : (
-                  <div className="testimonial-carousel__slide-fallback">
-                    <p>{testimonial.title}</p>
-                    <span>&ldquo;{testimonial.body}&rdquo;</span>
-                    <b>{testimonial.name}</b>
-                    <small>{testimonial.role}</small>
-                  </div>
-                )}
-              </article> : null;
-            })}
-          </div>
+        {displaySlides.map((testimonial, index) => (
+          <article className="testimonial-carousel__slide" key={index} aria-label={`Testimonial ${index + 1} of ${cardCount}`}>
+            {testimonial.image ? (
+              <img src={testimonial.image} alt={testimonial.image_alt || `Testimonial from ${testimonial.name}, ${testimonial.role}`} draggable={false} />
+            ) : (
+              <div className="testimonial-carousel__slide-fallback">
+                <p>{testimonial.title}</p>
+                <span>&ldquo;{testimonial.body}&rdquo;</span>
+                <b>{testimonial.name}</b>
+                <small>{testimonial.role}</small>
+              </div>
+            )}
+          </article>
         ))}
       </div>
       <div className="testimonial-carousel__dots" aria-label="Choose testimonial">

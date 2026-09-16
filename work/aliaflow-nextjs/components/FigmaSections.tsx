@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Fragment } from "react";
 import { BookOpen, Gamepad2, House } from "lucide-react";
+import { CardRail } from "./CardRail";
 import { ImageCarousel, type FutureImage } from "./FutureImageCarousel";
 import { PortfolioTimeline } from "./PortfolioTimeline";
 import { TestimonialCarousel } from "./TestimonialCarousel";
@@ -214,7 +215,9 @@ export function WhyChooseUs({
     <span className="why-us-side-tab why-us-side-tab--right" aria-hidden="true" />
     <p>{eyebrow}</p>
     <h2><Lines text={heading} /></h2>
-    <img className="why-us-cards" src="/assets/why-choose-us.svg" alt="Business Thrivability: different, competitive, and scalable — reason to believe." />
+    <div className="why-us-cards-frame">
+      <img className="why-us-cards" src="/assets/why-choose-us.svg" alt="Business Thrivability: different, competitive, and scalable — reason to believe." />
+    </div>
   </section>;
 }
 
@@ -256,13 +259,13 @@ export function PortfolioAndPeople({
     <PortfolioTimeline heading={portfolio_heading} timeline={timeline} />
     <section className="portfolio">
     <h2>{people_heading}</h2>
-    <div className="people-grid">
+    <CardRail className="people-grid">
       {people.map((person) => <article key={person.name}><h3>{person.name}</h3><p>{person.role}</p><Image src={person.image} alt={person.image_alt} width={220} height={290} /></article>)}
-    </div>
+    </CardRail>
     <h2 className="toolkits-heading">{toolkits_heading}</h2>
-    <div className="toolkits">
+    <CardRail className="toolkits">
       {toolkits.map((toolkit) => <article key={toolkit.title}>{toolkit.image ? <Image src={toolkit.image} alt={toolkit.image_alt || toolkit.title} fill sizes="(max-width: 780px) 100vw, 25vw" /> : null}</article>)}
-    </div>
+    </CardRail>
     </section>
   </>;
 }
