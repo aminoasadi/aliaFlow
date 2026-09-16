@@ -2,6 +2,38 @@ import "dotenv/config";
 import { prisma } from "../lib/db";
 import { hashPassword } from "../lib/auth";
 
+/**
+ * Placeholder article content for a card's detail page. The copy matches the
+ * tone of the existing seeded card bodies; real copy replaces it through the
+ * CMS. Kept as a helper so all 27 cards stay in step with the schema.
+ */
+function article(slug: string, lead: string) {
+  return {
+    slug,
+    hero_image: "",
+    hero_image_alt: "",
+    lead,
+    sections: [
+      {
+        heading: "Where it starts",
+        body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet. Consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis elit sed do eismod.",
+      },
+      {
+        heading: "How we work through it",
+        body: "Sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit. Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet consevbi adis.",
+      },
+    ],
+    key_points: [
+      { title: "Shared language", body: "Everyone in the room describes the same future with the same words." },
+      { title: "Evidence first", body: "Weak signals and emerging trends, not opinion, set the direction." },
+      { title: "Built to move", body: "Every output is something your team can act on the following week." },
+    ],
+    cta_heading: "Start the conversation",
+    cta_label: "Start a conversation",
+    cta_href: "#contact-us",
+  };
+}
+
 const sections: Record<string, Record<string, unknown>> = {
   header: {
     wordmark: "ALIAFLOW",
@@ -103,19 +135,19 @@ const sections: Record<string, Record<string, unknown>> = {
       },
     ],
     futures: [
-      { image: "/assets/future-of-banking-card.png", image_alt: "Future of Banking in a Technocratic World", label: "Industry Name", title: "Future of Banking", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet." },
-      { image: "/assets/future-of-banking-card.png", image_alt: "Future of Governance in a Technocratic World", label: "Industry Name", title: "Future of Governance", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet." },
-      { image: "/assets/future-of-banking-card.png", image_alt: "Future of Education in a Technocratic World", label: "Industry Name", title: "Future of Education", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet." },
+      { image: "/assets/future-of-banking-card.png", image_alt: "Future of Banking in a Technocratic World", label: "Industry Name", title: "Future of Banking", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet.", ...article("future-of-banking", "Banking is being rebuilt around technologies that did not exist when its current operating model was designed.") },
+      { image: "/assets/future-of-banking-card.png", image_alt: "Future of Governance in a Technocratic World", label: "Industry Name", title: "Future of Governance", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet.", ...article("future-of-governance", "Governance is slow by design, and the systems it governs are no longer slow.") },
+      { image: "/assets/future-of-banking-card.png", image_alt: "Future of Education in a Technocratic World", label: "Industry Name", title: "Future of Education", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet.", ...article("future-of-education", "Education is being pulled apart by the same forces that are rebuilding the work it prepares people for.") },
     ],
     loops: [
-      { image: "/assets/aliasys-loop.png", image_alt: "Aliasys business loop", label: "ICT Infrastructure", title: "Aliasys Business Loop", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet." },
-      { image: "/assets/aliapay-loop.png", image_alt: "Aliapay business loop", label: "Banking and Fintech", title: "Aliapay Business Loop", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet." },
-      { image: "/assets/alialab-loop.png", image_alt: "AliaLab business loop", label: "Education", title: "AliaLab Business Loop", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet." },
+      { image: "/assets/aliasys-loop.png", image_alt: "Aliasys business loop", label: "ICT Infrastructure", title: "Aliasys Business Loop", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet.", ...article("aliasys-business-loop", "An ICT infrastructure business whose growth depended on making its own complexity invisible.") },
+      { image: "/assets/aliapay-loop.png", image_alt: "Aliapay business loop", label: "Banking and Fintech", title: "Aliapay Business Loop", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet.", ...article("aliapay-business-loop", "A payments business that had to earn loyalty in a market where switching costs had collapsed.") },
+      { image: "/assets/alialab-loop.png", image_alt: "AliaLab business loop", label: "Education", title: "AliaLab Business Loop", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet.", ...article("alialab-business-loop", "An education lab that treated every cohort as a test of its own operating model.") },
     ],
     cultures: [
-      { image: "/assets/workshop.png", image_alt: "Technocratic culture workshop", label: "ICT Infrastructure", title: "Technocratic Culture", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet." },
-      { image: "/assets/design-event.png", image_alt: "Design thinking workshop", label: "Innovation & Design", title: "Design Thinking Culture", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet." },
-      { image: "/assets/meeting-halftone.png", image_alt: "Collaborative agile culture meeting", label: "Leadership & Management", title: "Collaborative Agile Culture", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet." },
+      { image: "/assets/workshop.png", image_alt: "Technocratic culture workshop", label: "ICT Infrastructure", title: "Technocratic Culture", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet.", ...article("technocratic-culture", "A culture where technical judgement carries the same weight as commercial judgement.") },
+      { image: "/assets/design-event.png", image_alt: "Design thinking workshop", label: "Innovation & Design", title: "Design Thinking Culture", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet.", ...article("design-thinking-culture", "A culture that starts every problem in the room where the problem is felt.") },
+      { image: "/assets/meeting-halftone.png", image_alt: "Collaborative agile culture meeting", label: "Leadership & Management", title: "Collaborative Agile Culture", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet.", ...article("collaborative-agile-culture", "A culture that moves in short cycles without losing the thread between them.") },
     ],
     magazine_heading: "THE FUTURE OF BANKING\nIN A TECHNOCRATIC WORLD\nMAGAZINE",
     magazine_price: "$900",
@@ -143,9 +175,9 @@ const sections: Record<string, Record<string, unknown>> = {
         title: "Business Game",
         body: "Through our proprietary Business Loop Game methodology, we help your organization move beyond a reactive mode and become a driver of change—where every decision contributes to creating a new game, rather than merely continuing the existing one.",
         cards: [
-          { title: "Business Game 1", image: "/assets/business-game-card.png" },
-          { title: "Business Game 2", image: "/assets/business-game-card.png" },
-          { title: "Business Game 3", image: "/assets/business-game-card.png" },
+          { title: "Business Game 1", image: "/assets/business-game-card.png", heading: "Business Game 1", label: "Industry Name", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet.", ...article("business-game-1", "A simulation that puts your leadership team inside the decisions before the market does.") },
+          { title: "Business Game 2", image: "/assets/business-game-card.png", heading: "Business Game 2", label: "Industry Name", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet.", ...article("business-game-2", "A simulation that puts your leadership team inside the decisions before the market does.") },
+          { title: "Business Game 3", image: "/assets/business-game-card.png", heading: "Business Game 3", label: "Industry Name", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet.", ...article("business-game-3", "A simulation that puts your leadership team inside the decisions before the market does.") },
         ],
       },
       {
@@ -153,9 +185,9 @@ const sections: Record<string, Record<string, unknown>> = {
         title: "Strategic Roles",
         body: "Implementing Brand City is not merely a creative project; it is an organizational transformation that requires leadership, role definition, and clear strategies to guide the future.",
         cards: [
-          { title: "Strategic Role 1", image: "/assets/strategic-role-card.png" },
-          { title: "Strategic Role 2", image: "/assets/strategic-role-card.png" },
-          { title: "Strategic Role 3", image: "/assets/strategic-role-card.png" },
+          { title: "Strategic Role 1", image: "/assets/strategic-role-card.png", heading: "Strategic Role 1", label: "Industry Name", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet.", ...article("strategic-role-1", "Roles defined by the future the business is moving toward, not the org chart it inherited.") },
+          { title: "Strategic Role 2", image: "/assets/strategic-role-card.png", heading: "Strategic Role 2", label: "Industry Name", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet.", ...article("strategic-role-2", "Roles defined by the future the business is moving toward, not the org chart it inherited.") },
+          { title: "Strategic Role 3", image: "/assets/strategic-role-card.png", heading: "Strategic Role 3", label: "Industry Name", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet.", ...article("strategic-role-3", "Roles defined by the future the business is moving toward, not the org chart it inherited.") },
         ],
       },
       {
@@ -163,9 +195,9 @@ const sections: Record<string, Record<string, unknown>> = {
         title: "Leadership Model",
         body: "The strategic roles designed for your Brand City are entirely unique; they are a direct reflection of your brand's DNA and the future architecture of your business.",
         cards: [
-          { title: "Leadership model 1", image: "/assets/leadership-model-card.png" },
-          { title: "Leadership model 2", image: "/assets/leadership-model-card.png" },
-          { title: "Leadership model 3", image: "/assets/leadership-model-card.png" },
+          { title: "Leadership model 1", image: "/assets/leadership-model-card.png", heading: "Leadership model 1", label: "Industry Name", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet.", ...article("leadership-model-1", "A leadership operating model drawn from your brand's DNA rather than from a framework.") },
+          { title: "Leadership model 2", image: "/assets/leadership-model-card.png", heading: "Leadership model 2", label: "Industry Name", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet.", ...article("leadership-model-2", "A leadership operating model drawn from your brand's DNA rather than from a framework.") },
+          { title: "Leadership model 3", image: "/assets/leadership-model-card.png", heading: "Leadership model 3", label: "Industry Name", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet.", ...article("leadership-model-3", "A leadership operating model drawn from your brand's DNA rather than from a framework.") },
         ],
       },
     ],
@@ -191,9 +223,9 @@ const sections: Record<string, Record<string, unknown>> = {
         title: "Risk Setting",
         body: "Many businesses work on the wrong problems, wasting time and resources. We help your organization become part of the minority that identifies the right problem and solves it the right way.",
         cards: [
-          { title: "Risk Setting 1", image: "/assets/risk-setting-card.png" },
-          { title: "Risk Setting 2", image: "/assets/risk-setting-card.png" },
-          { title: "Risk Setting 3", image: "/assets/risk-setting-card.png" },
+          { title: "Risk Setting 1", image: "/assets/risk-setting-card.png", heading: "Risk Setting 1", label: "Industry Name", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet.", ...article("risk-setting-1", "Most businesses solve the wrong problem well. This is the work of choosing the right one.") },
+          { title: "Risk Setting 2", image: "/assets/risk-setting-card.png", heading: "Risk Setting 2", label: "Industry Name", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet.", ...article("risk-setting-2", "Most businesses solve the wrong problem well. This is the work of choosing the right one.") },
+          { title: "Risk Setting 3", image: "/assets/risk-setting-card.png", heading: "Risk Setting 3", label: "Industry Name", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet.", ...article("risk-setting-3", "Most businesses solve the wrong problem well. This is the work of choosing the right one.") },
         ],
       },
       {
@@ -201,9 +233,9 @@ const sections: Record<string, Record<string, unknown>> = {
         title: "Change Solving",
         body: "Based on the real needs and challenges identified in the previous stages, our team researches, analyzes, and designs solutions that are fully aligned with your organization's DNA.",
         cards: [
-          { title: "Change Solving 1", image: "/assets/change-solving-card.png" },
-          { title: "Change Solving 2", image: "/assets/change-solving-card.png" },
-          { title: "Change Solving 3", image: "/assets/change-solving-card.png" },
+          { title: "Change Solving 1", image: "/assets/change-solving-card.png", heading: "Change Solving 1", label: "Industry Name", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet.", ...article("change-solving-1", "Solutions designed against the real constraints your organization already operates under.") },
+          { title: "Change Solving 2", image: "/assets/change-solving-card.png", heading: "Change Solving 2", label: "Industry Name", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet.", ...article("change-solving-2", "Solutions designed against the real constraints your organization already operates under.") },
+          { title: "Change Solving 3", image: "/assets/change-solving-card.png", heading: "Change Solving 3", label: "Industry Name", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet.", ...article("change-solving-3", "Solutions designed against the real constraints your organization already operates under.") },
         ],
       },
       {
@@ -211,9 +243,9 @@ const sections: Record<string, Record<string, unknown>> = {
         title: "Performance Testing",
         body: "The implementation of solutions is carried out in close collaboration with the organization’s units and experts through a fully participatory process. From the designed options, the most suitable solution is selected and implemented with the active involvement of each department’s team—while remaining open to development and improvement throughout execution, as needed.",
         cards: [
-          { title: "Performance Testing 1", image: "/assets/performance-testing-card.png" },
-          { title: "Performance Testing 2", image: "/assets/performance-testing-card.png" },
-          { title: "Performance Testing 3", image: "/assets/performance-testing-card.png" },
+          { title: "Performance Testing 1", image: "/assets/performance-testing-card.png", heading: "Performance Testing 1", label: "Industry Name", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet.", ...article("performance-testing-1", "Capability tested in the reality of your operating system, not in a deck.") },
+          { title: "Performance Testing 2", image: "/assets/performance-testing-card.png", heading: "Performance Testing 2", label: "Industry Name", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet.", ...article("performance-testing-2", "Capability tested in the reality of your operating system, not in a deck.") },
+          { title: "Performance Testing 3", image: "/assets/performance-testing-card.png", heading: "Performance Testing 3", label: "Industry Name", body: "Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet, consevbi adis Dolor sit amet, consevbi adis elit, sed do eismod tempdl sit amet.", ...article("performance-testing-3", "Capability tested in the reality of your operating system, not in a deck.") },
         ],
       },
     ],
