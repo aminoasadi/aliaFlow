@@ -5,7 +5,6 @@ import { ArticleBody } from "../../../../components/card-page/ArticleBody";
 import { ArticleFooter, type RelatedCard } from "../../../../components/card-page/ArticleFooter";
 import { ArticleHeader } from "../../../../components/card-page/ArticleHeader";
 import {
-  CARD_PAGE_SECTIONS,
   cardSlug,
   displayTitle,
   extractCards,
@@ -15,6 +14,12 @@ import {
 } from "../../../../lib/card-pages";
 import { getSection } from "../../../../lib/sections";
 
+/*
+ * Rendered on demand, like the landing page. There is deliberately no
+ * generateStaticParams here: it would override force-dynamic and freeze all 27
+ * articles at build time, so a CMS publish would not appear until the next
+ * deploy. Section content is the thing most likely to change after launch.
+ */
 export const dynamic = "force-dynamic";
 
 type Params = { section: string; slug: string };
@@ -43,18 +48,6 @@ async function resolve({ section: segment, slug }: Params) {
   const card = cards.find((item) => cardSlug(item) === slug);
   if (!card) return null;
   return { section, data, cards, card };
-}
-
-export async function generateStaticParams(): Promise<Params[]> {
-  const params: Params[] = [];
-  for (const section of CARD_PAGE_SECTIONS) {
-    const data = await getSection(section.sectionKey);
-    if (!data) continue;
-    for (const card of extractCards(section, data)) {
-      params.push({ section: section.segment, slug: cardSlug(card) });
-    }
-  }
-  return params;
 }
 
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {

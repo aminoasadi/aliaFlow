@@ -12,13 +12,18 @@ export type RelatedCard = {
 };
 
 /**
- * A "composed" card image is a finished card design with its text baked in.
- * Cropping it to fill the frame would cut that text, so it is shown whole.
+ * A "composed" card image is a finished card design with its title and body
+ * baked into the pixels, which is why the landing page shows those cards with
+ * no HTML copy at all. The rail follows suit: it shows the artwork whole, with
+ * no copy block, so the card's own text is not repeated beneath it. Only
+ * "photo" cards, whose images are plain photographs, get a copy block.
  */
-function imageClass(cardArt: CardPageSection["cardArt"]) {
-  return cardArt === "composed"
-    ? "card-article-related-image card-article-related-image--contain"
-    : "card-article-related-image";
+function RelatedArtwork({ card }: { card: RelatedCard }) {
+  return (
+    <div className="card-article-related-image card-article-related-image--contain">
+      {card.image ? <Image src={card.image} alt="" fill sizes="33vw" /> : null}
+    </div>
+  );
 }
 
 export function ArticleFooter({
@@ -47,15 +52,26 @@ export function ArticleFooter({
           <h2 id="card-article-related-heading">More in {section.label}</h2>
           <div className="card-article-related-grid">
             {related.map((card) => (
-              <Link key={card.href} href={card.href} className="card-article-related-card">
-                <div className={imageClass(section.cardArt)}>
-                  {card.image ? <Image src={card.image} alt={card.image_alt} fill sizes="33vw" /> : null}
-                </div>
-                <div className="card-article-related-copy">
-                  {card.label ? <small>{card.label}</small> : null}
-                  <h3>{card.title}</h3>
-                  {card.body ? <p>{card.body}</p> : null}
-                </div>
+              <Link
+                key={card.href}
+                href={card.href}
+                className="card-article-related-card"
+                aria-label={section.cardArt === "composed" ? card.title : undefined}
+              >
+                {section.cardArt === "composed" ? (
+                  <RelatedArtwork card={card} />
+                ) : (
+                  <>
+                    <div className="card-article-related-image">
+                      {card.image ? <Image src={card.image} alt={card.image_alt} fill sizes="33vw" /> : null}
+                    </div>
+                    <div className="card-article-related-copy">
+                      {card.label ? <small>{card.label}</small> : null}
+                      <h3>{card.title}</h3>
+                      {card.body ? <p>{card.body}</p> : null}
+                    </div>
+                  </>
+                )}
               </Link>
             ))}
           </div>

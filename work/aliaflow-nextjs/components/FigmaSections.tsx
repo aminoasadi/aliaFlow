@@ -2,11 +2,12 @@ import Image from "next/image";
 import { Fragment } from "react";
 import { BookOpen, Gamepad2, House } from "lucide-react";
 import { CardRail } from "./CardRail";
+import { cardSlug } from "../lib/card-pages";
 import { ImageCarousel, type FutureImage } from "./FutureImageCarousel";
 import { PortfolioTimeline } from "./PortfolioTimeline";
 import { TestimonialCarousel } from "./TestimonialCarousel";
 
-type Item = { title: string; image?: string; text?: string };
+type Item = { title: string; image?: string; text?: string; heading?: string; slug?: string };
 
 function BusinessGameMark() {
   return <svg viewBox="0 0 96 96" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -45,10 +46,12 @@ export function ServiceStatement({ number, title, body, dark = false }: { number
   return <section className={`service-statement ${dark ? "statement-dark" : ""}${isBusinessGame ? " service-statement--business-game" : ""}${isChangeSolving ? " service-statement--change-solving" : ""}${isRiskSetting ? " service-statement--risk-setting" : ""}${isPerformanceTesting ? " service-statement--performance-testing" : ""}${hasLeadershipDivider ? " service-statement--leadership-divider" : ""}`}><div><h2>{number} {title}</h2><p>{body}</p></div><div className="statement-mark" aria-hidden="true">{isBusinessGame ? <BusinessGameMark /> : isChangeSolving ? <img src="/assets/change-solving-icon.png" alt="" /> : isRiskSetting ? <img src="/assets/risk-setting-icon.svg" alt="" /> : isPerformanceTesting ? <img src="/assets/performance-testing-icon.svg" alt="" /> : <span>{number}</span>}</div></section>;
 }
 
-export function ThreeCards({ items, dark = false }: { items: Item[]; dark?: boolean }) {
-  const slides: FutureImage[] = items.map((item) => ({
+export function ThreeCards({ items, dark = false, segment, realCount }: { items: Item[]; dark?: boolean; segment?: string; realCount?: number }) {
+  const slides: FutureImage[] = items.map((item, index) => ({
     src: item.image?.trim() || undefined,
     alt: item.title,
+    href: segment ? `/services/${segment}/${cardSlug(item)}` : undefined,
+    duplicate: realCount !== undefined && index >= realCount,
   }));
   const isBusinessGame = items.every((item) => item.title.trim().toLowerCase().startsWith("business game"));
   const isChangeSolving = items.every((item) => item.title.trim().toLowerCase().startsWith("change solving"));
@@ -63,7 +66,21 @@ export function EventPromo({ title, image, imageAlt, kicker, body, ctaLabel, cta
   return <section className={`event-promo ${dark ? "event-promo-dark" : ""}${isFutureLeadershipJam ? " event-promo--future-leadership" : ""}${isTechnocraticLeadershipJam ? " event-promo--technocratic-leadership" : ""}`}><div className="event-copy"><h2>{title}</h2><p>{kicker}</p><p>{body}</p><a className="event-cta" href={ctaHref}>{ctaLabel}</a></div><div className="event-image"><Image src={image} alt={imageAlt} fill sizes="60vw" /></div></section>;
 }
 
-type StatementWithCards = { number: string; title: string; body: string; cards: { title: string; image?: string }[] };
+/* Statement title -> route segment. A statement with no entry keeps its cards
+   unlinked and unpadded, which is what an unrecognised statement should do. */
+const LEADERSHIP_SEGMENTS: Record<string, string | undefined> = {
+  "business game": "business-game",
+  "strategic roles": "strategic-roles",
+  "leadership model": "leadership-model",
+};
+
+const DESIGN_SEGMENTS: Record<string, string | undefined> = {
+  "risk setting": "risk-setting",
+  "change solving": "change-solving",
+  "performance testing": "performance-testing",
+};
+
+type StatementWithCards = { number: string; title: string; body: string; cards: { title: string; image?: string; heading?: string; slug?: string }[] };
 
 export function BusinessLeadership({
   department_heading,
@@ -98,13 +115,12 @@ export function BusinessLeadership({
     <DepartmentHeading title={department_heading} />
     <QuestionHero title={department_heading} question={question} image={question_image} imageAlt={question_image_alt} />
     {statements.map((statement) => {
-      const isBusinessGame = statement.title.trim().toLowerCase() === "business game";
-      const isStrategicRoles = statement.title.trim().toLowerCase() === "strategic roles";
-      const isLeadershipModel = statement.title.trim().toLowerCase() === "leadership model";
-      const cards = isBusinessGame || isStrategicRoles || isLeadershipModel ? [...statement.cards, ...statement.cards.slice(0, 2)] : statement.cards;
+      const normalized = statement.title.trim().toLowerCase();
+      const segment = LEADERSHIP_SEGMENTS[normalized];
+      const cards = segment ? [...statement.cards, ...statement.cards.slice(0, 2)] : statement.cards;
       return <Fragment key={statement.number}>
         <ServiceStatement dark number={statement.number} title={statement.title} body={statement.body} />
-        <ThreeCards dark items={cards.map((card) => ({ title: card.title, image: card.image }))} />
+        <ThreeCards dark segment={segment} realCount={statement.cards.length} items={cards} />
       </Fragment>;
     })}
     <section className="holocratic"><h2>HOLOCRATIC<br />MANAGEMENT</h2><p>{holocratic_line}</p></section>
@@ -164,13 +180,12 @@ export function TechnocraticDesign({
       </div>
     </section>
     {statements.map((statement) => {
-      const isChangeSolving = statement.title.trim().toLowerCase() === "change solving";
-      const isRiskSetting = statement.title.trim().toLowerCase() === "risk setting";
-      const isPerformanceTesting = statement.title.trim().toLowerCase() === "performance testing";
-      const cards = isChangeSolving || isRiskSetting || isPerformanceTesting ? [...statement.cards, ...statement.cards.slice(0, 2)] : statement.cards;
+      const normalized = statement.title.trim().toLowerCase();
+      const segment = DESIGN_SEGMENTS[normalized];
+      const cards = segment ? [...statement.cards, ...statement.cards.slice(0, 2)] : statement.cards;
       return <Fragment key={statement.number}>
         <ServiceStatement number={statement.number} title={statement.title} body={statement.body} />
-        <ThreeCards items={cards.map((card) => ({ title: card.title, image: card.image }))} />
+        <ThreeCards segment={segment} realCount={statement.cards.length} items={cards} />
       </Fragment>;
     })}
     <EventPromo title={event_title} image={event_image} imageAlt={event_image_alt} kicker={event_kicker} body={event_body} ctaLabel={event_cta_label} ctaHref={event_cta_href} />

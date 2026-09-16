@@ -1,11 +1,16 @@
 "use client";
 
+import Link from "next/link";
 import { useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
 
 export type FutureImage = {
   /** CMS-provided URL for a fully designed card image. */
   src?: string;
   alt: string;
+  /** Article this slide links to. Slides without one stay unlinked. */
+  href?: string;
+  /** Padding slides repeat an earlier card; hidden from assistive tech. */
+  duplicate?: boolean;
 };
 
 function handleRailKeys(event: KeyboardEvent<HTMLDivElement>) {
@@ -49,18 +54,28 @@ function scrollToSlide(rail: HTMLDivElement | null, index: number) {
 }
 
 function CarouselSlide({ item, index, className }: { item: FutureImage; index: number; className: string }) {
-  return (
-    <article className={className}>
-      {item.src ? (
-        <img src={item.src} alt={item.alt} draggable={false} />
-      ) : (
-        <div className="image-carousel-placeholder" role="img" aria-label={`${item.alt || "Image card"} has no image`}>
-          <span>{String(index + 1).padStart(2, "0")}</span>
-          <strong>{item.alt || "Image not added"}</strong>
-        </div>
-      )}
-    </article>
+  const body = item.src ? (
+    /* Inside a link the alt is empty: the link's aria-label already carries the
+       name, and both would otherwise be announced one after the other. */
+    <img src={item.src} alt={item.href ? "" : item.alt} draggable={false} />
+  ) : (
+    <div className="image-carousel-placeholder" role="img" aria-label={`${item.alt || "Image card"} has no image`}>
+      <span>{String(index + 1).padStart(2, "0")}</span>
+      <strong>{item.alt || "Image not added"}</strong>
+    </div>
   );
+
+  if (item.duplicate) {
+    return <article className={className} aria-hidden="true">{body}</article>;
+  }
+  if (item.href) {
+    return (
+      <article className={className}>
+        <Link href={item.href} aria-label={item.alt}>{body}</Link>
+      </article>
+    );
+  }
+  return <article className={className}>{body}</article>;
 }
 
 export function ImageCarousel({ items, dark = false, label = "Image carousel", className = "" }: { items: FutureImage[]; dark?: boolean; label?: string; className?: string }) {

@@ -1,0 +1,230 @@
+/* Article pages behind each marketing card. The type scale, rules and the
+   three-tone palette are the landing page's; only the body column's
+   line-height departs from it, because the landing's 1.14-1.3 is set for
+   three-line card blurbs and becomes hostile over several hundred words. */
+
+.card-article { background: #fff; color: #333; }
+.card-article--dark { background: #292929; color: #fff; }
+
+.card-article-crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 104px 7% 0;
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #686868;
+}
+.card-article--dark .card-article-crumbs { color: #aaa; }
+.card-article-crumbs a:hover { color: #292929; }
+.card-article--dark .card-article-crumbs a:hover { color: #fff; }
+.card-article-crumbs [aria-current="page"] { color: #292929; }
+.card-article--dark .card-article-crumbs [aria-current="page"] { color: #fff; }
+
+.card-article-title-band {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+  padding: 54px 7% 70px;
+}
+.card-article-label {
+  margin: 0 0 22px;
+  font-size: 15px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #686868;
+}
+.card-article--dark .card-article-label { color: #d3d3d3; }
+.card-article-title-band h1 {
+  max-width: 14ch;
+  margin: 0;
+  font-size: clamp(44px, 6vw, 92px);
+  line-height: .9;
+  font-weight: 800;
+  letter-spacing: -.075em;
+}
+.card-article-mark {
+  width: 175px;
+  height: 175px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #f1f1f1;
+  color: #c0c0c0;
+}
+.card-article-mark span { font-size: 72px; font-weight: 800; }
+.card-article--dark .card-article-mark { background: #474747; color: #f5f5f5; }
+
+.card-article-hero {
+  position: relative;
+  height: 60svh;
+  border-top: 3px solid #555;
+  border-bottom: 3px solid #555;
+  background: #f4f4f4;
+}
+.card-article-hero img { object-fit: cover; filter: grayscale(1); }
+
+.card-article-lead {
+  max-width: 900px;
+  margin: 0;
+  padding: 86px 7% 0;
+  font-size: clamp(22px, 2.4vw, 31px);
+  line-height: 1.16;
+}
+
+.card-article-body { padding: 64px 7% 96px; }
+.card-article-body section { max-width: 680px; }
+.card-article-body section + section { margin-top: 56px; }
+.card-article-body h2 {
+  margin: 0 0 20px;
+  padding-top: 28px;
+  border-top: 2px solid #555;
+  font-size: 28px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: -.05em;
+}
+.card-article-body p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.45;
+  color: #555;
+}
+.card-article--dark .card-article-body p { color: #d3d3d3; }
+
+.card-article-points {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 3px solid #555;
+  border-bottom: 3px solid #555;
+}
+.card-article-points article {
+  min-width: 0;
+  padding: 44px 36px 52px;
+  border-right: 2px solid #555;
+}
+.card-article-points article:last-child { border-right: 0; }
+.card-article-points b {
+  display: block;
+  font-size: 88px;
+  line-height: .7;
+  letter-spacing: -.08em;
+  color: #aaa;
+}
+.card-article-points h3 { margin: 34px 0 10px; font-size: 30px; letter-spacing: -.04em; }
+.card-article-points p { margin: 0; font-size: 16px; line-height: 1.16; color: #686868; }
+.card-article--dark .card-article-points p { color: #d3d3d3; }
+
+.card-article-cta {
+  padding: 110px 7%;
+  background: #aaa;
+  color: #292929;
+  text-align: center;
+}
+.card-article-cta h2 {
+  margin: 0 0 40px;
+  font-size: clamp(38px, 5vw, 71px);
+  line-height: .92;
+  font-weight: 800;
+  letter-spacing: -.07em;
+}
+.card-article-cta-button {
+  display: inline-block;
+  padding: 17px 34px;
+  border: 1px solid #292929;
+  background: #292929;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+}
+.card-article-cta-button:hover { background: #555; border-color: #555; }
+
+.card-article-related { padding: 96px 0 0; }
+.card-article-related h2 {
+  margin: 0;
+  padding: 0 7% 38px;
+  font-size: clamp(30px, 3.4vw, 50px);
+  line-height: .95;
+  letter-spacing: -.06em;
+}
+.card-article-related-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-top: 3px solid #555;
+  border-bottom: 3px solid #555;
+}
+.card-article-related-card {
+  display: block;
+  min-width: 0;
+  border-right: 2px solid #555;
+}
+.card-article-related-card:last-child { border-right: 0; }
+.card-article-related-image {
+  position: relative;
+  height: 275px;
+  overflow: hidden;
+  background: #f7f7f7;
+}
+.card-article-related-image img { object-fit: cover; transition: transform .4s ease; }
+/* Composed artwork is a whole card design in portrait 5:8. Shown at the full
+   width of its cell it would tower over the page, so it is capped and centred:
+   the card keeps its own proportions without setting the rail's height. */
+.card-article-related-image--contain {
+  width: min(100%, 300px);
+  height: auto;
+  aspect-ratio: 5 / 8;
+  margin: 40px auto;
+  background: transparent;
+}
+.card-article-related-image--contain img { object-fit: contain; }
+.card-article-related-copy { padding: 16px 28px 30px; border-top: 3px solid #555; }
+.card-article-related-copy small { font-size: 12px; }
+.card-article-related-copy h3 { margin: 22px 0 10px; font-size: 23px; line-height: .96; letter-spacing: -.045em; }
+.card-article-related-copy p { margin: 0; font-size: 12px; line-height: 1.16; color: #555; }
+.card-article--dark .card-article-related-copy p { color: #d3d3d3; }
+
+@media (hover: hover) {
+  .card-article-related-card:hover .card-article-related-image img { transform: scale(1.03); }
+}
+.card-article-related-card:focus-visible { outline: 3px solid #2557d6; outline-offset: -3px; }
+
+@media (max-width: 780px) {
+  .card-article-crumbs { padding-top: 84px; }
+  .card-article-title-band { flex-direction: column; align-items: flex-start; gap: 34px; padding: 40px 10% 52px; }
+  .card-article-title-band h1 { max-width: none; }
+  .card-article-mark { width: 120px; height: 120px; }
+  .card-article-mark span { font-size: 48px; }
+  .card-article-hero { height: 46svh; }
+  .card-article-lead { padding: 56px 10% 0; }
+  .card-article-body { padding: 44px 10% 64px; }
+  .card-article-points { grid-template-columns: 1fr; }
+  .card-article-points article { border-right: 0; border-bottom: 2px solid #555; }
+  .card-article-points article:last-child { border-bottom: 0; }
+  .card-article-cta { padding: 72px 10%; }
+  .card-article-related h2 { padding: 0 10% 28px; }
+  .card-article-related-grid { grid-template-columns: 1fr; }
+  .card-article-related-card { border-right: 0; border-bottom: 2px solid #555; }
+  .card-article-related-card:last-child { border-bottom: 0; }
+}
+
+/* Landing cards became links. The image lift is the only hover affordance on
+   the page; the existing card frames already clip it. */
+a.future-card { display: block; color: inherit; }
+a.future-card .future-map img { transition: transform .4s ease; }
+.future-image-slide a,
+.image-carousel-slide a { display: block; }
+.future-image-slide a img,
+.image-carousel-slide a img { transition: transform .4s ease; }
+
+@media (hover: hover) {
+  a.future-card:hover .future-map img { transform: scale(1.03); }
+  .future-image-slide a:hover img,
+  .image-carousel-slide a:hover img { transform: scale(1.03); }
+}
+
+a.future-card:focus-visible,
+.future-image-slide a:focus-visible,
+.image-carousel-slide a:focus-visible { outline: 3px solid #2557d6; outline-offset: -3px; }

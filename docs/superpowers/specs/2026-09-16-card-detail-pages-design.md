@@ -197,8 +197,12 @@ and to the tab order while still looking like five.
 | Card has no article content | Renders hero + card body as lead + CTA |
 | Two cards in one section share a slug | The first wins; a duplicate-slug check is part of the test suite |
 
-`generateStaticParams` enumerates every known card so the nine routes prerender,
-with `dynamic = "force-dynamic"` matching the landing page's existing behaviour.
+The route is `dynamic = "force-dynamic"`, matching the landing page, and
+deliberately defines no `generateStaticParams`. The two cannot coexist:
+`generateStaticParams` wins, and the 27 articles would be frozen at build time,
+so a CMS publish would not reach readers until the next deploy. Section content
+is exactly the thing expected to change after launch, so the pages render on
+demand.
 
 `generateMetadata` supplies title and description per article, from the card's
 `heading`/`title` and `lead`.
