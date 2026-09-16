@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Fragment, type ReactNode } from "react";
 import { CardRail } from "./CardRail";
+import { EventBookingModal } from "./EventBookingModal";
 import { cardSlug } from "../lib/card-pages";
 
 function Lines({ text }: { text: string }) {
@@ -179,7 +180,7 @@ export function ThrivableBusiness({
           <h2><Lines text={jam_heading} /></h2>
           <p className="jam-date">{jam_date}</p>
           <p>{jam_body}</p>
-          <a className="magazine-buy-button" href={jam_cta_href}>{jam_cta_label}</a>
+          <EventBookingModal eventName={jam_heading.replace(/\n/g, " ")} eventDate={jam_date} triggerLabel={jam_cta_label} triggerClassName="magazine-buy-button" />
         </div>
         <div className="jam-art"><Image src={jam_image} alt={jam_image_alt} fill sizes="60vw" /></div>
       </section>

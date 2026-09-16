@@ -1,0 +1,117 @@
+/* Popup booking form behind the "Book Event" CTAs. Portalled to document.body
+   (see EventBookingModal.tsx) so it always sits above every section
+   regardless of DOM position or any ancestor's overflow:hidden. Palette and
+   type scale match the rest of the site: #fff/#292929, no rounded corners,
+   thick rule lines, uppercase tracked labels. */
+
+.event-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(20, 20, 20, .74);
+  overflow-y: auto;
+  animation: event-modal-fade .18s ease-out;
+}
+
+.event-modal {
+  position: relative;
+  width: min(480px, 100%);
+  max-height: calc(100svh - 48px);
+  overflow-y: auto;
+  padding: 48px 40px 44px;
+  background: #fff;
+  border-top: 4px solid #292929;
+  color: #292929;
+  animation: event-modal-in .22s ease-out;
+}
+
+.event-modal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #ccc;
+  background: #fff;
+  color: #292929;
+  font-size: 16px;
+  cursor: pointer;
+}
+.event-modal-close:hover { background: #292929; color: #fff; border-color: #292929; }
+
+.event-modal-eyebrow {
+  margin: 0 0 14px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #777;
+}
+
+.event-modal-title {
+  margin: 0 0 8px;
+  max-width: 22ch;
+  font-size: clamp(30px, 3.4vw, 42px);
+  line-height: .96;
+  font-weight: 800;
+  letter-spacing: -.06em;
+}
+
+.event-modal-date {
+  margin: 0 0 32px;
+  font-size: 15px;
+  color: #686868;
+}
+
+.event-modal-error { margin: 0 0 14px; color: #9b1d1d; font-size: 13px; }
+.event-modal-message { margin: 0 0 14px; color: #176631; font-size: 13px; }
+
+.event-modal-field { display: grid; gap: 8px; margin-bottom: 20px; }
+.event-modal-label { font-size: 13px; font-weight: 700; letter-spacing: .03em; }
+.event-modal-field.mauticform-required .event-modal-label::after { content: " *"; color: #8c1d18; }
+.event-modal-input {
+  height: 48px;
+  padding: 0 14px;
+  border: 1px solid #777;
+  border-radius: 0;
+  background: #fff;
+  color: #292929;
+  font: inherit;
+  font-size: 16px;
+}
+.event-modal-input:focus-visible { outline: 3px solid #222; outline-offset: 2px; }
+.event-modal-errormsg { display: block; min-height: 16px; color: #9b1d1d; font-size: 12px; line-height: 1.25; }
+
+.event-modal-submit-row { margin-top: 4px; }
+.event-modal-submit {
+  width: 100%;
+  padding: 15px 18px;
+  border: 1px solid #292929;
+  background: #292929;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.event-modal-submit:hover { background: #555; border-color: #555; }
+.event-modal-submit span { margin-left: 12px; }
+
+@keyframes event-modal-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes event-modal-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) {
+  .event-modal-overlay, .event-modal { animation: none; }
+}
+
+/* The event-booking CTAs became <button> triggers. Both classes previously
+   styled only <a> elements, which have no default border/cursor, so reset
+   the UA button chrome to keep the exact same look. */
+.event-cta, .magazine-buy-button { border: 0; cursor: pointer; }
+
+@media (max-width: 480px) {
+  .event-modal { padding: 40px 24px 36px; }
+}

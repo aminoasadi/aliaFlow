@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Fragment } from "react";
 import { BookOpen, Gamepad2, House } from "lucide-react";
 import { CardRail } from "./CardRail";
+import { EventBookingModal } from "./EventBookingModal";
 import { cardSlug } from "../lib/card-pages";
 import { ImageCarousel, type FutureImage } from "./FutureImageCarousel";
 import { PortfolioTimeline } from "./PortfolioTimeline";
@@ -63,7 +64,7 @@ export function ThreeCards({ items, dark = false, segment, realCount }: { items:
 export function EventPromo({ title, image, imageAlt, kicker, body, ctaLabel, ctaHref, dark = false }: { title: string; image: string; imageAlt: string; kicker: string; body: string; ctaLabel: string; ctaHref: string; dark?: boolean }) {
   const isFutureLeadershipJam = title.trim().toLowerCase() === "future leadership jam";
   const isTechnocraticLeadershipJam = title.trim().toLowerCase() === "technocratic design for leadership jam";
-  return <section className={`event-promo ${dark ? "event-promo-dark" : ""}${isFutureLeadershipJam ? " event-promo--future-leadership" : ""}${isTechnocraticLeadershipJam ? " event-promo--technocratic-leadership" : ""}`}><div className="event-copy"><h2>{title}</h2><p>{kicker}</p><p>{body}</p><a className="event-cta" href={ctaHref}>{ctaLabel}</a></div><div className="event-image"><Image src={image} alt={imageAlt} fill sizes="60vw" /></div></section>;
+  return <section className={`event-promo ${dark ? "event-promo-dark" : ""}${isFutureLeadershipJam ? " event-promo--future-leadership" : ""}${isTechnocraticLeadershipJam ? " event-promo--technocratic-leadership" : ""}`}><div className="event-copy"><h2>{title}</h2><p>{kicker}</p><p>{body}</p><EventBookingModal eventName={title} eventDate={kicker} triggerLabel={ctaLabel} triggerClassName="event-cta" /></div><div className="event-image"><Image src={image} alt={imageAlt} fill sizes="60vw" /></div></section>;
 }
 
 /* Statement title -> route segment. A statement with no entry keeps its cards

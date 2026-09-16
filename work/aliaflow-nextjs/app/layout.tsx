@@ -15,8 +15,9 @@ import "./why-trust-us.css";
 import "./portfolio-timeline.css";
 import "./testimonial-carousel.css";
 import "./figma-page-rhythm.css";
-import "./mobile.css";
 import "./card-page.css";
+import "./event-modal.css";
+import "./mobile.css";
 
 export const viewport: Viewport = {
   width: "device-width",
