@@ -112,6 +112,12 @@
    This supplied JAM composition keeps its copy horizontal at every breakpoint. */
 .event-promo.event-promo--future-leadership .event-copy p:nth-child(3){height:auto!important;writing-mode:horizontal-tb!important}
 
+/* The JAM section's own border-bottom and the Technocratic Design intro's
+   border-top stacked into a visible hairline between them. Drop both so the
+   dark cap bar reads as directly attached to the section above it. */
+.event-promo.event-promo--future-leadership{border-bottom:0}
+.technocratic-intro{border-top:0}
+
 /* Loaded before the page rhythm sheet, so the extra class keeps this compact
    reference panel from inheriting that sheet's generic 430px service height. */
 @media(min-width:781px){.service-statement.service-statement--risk-setting{box-sizing:border-box;height:clamp(360px,29.38vw,423px);min-height:0;padding:clamp(86px,7.94vw,114px) clamp(48px,4.6vw,66px) clamp(44px,4vw,58px)}.service-statement.service-statement--risk-setting::before{height:clamp(54px,4.51vw,65px)}.service-statement.service-statement--risk-setting>div:first-child{max-width:570px}.service-statement.service-statement--risk-setting h2{margin:0;color:#414143;font-size:clamp(56px,5.34vw,77px);line-height:.96}.service-statement.service-statement--risk-setting p{max-width:430px;margin:clamp(26px,2.65vw,38px) 0 0 clamp(48px,5.25vw,76px);font-size:clamp(13px,1.08vw,16px);line-height:1.18}.service-statement.service-statement--risk-setting .statement-mark{width:clamp(150px,15.5vw,223px);height:clamp(150px,15.5vw,223px);margin:clamp(-2px,-.5vw,0) clamp(8px,4.1vw,59px) 0 24px}}
