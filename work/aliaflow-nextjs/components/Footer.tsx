@@ -11,16 +11,16 @@ export type FooterData = {
   copyright: string;
 };
 
-export function Footer({ logo, logo_alt, home_href, eyebrow, heading_line1, heading_emphasis, email, description, social_links, copyright }: FooterData) {
+export function Footer({ logo, logo_alt, home_href, eyebrow, heading_line1, heading_emphasis, email, description, social_links, copyright, locale = "en" }: FooterData & { locale?: "en" | "fa" }) {
   return (
     <footer id="contact-us" className="footer section-dark">
       <div>
         <p className="eyebrow">{eyebrow}</p>
         <h2>{heading_line1}<br /><em>{heading_emphasis}</em></h2>
-        <a href={`mailto:${email}`} className="cta">{email} <span>&#8599;</span></a>
+        <a href={`mailto:${email}`} className="cta" dir="ltr">{email} <span>&#8599;</span></a>
       </div>
       <div className="footer-meta">
-        <a className="wordmark" href={home_href} aria-label={`${logo_alt} home`}><img src={logo} alt={logo_alt} /></a>
+        <a className="wordmark" href={home_href} aria-label={locale === "fa" ? `خانهٔ ${logo_alt}` : `${logo_alt} home`}><img src={logo} alt={logo_alt} /></a>
         <p>{description}</p>
         <div>
           {social_links.map((link) => <a key={link.label} href={link.href}>{link.label}</a>)}

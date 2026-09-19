@@ -1,0 +1,54 @@
+@font-face{font-family:IRANYekan;src:url('/fonts/iranyekan/IRANYekanRegular.ttf') format('truetype');font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:IRANYekan;src:url('/fonts/iranyekan/IRANYekanMedium.ttf') format('truetype');font-style:normal;font-weight:500;font-display:swap}
+@font-face{font-family:IRANYekan;src:url('/fonts/iranyekan/IRANYekanBold.ttf') format('truetype');font-style:normal;font-weight:700;font-display:swap}
+@font-face{font-family:IRANYekan;src:url('/fonts/iranyekan/IRANYekanExtraBold.ttf') format('truetype');font-style:normal;font-weight:800;font-display:swap}
+
+.site-header .nav-list{margin-inline-start:auto}
+.language-switch{display:inline-grid;min-width:40px;height:36px;margin-inline-start:24px;place-items:center;border:1px solid currentColor;border-radius:999px;font-size:13px;font-weight:700;line-height:1;text-decoration:none}
+.language-switch:focus-visible{outline:3px solid currentColor;outline-offset:3px}
+
+.site-shell--fa{font-family:IRANYekan,Arial,sans-serif;text-align:right}
+.site-shell--fa :where(h1,h2,h3,h4,p,a,button,li,label,span,small,strong,input,textarea,summary){font-family:IRANYekan,Arial,sans-serif;letter-spacing:0}
+.site-shell--fa .site-header{direction:rtl}
+.site-shell--fa .nav-list{direction:rtl}
+.site-shell--fa .hero-copy,.site-shell--fa .outcomes-intro,.site-shell--fa .fig-outcome-title,
+.site-shell--fa .manifesto-heading,.site-shell--fa .manifesto-content,.site-shell--fa .catalogue-nav,
+.site-shell--fa .thrivable-heading,.site-shell--fa .thrivable-question,.site-shell--fa .why-us,
+.site-shell--fa .why-trust-us,.site-shell--fa .portfolio-timeline,.site-shell--fa .holocratic,
+.site-shell--fa .execution-orbits,.site-shell--fa .partners>h2,.site-shell--fa .what-if{text-align:center}
+.site-shell--fa .catalogue-nav li,.site-shell--fa .business-system-services__intro,
+.site-shell--fa .business-system-service,.site-shell--fa .future-book-copy,.site-shell--fa .future-card-copy,
+.site-shell--fa .jam-copy,.site-shell--fa .magazine-copy,.site-shell--fa .question-hero>div,
+.site-shell--fa .service-statement>div:first-child,.site-shell--fa .event-copy,
+.site-shell--fa .execution-management>p,.site-shell--fa .people-grid article,
+.site-shell--fa .brief-form-section,.site-shell--fa .footer{text-align:right}
+.site-shell--fa .outcome-detail{direction:rtl;text-align:right}
+.site-shell--fa .catalogue-nav li{flex-direction:row}
+.site-shell--fa .future-book h3 b{margin-right:0;margin-left:12px}
+.site-shell--fa .service-statement p{margin-right:clamp(22px,5.25vw,76px);margin-left:0}
+.site-shell--fa .event-copy,.site-shell--fa .jam-copy{align-items:flex-start}
+.site-shell--fa .brief-options{right:0;left:auto}
+.site-shell--fa .brief-submit span{margin-right:24px;margin-left:0}
+.site-shell--fa .footer-meta>div{justify-content:flex-start}
+.site-shell--fa .why-trust-us__content p,.site-shell--fa .trust_subheading{letter-spacing:0}
+.site-shell--fa [dir="ltr"]{font-family:Arial,sans-serif}
+.site-shell--fa :where(.image-carousel-rail,.future-image-carousel-rail,.testimonial-carousel__rail,.portfolio-timeline-rail,.future-grid,.people-grid,.toolkits){direction:ltr}
+.site-shell--fa :where(.image-carousel-slide,.future-image-slide,.testimonial-carousel__slide,.portfolio-timeline-rail article,.future-grid article,.people-grid article,.toolkits article){direction:rtl}
+
+@media(min-width:781px){
+  .site-shell--fa .question-hero>div{align-items:flex-start}
+  .site-shell--fa .execution-management.execution-management h2{right:5.95%;left:auto}
+  .site-shell--fa .execution-management.execution-management>p{right:39.6%;left:auto}
+  .site-shell--fa .event-promo--future-leadership .event-copy,
+  .site-shell--fa .event-promo--technocratic-leadership .event-copy{align-items:flex-start;text-align:right}
+}
+
+@media(max-width:780px){
+  .language-switch{position:absolute;right:72px;left:auto;height:32px;min-width:36px;margin:0}
+  .site-shell--fa .language-switch{right:auto;left:106px}
+  .site-shell--fa .menu-toggle{margin-right:auto;margin-left:0}
+  .site-shell--fa .nav-list.open{right:0;left:auto;text-align:right}
+  .site-shell--fa .nav-list.open a{text-align:right}
+  .site-shell--fa .service-statement p{margin-right:22px;margin-left:0}
+  .site-shell--fa .what-if p{text-align:center}
+}

@@ -76,6 +76,7 @@ export const sectionSchemas: Record<string, SectionSchema> = {
     label: "Outcomes",
     fields: {
       intro_heading: textarea("Intro heading"),
+      title_eyebrow: text("Outcome title eyebrow", undefined, "YOUR BUSINESS IS"),
       title_prefix: text("Outcome title prefix", undefined, "is"),
       title_suffix: text("Outcome title connector", undefined, "but we make it"),
       detail_prefix: text("Outcome detail prefix", undefined, "Not only"),
@@ -101,6 +102,21 @@ export const sectionSchemas: Record<string, SectionSchema> = {
       tabs: list("Tabs", "Tab", {
         number: text("Number"),
         label: text("Label"),
+      }),
+    },
+  },
+
+  "business-system-services": {
+    label: "Business System Services",
+    fields: {
+      eyebrow: text("Eyebrow", undefined, "BUSINESS SYSTEM SERVICES"),
+      heading: textarea("Heading", undefined, "DESIGN THE SYSTEM\nBEHIND THE BUSINESS"),
+      intro: textarea("Introduction"),
+      services: list("Services", "Service", {
+        number: text("Number"),
+        title: text("Title"),
+        body: textarea("Body"),
+        detail: text("Service focus"),
       }),
     },
   },
@@ -181,6 +197,7 @@ export const sectionSchemas: Record<string, SectionSchema> = {
         }, "Add, remove, and reorder the image cards shown under this statement."),
       }),
       holocratic_line: text("Holocratic line"),
+      holocratic_heading: textarea("Holocratic heading", undefined, "HOLOCRATIC\nMANAGEMENT"),
       event_title: text("Event title"),
       event_image: image("Event image"),
       event_image_alt: text("Event image description"),
@@ -249,6 +266,7 @@ export const sectionSchemas: Record<string, SectionSchema> = {
       timeline: list("Timeline", "Milestone", {
         year: text("Year"),
         label: text("Label"),
+        body: textarea("Description"),
       }),
       people: list("People", "Person", {
         name: text("Name"),

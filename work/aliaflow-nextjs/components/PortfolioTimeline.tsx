@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-type TimelineEntry = { year: string; label: string };
+type TimelineEntry = { year: string; label: string; body: string };
 
 export function PortfolioTimeline({ heading, timeline }: { heading: string; timeline: TimelineEntry[] }) {
   const rail = useRef<HTMLDivElement>(null);
@@ -35,7 +35,7 @@ export function PortfolioTimeline({ heading, timeline }: { heading: string; time
   }, [entries.length]);
 
   return (
-    <section className={`portfolio-timeline${dragging ? " is-dragging" : ""}`} aria-label="Portfolio timeline">
+    <section className={`portfolio-timeline${dragging ? " is-dragging" : ""}`} aria-label={/[\u0600-\u06ff]/.test(heading) ? "خط زمانی پروژه‌ها" : "Portfolio timeline"}>
       <h2>{heading}</h2>
       <div
         ref={rail}
@@ -48,7 +48,7 @@ export function PortfolioTimeline({ heading, timeline }: { heading: string; time
       >
         {entries.map((entry, index) => <article data-timeline-card className={index === active ? "is-active" : ""} key={`${entry.year}-${index}`}>
           <h3>{entry.year}</h3><strong>{entry.label}</strong>
-          <p>Lorem ipsum dolor sit amet, consevbi adipiscing, sed do eiusmod sevbi hgseif adipiscing elit. Lorem ipsum dolor sit amet, consevbi hgseif adipiscing, sed do eiusmod sevbi hgseif adipiscing elit.</p>
+          <p>{entry.body}</p>
         </article>)}
       </div>
     </section>

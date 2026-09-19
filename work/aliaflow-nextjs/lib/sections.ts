@@ -1,6 +1,12 @@
 import { prisma } from "./db";
 import { sectionSchemas } from "./sections.schema";
-import { normalizeSectionData, validateSectionData } from "./section-validation";
+import { normalizeSectionData } from "./section-validation";
+import {
+  isLocalizedSectionData,
+  normalizeLocalizedSectionData,
+  type SiteLocale,
+  validateLocalizedSectionData,
+} from "./locales";
 
 export class SectionValidationError extends Error {
   issues: string[];
@@ -11,13 +17,15 @@ export class SectionValidationError extends Error {
   }
 }
 
-export async function getSection(key: string): Promise<Record<string, unknown> | null> {
+export async function getSection(key: string, locale: SiteLocale = "en"): Promise<Record<string, unknown> | null> {
   const row = await prisma.section.findUnique({ where: { key } });
   if (!row) return null;
   const source = row.status === "published" && row.publishedData ? row.publishedData : row.data;
   const schema = sectionSchemas[key];
   const parsed = JSON.parse(source) as Record<string, unknown>;
-  return schema ? normalizeSectionData(schema.fields, parsed) : parsed;
+  if (!schema) return isLocalizedSectionData(parsed) ? parsed[locale] : parsed;
+  if (!isLocalizedSectionData(parsed)) return normalizeSectionData(schema.fields, parsed);
+  return normalizeSectionData(schema.fields, parsed[locale]);
 }
 
 export async function getSectionDraft(key: string) {
@@ -28,7 +36,7 @@ export async function getSectionDraft(key: string) {
   if (!row) return null;
   return {
     ...row,
-    data: normalizeSectionData(sectionSchemas[key]?.fields ?? {}, JSON.parse(row.data)),
+    data: normalizeLocalizedSectionData(sectionSchemas[key]?.fields ?? {}, JSON.parse(row.data)),
   };
 }
 
@@ -42,7 +50,7 @@ export async function updateSection(
     throw new SectionValidationError([`Unknown section "${key}"`]);
   }
 
-  const issues = validateSectionData(schema.fields, data);
+  const issues = validateLocalizedSectionData(schema.fields, data);
   if (issues.length > 0) {
     throw new SectionValidationError(issues);
   }

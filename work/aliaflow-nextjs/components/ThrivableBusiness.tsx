@@ -118,17 +118,17 @@ export function ThrivableBusiness({
         <h3><Lines text={question} /></h3>
       </section>
 
-      {service_blocks[0] ? <section className="future-book-experience" aria-label="Future of X Book">
+      {service_blocks[0] ? <section className="future-book-experience" aria-label={service_blocks[0].title}>
         <ServiceBlock {...service_blocks[0]} imageAlt={service_blocks[0].image_alt} mark={marks[0]} />
         <ThreeCards segment="future-of-x-book" realCount={futures.length} items={[...futures, ...futures.slice(0, 2)]} />
       </section> : null}
 
-      <section className="critical-business-loop-experience" aria-label="Critical Business Loop">
+      <section className="critical-business-loop-experience" aria-label={service_blocks[1]?.title ?? "Critical Business Loop"}>
         {service_blocks[1] ? <ServiceBlock {...service_blocks[1]} imageAlt={service_blocks[1].image_alt} mark={marks[1]} /> : null}
         <ThreeCards segment="critical-business-loop" realCount={loops.length} items={[...loops, ...loops.slice(0, 2)]} />
       </section>
 
-      <section className="brand-culture-experience" aria-label="Brand Culture and XP">
+      <section className="brand-culture-experience" aria-label={service_blocks[2]?.title ?? "Brand Culture and XP"}>
         {service_blocks[2] ? <ServiceBlock {...service_blocks[2]} imageAlt={service_blocks[2].image_alt} mark={marks[2]} /> : null}
         <ThreeCards segment="brand-culture-xp" realCount={cultures.length} items={[...cultures, ...cultures.slice(0, 2)]} />
       </section>

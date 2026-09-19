@@ -11,7 +11,7 @@ type Testimonial = {
   image_alt?: string;
 };
 
-export function TestimonialCarousel({ slides }: { slides: Testimonial[] }) {
+export function TestimonialCarousel({ slides, locale = "en" }: { slides: Testimonial[]; locale?: "en" | "fa" }) {
   const railRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
   const fallbackSlide: Testimonial = {
@@ -58,7 +58,7 @@ export function TestimonialCarousel({ slides }: { slides: Testimonial[] }) {
   };
 
   return (
-    <section className="testimonial-carousel" aria-label="Testimonials">
+    <section className="testimonial-carousel" aria-label={locale === "fa" ? "دیدگاه مشتریان" : "Testimonials"}>
       <div
         ref={railRef}
         className="testimonial-carousel__rail"
@@ -73,7 +73,7 @@ export function TestimonialCarousel({ slides }: { slides: Testimonial[] }) {
         }}
       >
         {displaySlides.map((testimonial, index) => (
-          <article className="testimonial-carousel__slide" key={index} aria-label={`Testimonial ${index + 1} of ${cardCount}`}>
+          <article className="testimonial-carousel__slide" key={index} aria-label={locale === "fa" ? `دیدگاه ${index + 1} از ${cardCount}` : `Testimonial ${index + 1} of ${cardCount}`}>
             {testimonial.image ? (
               <img src={testimonial.image} alt={testimonial.image_alt || `Testimonial from ${testimonial.name}, ${testimonial.role}`} draggable={false} />
             ) : (
@@ -87,9 +87,9 @@ export function TestimonialCarousel({ slides }: { slides: Testimonial[] }) {
           </article>
         ))}
       </div>
-      <div className="testimonial-carousel__dots" aria-label="Choose testimonial">
+      <div className="testimonial-carousel__dots" aria-label={locale === "fa" ? "انتخاب دیدگاه" : "Choose testimonial"}>
         {Array.from({ length: pageCount }, (_, index) => (
-          <button key={index} type="button" aria-label={`Show testimonial ${index + 1}`} aria-current={index === active} onClick={() => goTo(index)} />
+          <button key={index} type="button" aria-label={locale === "fa" ? `نمایش دیدگاه ${index + 1}` : `Show testimonial ${index + 1}`} aria-current={index === active} onClick={() => goTo(index)} />
         ))}
       </div>
     </section>

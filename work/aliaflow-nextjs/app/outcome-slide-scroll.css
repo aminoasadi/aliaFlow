@@ -1,0 +1,39 @@
+/*
+ * Outcome chapters behave as deliberate, one-at-a-time slides.
+ * ScrollTrigger owns the discrete state while a chapter is pinned. Use a
+ * proximity snap for the document itself so the reader can leave the final
+ * chapter without being pulled back to it.
+ */
+html:has(.outcome-stack) {
+  scroll-snap-type: y proximity;
+}
+
+/* ScrollTrigger wraps pinned panels in `.pin-spacer`, so this intentionally
+   remains a descendant selector rather than a direct-child selector. */
+.outcome-stack .fig-outcome {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* The small preface mirrors the hierarchy in the supplied reference frames. */
+.fig-outcome-title > .fig-outcome-title__eyebrow {
+  margin: 0 0 18px;
+  color: #555;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  line-height: 1;
+}
+
+@media (max-width: 780px) {
+  .fig-outcome-title > .fig-outcome-title__eyebrow {
+    margin-bottom: 14px;
+    font-size: 10px;
+    letter-spacing: .14em;
+  }
+}
+
+/* Do not force additional movement on people who opt out of motion. */
+@media (prefers-reduced-motion: reduce) {
+  html:has(.outcome-stack) { scroll-snap-type: y proximity; }
+}

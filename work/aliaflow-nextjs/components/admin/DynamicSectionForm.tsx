@@ -25,8 +25,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { StatusBadge } from "@/components/admin/StatusBadge";
 import type { FieldSchema, SectionSchema } from "@/lib/section-validation";
+import type { LocalizedSectionData, SiteLocale } from "@/lib/locales";
 
-type SectionData = Record<string, unknown>;
 type Revision = { id: string; action: string; actorEmail: string | null; createdAt: string };
 
 function emptyValueFor(field: FieldSchema): unknown {
@@ -210,17 +210,21 @@ export function DynamicSectionForm({
 }: {
   sectionKey: string;
   schema: SectionSchema;
-  initialData: SectionData;
+  initialData: LocalizedSectionData;
   status: string;
   updatedAt: string;
   updatedBy: string | null;
   revisions: Revision[];
 }) {
   const [data, setData] = useState(initialData);
+  const [activeLocale, setActiveLocale] = useState<SiteLocale>("en");
   const [saving, setSaving] = useState<"save" | "publish" | null>(null);
   const router = useRouter();
   const dirty = useMemo(() => JSON.stringify(data) !== JSON.stringify(initialData), [data, initialData]);
-  const updateField = (key: string, next: unknown) => setData((previous) => ({ ...previous, [key]: next }));
+  const updateField = (key: string, next: unknown) => setData((previous) => ({
+    ...previous,
+    [activeLocale]: { ...previous[activeLocale], [key]: next },
+  }));
 
   async function submit(intent: "save" | "publish") {
     setSaving(intent);
@@ -258,8 +262,16 @@ export function DynamicSectionForm({
 
       <div className="editor-grid">
         <Card className="gap-0 py-0">
-          <CardHeader className="border-b py-5"><CardTitle>Content fields</CardTitle><CardDescription>Changes are kept as a draft until you publish.</CardDescription></CardHeader>
-          <CardContent className="grid gap-7 py-6">{Object.entries(schema.fields).map(([key, field]) => <FieldEditor key={key} field={field} value={data[key]} onChange={(next) => updateField(key, next)} />)}</CardContent>
+          <CardHeader className="border-b py-5">
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <div><CardTitle>Content fields</CardTitle><CardDescription>English and Persian are saved and published together.</CardDescription></div>
+              <div className="flex rounded-lg border border-border bg-muted/30 p-1" role="tablist" aria-label="Content language">
+                <Button type="button" size="sm" variant={activeLocale === "en" ? "default" : "ghost"} role="tab" aria-selected={activeLocale === "en"} onClick={() => setActiveLocale("en")}>English</Button>
+                <Button type="button" size="sm" variant={activeLocale === "fa" ? "default" : "ghost"} role="tab" aria-selected={activeLocale === "fa"} onClick={() => setActiveLocale("fa")}>فارسی</Button>
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent dir={activeLocale === "fa" ? "rtl" : "ltr"} lang={activeLocale} className="grid gap-7 py-6">{Object.entries(schema.fields).map(([key, field]) => <FieldEditor key={`${activeLocale}-${key}`} field={field} value={data[activeLocale][key]} onChange={(next) => updateField(key, next)} />)}</CardContent>
         </Card>
 
         <aside className="admin-rail">
@@ -268,7 +280,10 @@ export function DynamicSectionForm({
             <CardContent className="grid gap-4">
               <div className="flex items-center justify-between"><span className="text-sm text-muted-foreground">Status</span><StatusBadge status={dirty ? "draft" : status} /></div>
               <div><p className="m-0 text-xs text-muted-foreground">Last updated</p><p className="mb-0 mt-1 text-sm">{new Date(updatedAt).toLocaleString("en-GB")}</p><small className="text-muted-foreground">{updatedBy ?? "System"}</small></div>
-              <Button asChild variant="outline"><Link href="/" target="_blank">View website <ExternalLink aria-hidden="true" /></Link></Button>
+              <div className="grid grid-cols-2 gap-2">
+                <Button asChild variant="outline"><Link href="/" target="_blank">English <ExternalLink aria-hidden="true" /></Link></Button>
+                <Button asChild variant="outline"><Link href="/fa" target="_blank">فارسی <ExternalLink aria-hidden="true" /></Link></Button>
+              </div>
             </CardContent>
           </Card>
           <Card className="gap-4">

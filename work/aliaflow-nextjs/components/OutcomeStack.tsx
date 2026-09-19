@@ -27,6 +27,7 @@ function Lines({ text }: { text: string }) {
 
 export function OutcomeStack({
   introHeading,
+  titleEyebrow,
   outcomes,
   manifestoHeading,
   manifestoWords,
@@ -37,6 +38,7 @@ export function OutcomeStack({
   detailConnector,
 }: {
   introHeading: string;
+  titleEyebrow: string;
   outcomes: Outcome[];
   manifestoHeading: string;
   manifestoWords: string;
@@ -101,6 +103,17 @@ export function OutcomeStack({
             scrub: 0.5,
             pin: panel,
             pinSpacing: false,
+            // A wheel fling or a fast swipe must settle this chapter before
+            // the following panel may take over. Native CSS snap handles the
+            // physical gesture; this keeps ScrollTrigger's pinned timeline in
+            // the same discrete state for keyboard and programmatic scrolling.
+            snap: {
+              snapTo: 1,
+              delay: 0.05,
+              duration: { min: 0.22, max: 0.65 },
+              ease: "power1.inOut",
+              inertia: false,
+            },
             invalidateOnRefresh: true,
           },
         });
@@ -136,7 +149,7 @@ export function OutcomeStack({
       <article className="fig-outcome outcome-0">
         <div className="fig-outcome-screen outcomes-intro"><h2><Lines text={introHeading} /></h2></div>
       </article>
-      {outcomes.map((outcome, index) => <OutcomePanel key={outcome.emphasis} outcome={outcome} index={index} titlePrefix={titlePrefix} titleSuffix={titleSuffix} detailPrefix={detailPrefix} detailConnector={detailConnector} />)}
+      {outcomes.map((outcome, index) => <OutcomePanel key={outcome.emphasis} outcome={outcome} index={index} titleEyebrow={titleEyebrow} titlePrefix={titlePrefix} titleSuffix={titleSuffix} detailPrefix={detailPrefix} detailConnector={detailConnector} />)}
       <article className="fig-outcome outcome-manifesto">
         <div className="fig-outcome-screen">
           <div className="manifesto-heading"><h2><Lines text={manifestoHeading} /></h2></div>

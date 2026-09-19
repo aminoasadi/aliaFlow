@@ -24,20 +24,11 @@
     z-index: 21;
     min-height: 300px;
     padding: 64px 5.6% 58px;
-    border-bottom: 3px solid #aaa;
+    border-bottom: 0;
   }
 
   .catalogue-nav::after {
-    content: "";
-    position: absolute;
-    z-index: 2;
-    bottom: -44px;
-    left: 50%;
-    width: 52%;
-    height: 44px;
-    transform: translateX(-50%);
-    /* Continue the gray Thrivable Business surface through the centre notch. */
-    background: #aaa;
+    display: none;
   }
 
   .catalogue-nav h2 {

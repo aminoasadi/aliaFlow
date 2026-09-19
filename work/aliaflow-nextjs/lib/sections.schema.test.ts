@@ -7,6 +7,7 @@ const EXPECTED_KEYS = [
   "hero",
   "outcomes",
   "service-catalogue-nav",
+  "business-system-services",
   "thrivable-business",
   "business-leadership",
   "technocratic-design",
@@ -18,7 +19,7 @@ const EXPECTED_KEYS = [
 ];
 
 describe("sectionSchemas", () => {
-  it("declares exactly the 12 expected section keys", () => {
+  it("declares exactly the expected section keys", () => {
     expect(Object.keys(sectionSchemas).sort()).toEqual([...EXPECTED_KEYS].sort());
   });
 

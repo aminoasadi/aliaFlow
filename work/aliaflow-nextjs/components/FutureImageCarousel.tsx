@@ -83,6 +83,7 @@ export function ImageCarousel({ items, dark = false, label = "Image carousel", c
   const drag = useRef({ startX: 0, startScroll: 0 });
   const [dragging, setDragging] = useState(false);
   const [active, setActive] = useState(0);
+  const browseHint = /[\u0600-\u06ff]/.test(label) ? "برای مرور از کلیدهای جهت‌نمای چپ و راست استفاده کنید." : "Use the left and right arrow keys to browse.";
 
   return (
     <section className={`image-carousel${dark ? " image-carousel-dark" : ""}${dragging ? " is-dragging" : ""}${className ? ` ${className}` : ""}`} aria-label={label}>
@@ -90,7 +91,7 @@ export function ImageCarousel({ items, dark = false, label = "Image carousel", c
         ref={rail}
         className="image-carousel-rail"
         tabIndex={0}
-        aria-label={`${label}. Use the left and right arrow keys to browse.`}
+        aria-label={`${label}. ${browseHint}`}
         onKeyDown={handleRailKeys}
         onScroll={() => trackActiveSlide(rail.current, setActive)}
         onPointerDown={(event) => { if (!isMouseDrag(event)) return; event.currentTarget.setPointerCapture(event.pointerId); drag.current = { startX: event.clientX, startScroll: event.currentTarget.scrollLeft }; setDragging(true); }}

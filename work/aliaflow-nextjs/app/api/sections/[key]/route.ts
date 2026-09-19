@@ -6,12 +6,12 @@ import { getSessionUserId } from "../../../../lib/auth";
 
 type RouteContext = { params: Promise<{ key: string }> };
 
-export async function GET(_request: NextRequest, { params }: RouteContext) {
+export async function GET(request: NextRequest, { params }: RouteContext) {
   const { key } = await params;
   if (!sectionSchemas[key]) {
     return NextResponse.json({ error: "Unknown section" }, { status: 404 });
   }
-  const data = await getSection(key);
+  const data = await getSection(key, request.nextUrl.searchParams.get("locale") === "fa" ? "fa" : "en");
   if (!data) {
     return NextResponse.json({ error: "Section not seeded" }, { status: 404 });
   }

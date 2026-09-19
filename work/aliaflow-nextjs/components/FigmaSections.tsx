@@ -19,9 +19,8 @@ function BusinessGameMark() {
   </svg>;
 }
 
-export function DepartmentHeading({ title }: { title: string }) {
-  const isBusinessLeadership = title.trim().toLowerCase() === "business leadership";
-  return <section className={`department-heading${isBusinessLeadership ? " department-heading--business-leadership" : ""}`}><h2>{title}</h2></section>;
+export function DepartmentHeading({ title, businessLeadership = false }: { title: string; businessLeadership?: boolean }) {
+  return <section className={`department-heading${businessLeadership ? " department-heading--business-leadership" : ""}`}><h2>{title}</h2></section>;
 }
 
 export function ServiceCatalogueNav({ heading, tabs }: { heading: string; tabs: { number: string; label: string }[] }) {
@@ -37,33 +36,34 @@ export function QuestionHero({ title, question, image, imageAlt }: { title: stri
   return <section className="question-hero"><Image src={image} alt={imageAlt} fill sizes="100vw" /><div><h2>{title}</h2><h3>{question}</h3></div></section>;
 }
 
-export function ServiceStatement({ number, title, body, dark = false }: { number: string; title: string; body: string; dark?: boolean }) {
-  const normalizedTitle = title.trim().toLowerCase();
-  const isBusinessGame = normalizedTitle === "business game";
-  const isChangeSolving = normalizedTitle === "change solving";
-  const isRiskSetting = normalizedTitle === "risk setting";
-  const isPerformanceTesting = normalizedTitle === "performance testing";
-  const hasLeadershipDivider = ["business game", "strategic roles", "leadership model"].includes(normalizedTitle);
+type StatementVariant = "business-game" | "strategic-roles" | "leadership-model" | "risk-setting" | "change-solving" | "performance-testing";
+export function ServiceStatement({ number, title, body, dark = false, variant }: { number: string; title: string; body: string; dark?: boolean; variant?: StatementVariant }) {
+  const isBusinessGame = variant === "business-game";
+  const isChangeSolving = variant === "change-solving";
+  const isRiskSetting = variant === "risk-setting";
+  const isPerformanceTesting = variant === "performance-testing";
+  const hasLeadershipDivider = variant === "business-game" || variant === "strategic-roles" || variant === "leadership-model";
   return <section className={`service-statement ${dark ? "statement-dark" : ""}${isBusinessGame ? " service-statement--business-game" : ""}${isChangeSolving ? " service-statement--change-solving" : ""}${isRiskSetting ? " service-statement--risk-setting" : ""}${isPerformanceTesting ? " service-statement--performance-testing" : ""}${hasLeadershipDivider ? " service-statement--leadership-divider" : ""}`}><div><h2>{number} {title}</h2><p>{body}</p></div><div className="statement-mark" aria-hidden="true">{isBusinessGame ? <BusinessGameMark /> : isChangeSolving ? <img src="/assets/change-solving-icon.png" alt="" /> : isRiskSetting ? <img src="/assets/risk-setting-icon.svg" alt="" /> : isPerformanceTesting ? <img src="/assets/performance-testing-icon.svg" alt="" /> : <span>{number}</span>}</div></section>;
 }
 
-export function ThreeCards({ items, dark = false, segment, realCount }: { items: Item[]; dark?: boolean; segment?: string; realCount?: number }) {
+export function ThreeCards({ items, dark = false, segment, realCount, variant }: { items: Item[]; dark?: boolean; segment?: string; realCount?: number; variant?: StatementVariant }) {
   const slides: FutureImage[] = items.map((item, index) => ({
     src: item.image?.trim() || undefined,
     alt: item.title,
     href: segment ? `/services/${segment}/${cardSlug(item)}` : undefined,
     duplicate: realCount !== undefined && index >= realCount,
   }));
-  const isBusinessGame = items.every((item) => item.title.trim().toLowerCase().startsWith("business game"));
-  const isChangeSolving = items.every((item) => item.title.trim().toLowerCase().startsWith("change solving"));
-  const isRiskSetting = items.every((item) => item.title.trim().toLowerCase().startsWith("risk setting"));
-  const isPerformanceTesting = items.every((item) => item.title.trim().toLowerCase().startsWith("performance testing"));
-  return <ImageCarousel items={slides} dark={dark} label="Service examples" className={isBusinessGame ? "business-game-carousel" : isChangeSolving ? "change-solving-carousel" : isRiskSetting ? "risk-setting-carousel" : isPerformanceTesting ? "performance-testing-carousel" : undefined} />;
+  const isBusinessGame = variant === "business-game";
+  const isChangeSolving = variant === "change-solving";
+  const isRiskSetting = variant === "risk-setting";
+  const isPerformanceTesting = variant === "performance-testing";
+  const isPersian = items.some((item) => /[\u0600-\u06ff]/.test(item.title));
+  return <ImageCarousel items={slides} dark={dark} label={isPersian ? "نمونه‌های سرویس" : "Service examples"} className={isBusinessGame ? "business-game-carousel" : isChangeSolving ? "change-solving-carousel" : isRiskSetting ? "risk-setting-carousel" : isPerformanceTesting ? "performance-testing-carousel" : undefined} />;
 }
 
-export function EventPromo({ title, image, imageAlt, kicker, body, ctaLabel, ctaHref, dark = false }: { title: string; image: string; imageAlt: string; kicker: string; body: string; ctaLabel: string; ctaHref: string; dark?: boolean }) {
-  const isFutureLeadershipJam = title.trim().toLowerCase() === "future leadership jam";
-  const isTechnocraticLeadershipJam = title.trim().toLowerCase() === "technocratic design for leadership jam";
+export function EventPromo({ title, image, imageAlt, kicker, body, ctaLabel, ctaHref, dark = false, variant }: { title: string; image: string; imageAlt: string; kicker: string; body: string; ctaLabel: string; ctaHref: string; dark?: boolean; variant?: "future-leadership" | "technocratic-leadership" }) {
+  const isFutureLeadershipJam = variant === "future-leadership";
+  const isTechnocraticLeadershipJam = variant === "technocratic-leadership";
   return <section className={`event-promo ${dark ? "event-promo-dark" : ""}${isFutureLeadershipJam ? " event-promo--future-leadership" : ""}${isTechnocraticLeadershipJam ? " event-promo--technocratic-leadership" : ""}`}><div className="event-copy"><h2>{title}</h2><p>{kicker}</p><p>{body}</p><EventBookingModal eventName={title} eventDate={kicker} triggerLabel={ctaLabel} triggerClassName="event-cta" /></div><div className="event-image"><Image src={image} alt={imageAlt} fill sizes="60vw" /></div></section>;
 }
 
@@ -90,6 +90,7 @@ export function BusinessLeadership({
   question,
   statements,
   holocratic_line,
+  holocratic_heading,
   event_title,
   event_image,
   event_image_alt,
@@ -104,6 +105,7 @@ export function BusinessLeadership({
   question: string;
   statements: StatementWithCards[];
   holocratic_line: string;
+  holocratic_heading: string;
   event_title: string;
   event_image: string;
   event_image_alt: string;
@@ -113,19 +115,21 @@ export function BusinessLeadership({
   event_cta_href: string;
 }) {
   return <>
-    <DepartmentHeading title={department_heading} />
+    <DepartmentHeading title={department_heading} businessLeadership />
     <QuestionHero title={department_heading} question={question} image={question_image} imageAlt={question_image_alt} />
-    {statements.map((statement) => {
+    {statements.map((statement, index) => {
       const normalized = statement.title.trim().toLowerCase();
       const segment = LEADERSHIP_SEGMENTS[normalized];
+      const variants: StatementVariant[] = ["business-game", "strategic-roles", "leadership-model"];
+      const variant = variants[index];
       const cards = segment ? [...statement.cards, ...statement.cards.slice(0, 2)] : statement.cards;
       return <Fragment key={statement.number}>
-        <ServiceStatement dark number={statement.number} title={statement.title} body={statement.body} />
-        <ThreeCards dark segment={segment} realCount={statement.cards.length} items={cards} />
+        <ServiceStatement dark variant={variant} number={statement.number} title={statement.title} body={statement.body} />
+        <ThreeCards dark segment={segment} realCount={statement.cards.length} variant={variant} items={cards} />
       </Fragment>;
     })}
-    <section className="holocratic"><h2>HOLOCRATIC<br />MANAGEMENT</h2><p>{holocratic_line}</p></section>
-    <EventPromo dark title={event_title} image={event_image} imageAlt={event_image_alt} kicker={event_kicker} body={event_body} ctaLabel={event_cta_label} ctaHref={event_cta_href} />
+    <section className="holocratic"><h2><Lines text={holocratic_heading} /></h2><p>{holocratic_line}</p></section>
+    <EventPromo dark variant="future-leadership" title={event_title} image={event_image} imageAlt={event_image_alt} kicker={event_kicker} body={event_body} ctaLabel={event_cta_label} ctaHref={event_cta_href} />
   </>;
 }
 
@@ -180,16 +184,18 @@ export function TechnocraticDesign({
         })}
       </div>
     </section>
-    {statements.map((statement) => {
+    {statements.map((statement, index) => {
       const normalized = statement.title.trim().toLowerCase();
       const segment = DESIGN_SEGMENTS[normalized];
+      const variants: StatementVariant[] = ["risk-setting", "change-solving", "performance-testing"];
+      const variant = variants[index];
       const cards = segment ? [...statement.cards, ...statement.cards.slice(0, 2)] : statement.cards;
       return <Fragment key={statement.number}>
-        <ServiceStatement number={statement.number} title={statement.title} body={statement.body} />
-        <ThreeCards segment={segment} realCount={statement.cards.length} items={cards} />
+        <ServiceStatement variant={variant} number={statement.number} title={statement.title} body={statement.body} />
+        <ThreeCards segment={segment} realCount={statement.cards.length} variant={variant} items={cards} />
       </Fragment>;
     })}
-    <EventPromo title={event_title} image={event_image} imageAlt={event_image_alt} kicker={event_kicker} body={event_body} ctaLabel={event_cta_label} ctaHref={event_cta_href} />
+    <EventPromo variant="technocratic-leadership" title={event_title} image={event_image} imageAlt={event_image_alt} kicker={event_kicker} body={event_body} ctaLabel={event_cta_label} ctaHref={event_cta_href} />
   </>;
 }
 
@@ -232,7 +238,7 @@ export function WhyChooseUs({
     <p>{eyebrow}</p>
     <h2><Lines text={heading} /></h2>
     <div className="why-us-cards-frame">
-      <img className="why-us-cards" src="/assets/why-choose-us.svg" alt="Business Thrivability: different, competitive, and scalable — reason to believe." />
+      <img className="why-us-cards" src="/assets/why-choose-us.svg" alt={/[\u0600-\u06ff]/.test(heading) ? "شکوفایی کسب‌وکار: متمایز، رقابت‌پذیر و مقیاس‌پذیر" : "Business Thrivability: different, competitive, and scalable — reason to believe."} />
     </div>
   </section>;
 }
@@ -244,12 +250,13 @@ export function WhyTrustUs({
   heading: string;
   subheading: string;
 }) {
+  const trustMatch = /trust/i.test(heading);
   const [beforeTrust = heading, afterTrust = ""] = heading.split(/trust/i);
 
   return <section className="why-trust-us" aria-labelledby="why-trust-us-heading">
     <div className="why-trust-us__top-cutout" aria-hidden="true" />
     <div className="why-trust-us__content">
-      <h2 id="why-trust-us-heading">{beforeTrust}<strong>TRUST</strong>{afterTrust}</h2>
+      <h2 id="why-trust-us-heading">{trustMatch ? <>{beforeTrust}<strong>TRUST</strong>{afterTrust}</> : heading}</h2>
       <p>{subheading}</p>
     </div>
     <div className="why-trust-us__bottom-cutout" aria-hidden="true" />
@@ -267,7 +274,7 @@ export function PortfolioAndPeople({
   portfolio_heading: string;
   people_heading: string;
   toolkits_heading: string;
-  timeline: { year: string; label: string }[];
+  timeline: { year: string; label: string; body: string }[];
   people: { name: string; role: string; image: string; image_alt: string }[];
   toolkits: { title: string; body: string; image: string; image_alt: string }[];
 }) {
@@ -311,7 +318,7 @@ export function TestimonialsAndFooter({
         return <span className={logo ? "partner-card--art" : undefined} key={`${partner.name}-${i}`}>{logo ? <Image src={logo} alt={partner.logo_alt || partner.name} fill sizes="(max-width: 780px) 50vw, 12.5vw" /> : <><i />{partner.name}</>}</span>;
       })}</div>
       <h2>{testimonials_heading}</h2>
-      <TestimonialCarousel slides={testimonials} />
+      <TestimonialCarousel slides={testimonials} locale={/[\u0600-\u06ff]/.test(testimonials_heading) ? "fa" : "en"} />
     </section>
     <section className="what-if"><h2><Lines text={displayClosingHeading} /></h2><p><Lines text={closing_body} /></p></section>
   </>;

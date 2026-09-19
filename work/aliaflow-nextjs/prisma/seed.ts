@@ -1,6 +1,7 @@
 import "dotenv/config";
 import { prisma } from "../lib/db";
 import { hashPassword } from "../lib/auth";
+import { persianSections } from "../data/persian-sections";
 
 /**
  * Placeholder article content for a card's detail page. The copy matches the
@@ -60,6 +61,7 @@ const sections: Record<string, Record<string, unknown>> = {
 
   outcomes: {
     intro_heading: "YOUR BUSINESS\nIS...",
+    title_eyebrow: "YOUR BUSINESS IS",
     title_prefix: "is",
     title_suffix: "but we make it",
     detail_prefix: "Not only",
@@ -102,6 +104,32 @@ const sections: Record<string, Record<string, unknown>> = {
       { number: "2", label: "Business Leadership" },
       { number: "3", label: "Technocratic Design" },
       { number: "4", label: "Execution Management" },
+    ],
+  },
+
+  "business-system-services": {
+    eyebrow: "BUSINESS SYSTEM SERVICES",
+    heading: "DESIGN THE SYSTEM\nBEHIND THE BUSINESS",
+    intro: "Three connected interventions to make strategy visible, usable, and ready to scale.",
+    services: [
+      {
+        number: "01",
+        title: "Business System Consulting",
+        body: "We examine the system behind your business: its choices, operating logic, capabilities, and constraints. The result is a clearer foundation for decisions that need to hold together over time.",
+        detail: "STRATEGY · OPERATING MODEL · CAPABILITY",
+      },
+      {
+        number: "02",
+        title: "Business Service Design",
+        body: "We turn your business model into services people can understand and teams can deliver. Each service is shaped around real value, clear roles, and a practical path from promise to performance.",
+        detail: "VALUE PROPOSITION · SERVICE MODEL · DELIVERY",
+      },
+      {
+        number: "03",
+        title: "Business Touchpoint Alignment",
+        body: "We align the moments where your business meets customers, partners, and teams. Every touchpoint is connected to the same intent, so the experience feels coherent from first signal to lasting relationship.",
+        detail: "EXPERIENCE · JOURNEY · ALIGNMENT",
+      },
     ],
   },
 
@@ -202,6 +230,7 @@ const sections: Record<string, Record<string, unknown>> = {
       },
     ],
     holocratic_line: "Mentoring, Leading, Training, Coaching, Managing",
+    holocratic_heading: "HOLOCRATIC\nMANAGEMENT",
     event_title: "Future Leadership JAM",
     event_image: "/assets/future-leadership-jam.svg",
     event_image_alt: "Leadership team gathering",
@@ -280,9 +309,9 @@ const sections: Record<string, Record<string, unknown>> = {
     people_heading: "PEOPLE",
     toolkits_heading: "DESIGN TOOLKITS",
     timeline: [
-      { year: "1389", label: "Timeline Machine" },
-      { year: "1390", label: "Time Machine" },
-      { year: "1395", label: "Timeline Machine" },
+      { year: "1389", label: "Timeline Machine", body: "A milestone in shaping Aliaflow's approach to business transformation and long-term value creation." },
+      { year: "1390", label: "Time Machine", body: "A new chapter connecting future thinking, strategic design, and practical business execution." },
+      { year: "1395", label: "Timeline Machine", body: "The system evolved through new projects, partnerships, and evidence gathered from real organizations." },
     ],
     people: [
       { name: "Vahid Daem", role: "Business Manager", image: "/assets/daem.png", image_alt: "Vahid Daem" },
@@ -369,12 +398,48 @@ const sections: Record<string, Record<string, unknown>> = {
 };
 
 async function main() {
-  let created = 0;
-  for (const [key, data] of Object.entries(sections)) {
+  let migrated = 0;
+  for (const [key, fallbackEnglish] of Object.entries(sections)) {
     const existing = await prisma.section.findUnique({ where: { key } });
-    if (existing) continue;
-    await prisma.section.create({ data: { key, data: JSON.stringify(data), publishedData: JSON.stringify(data), publishedAt: new Date() } });
-    created += 1;
+    const mergeMissing = (defaults: unknown, current: unknown): unknown => {
+      if (Array.isArray(defaults)) {
+        if (!Array.isArray(current)) return defaults;
+        return current.map((item, index) => mergeMissing(defaults[index], item));
+      }
+      if (defaults && typeof defaults === "object" && !Array.isArray(defaults)) {
+        const value = current && typeof current === "object" && !Array.isArray(current) ? current as Record<string, unknown> : {};
+        return Object.fromEntries(Object.entries(defaults as Record<string, unknown>).map(([field, defaultValue]) => [field, mergeMissing(defaultValue, value[field])]).concat(Object.entries(value).filter(([field]) => !(field in (defaults as Record<string, unknown>)))));
+      }
+      return current === undefined ? defaults : current;
+    };
+    const localizeVersion = (source: string | null | undefined) => {
+      if (!source) return { en: fallbackEnglish, fa: persianSections[key] ?? fallbackEnglish };
+      const parsed = JSON.parse(source) as Record<string, unknown>;
+      if (parsed.en && typeof parsed.en === "object" && parsed.fa && typeof parsed.fa === "object") {
+        return {
+          en: mergeMissing(fallbackEnglish, parsed.en),
+          fa: mergeMissing(persianSections[key] ?? fallbackEnglish, parsed.fa),
+        };
+      }
+      return { en: mergeMissing(fallbackEnglish, parsed), fa: persianSections[key] ?? fallbackEnglish };
+    };
+    const localizedDraft = localizeVersion(existing?.data);
+    const localizedPublished = localizeVersion(existing?.publishedData ?? existing?.data);
+
+    await prisma.section.upsert({
+      where: { key },
+      update: {
+        data: JSON.stringify(localizedDraft),
+        publishedData: JSON.stringify(localizedPublished),
+      },
+      create: {
+        key,
+        data: JSON.stringify(localizedDraft),
+        publishedData: JSON.stringify(localizedPublished),
+        publishedAt: new Date(),
+      },
+    });
+    migrated += 1;
   }
 
   const adminEmail = process.env.ADMIN_EMAIL;
@@ -404,7 +469,7 @@ async function main() {
     await prisma.setting.upsert({ where: { key }, update: {}, create: { key, value } });
   }
 
-  console.log(`Seeded ${created} new section(s) (${Object.keys(sections).length - created} already existed, left untouched) and admin user ${adminEmail}`);
+  console.log(`Seeded or migrated ${migrated} bilingual section(s) and admin user ${adminEmail}`);
 }
 
 main()
