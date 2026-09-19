@@ -157,38 +157,6 @@
   line-height: .95;
   letter-spacing: -.06em;
 }
-.card-article-related-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  border-top: 3px solid #555;
-  border-bottom: 3px solid #555;
-}
-.card-article-related-card {
-  display: block;
-  min-width: 0;
-  border-right: 2px solid #555;
-}
-.card-article-related-card:last-child { border-right: 0; }
-/* Every related card is a whole composed artwork in portrait 5:8. Shown at
-   the full width of its cell it would tower over the page, so it is capped
-   and centred: the card keeps its own proportions without setting the
-   rail's height, and is contained rather than cropped since a crop would
-   cut through the design's own baked-in text. */
-.card-article-related-image {
-  position: relative;
-  width: min(100%, 300px);
-  height: auto;
-  aspect-ratio: 5 / 8;
-  margin: 40px auto;
-  background: transparent;
-}
-.card-article-related-image img { object-fit: contain; transition: transform .4s ease; }
-
-@media (hover: hover) {
-  .card-article-related-card:hover .card-article-related-image img { transform: scale(1.03); }
-}
-.card-article-related-card:focus-visible { outline: 3px solid #2557d6; outline-offset: -3px; }
-
 @media (max-width: 780px) {
   .card-article-crumbs { padding-top: 84px; }
   .card-article-title-band { padding: 40px 10% 52px; }
@@ -201,25 +169,22 @@
   .card-article-points article:last-child { border-bottom: 0; }
   .card-article-cta { padding: 72px 10%; }
   .card-article-related h2 { padding: 0 10% 28px; }
-  /* The related rail's own carousel conversion lives in mobile.css, next to
-     every other card row on the site that becomes a one-card swipe there. */
+  /* .image-carousel already handles the mobile full-bleed swipe treatment
+     (see future-image-carousel.css / mobile.css) — this rail is that exact
+     component, so it needs no rules of its own. */
 }
 
 /* Landing cards became links. The image lift is the only hover affordance on
    the page; the existing card frames already clip it. */
-a.future-card { display: block; color: inherit; }
-a.future-card .future-map img { transition: transform .4s ease; }
 .future-image-slide a,
 .image-carousel-slide a { display: block; }
 .future-image-slide a img,
 .image-carousel-slide a img { transition: transform .4s ease; }
 
 @media (hover: hover) {
-  a.future-card:hover .future-map img { transform: scale(1.03); }
   .future-image-slide a:hover img,
   .image-carousel-slide a:hover img { transform: scale(1.03); }
 }
 
-a.future-card:focus-visible,
 .future-image-slide a:focus-visible,
 .image-carousel-slide a:focus-visible { outline: 3px solid #2557d6; outline-offset: -3px; }

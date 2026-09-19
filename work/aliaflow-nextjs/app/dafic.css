@@ -13,7 +13,7 @@
 }
 
 /* Extension: Header uses DAFIC focus treatment without changing its Figma geometry. */
-.site-header a:focus-visible,.site-header button:focus-visible,.future-card a:focus-visible{
+.site-header a:focus-visible,.site-header button:focus-visible{
   outline:3px solid var(--dafic-primary-500);
   outline-offset:4px;
 }
