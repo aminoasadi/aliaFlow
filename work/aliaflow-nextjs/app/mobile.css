@@ -386,6 +386,7 @@
   .business-system-services { border-bottom: 0; }
   .thrivable-heading { border: 0; }
   .thrivable-heading > span { display: none; }
+  .thrivable-heading::before { height: 28px; }
   .thrivable-question { height: 62vw; min-height: 260px; }
   .thrivable-question h3 { font-size: clamp(36px, 11.4vw, 52px); }
   .thrivable-heading h2 { font-size: clamp(26px, 8vw, 34px); }
