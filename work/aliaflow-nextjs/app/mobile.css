@@ -378,6 +378,14 @@
   main .why-us .why-us-cards { width: 100%; max-width: 100%; margin: 32px 0 0; }
 
   /* Thrivable Business chapter heads. */
+  /*
+   * Desktop intentionally transitions directly from the dark services chapter
+   * to this heading. Remove the legacy mobile cap and its two hairlines so
+   * the hand-off uses the same clean treatment at every viewport.
+   */
+  .business-system-services { border-bottom: 0; }
+  .thrivable-heading { border: 0; }
+  .thrivable-heading > span { display: none; }
   .thrivable-question { height: 62vw; min-height: 260px; }
   .thrivable-question h3 { font-size: clamp(36px, 11.4vw, 52px); }
   .thrivable-heading h2 { font-size: clamp(26px, 8vw, 34px); }
