@@ -8,6 +8,7 @@
     "start": "next start",
     "test": "vitest run",
     "seed": "tsx prisma/seed.ts",
+    "sync-thrivable-cards": "tsx scripts/sync-thrivable-cards.ts",
     "publish-mock-articles": "node scripts/publish-mock-articles.mjs"
   },
   "prisma": {
