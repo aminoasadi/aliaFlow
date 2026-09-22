@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
+import { useEffect, useRef, useState, type KeyboardEvent, type PointerEvent, type RefObject } from "react";
 
 export type FutureImage = {
   /** CMS-provided URL for a fully designed card image. */
@@ -39,21 +39,23 @@ function CarouselDots({ count, active, onSelect }: { count: number; active: numb
   );
 }
 
-function trackActiveSlide(rail: HTMLDivElement | null, setActive: (index: number) => void) {
+function trackActiveSlide(rail: HTMLDivElement | null, setActive: (index: number) => void, count?: number) {
   if (!rail) return;
   const slide = rail.firstElementChild as HTMLElement | null;
   const step = slide?.offsetWidth ?? rail.clientWidth;
-  setActive(step > 0 ? Math.round(rail.scrollLeft / step) : 0);
+  const index = step > 0 ? Math.round(rail.scrollLeft / step) : 0;
+  setActive(count && count > 0 ? ((index % count) + count) % count : index);
 }
 
-function scrollToSlide(rail: HTMLDivElement | null, index: number) {
+function scrollToSlide(rail: HTMLDivElement | null, index: number, count?: number) {
   if (!rail) return;
   const slide = rail.firstElementChild as HTMLElement | null;
   const step = slide?.offsetWidth ?? rail.clientWidth;
-  rail.scrollTo({ left: step * index, behavior: "smooth" });
+  // A loop starts in its middle copy, so dot navigation never lands at a seam.
+  rail.scrollTo({ left: step * (index + (count && count > 1 ? count : 0)), behavior: "smooth" });
 }
 
-function CarouselSlide({ item, index, className }: { item: FutureImage; index: number; className: string }) {
+function CarouselSlide({ item, index, className, cloned = false }: { item: FutureImage; index: number; className: string; cloned?: boolean }) {
   const body = item.src ? (
     /* Inside a link the alt is empty: the link's aria-label already carries the
        name, and both would otherwise be announced one after the other. */
@@ -65,7 +67,7 @@ function CarouselSlide({ item, index, className }: { item: FutureImage; index: n
     </div>
   );
 
-  if (item.duplicate) {
+  if (item.duplicate || cloned) {
     return <article className={className} aria-hidden="true">{body}</article>;
   }
   if (item.href) {
@@ -78,11 +80,49 @@ function CarouselSlide({ item, index, className }: { item: FutureImage; index: n
   return <article className={className}>{body}</article>;
 }
 
+/**
+ * Re-centres an infinite rail before the visitor can reach either visual
+ * edge. The cards are triplicated, so the adjustment lands on an identical
+ * card and remains imperceptible during drag, swipe, and inertial scroll.
+ */
+function useInfiniteRail(rail: RefObject<HTMLDivElement | null>, enabled: boolean, itemCount: number) {
+  const correcting = useRef(false);
+
+  useEffect(() => {
+    if (!enabled) return;
+    const frame = requestAnimationFrame(() => {
+      const element = rail.current;
+      if (element) element.scrollLeft = element.scrollWidth / 3;
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [enabled, itemCount, rail]);
+
+  return () => {
+    const element = rail.current;
+    if (!enabled || !element || correcting.current) return;
+    const cycleWidth = element.scrollWidth / 3;
+    if (!Number.isFinite(cycleWidth) || cycleWidth <= 0) return;
+
+    if (element.scrollLeft < cycleWidth * 0.45 || element.scrollLeft > cycleWidth * 1.55) {
+      correcting.current = true;
+      element.scrollLeft += element.scrollLeft < cycleWidth * 0.45 ? cycleWidth : -cycleWidth;
+      requestAnimationFrame(() => { correcting.current = false; });
+    }
+  };
+}
+
+function loopedItems(items: FutureImage[]) {
+  return items.length > 1 ? [...items, ...items, ...items] : items;
+}
+
 export function ImageCarousel({ items, dark = false, label = "Image carousel", className = "" }: { items: FutureImage[]; dark?: boolean; label?: string; className?: string }) {
   const rail = useRef<HTMLDivElement>(null);
   const drag = useRef({ startX: 0, startScroll: 0 });
   const [dragging, setDragging] = useState(false);
   const [active, setActive] = useState(0);
+  const infinite = items.length > 1;
+  const displayedItems = loopedItems(items);
+  const keepLooping = useInfiniteRail(rail, infinite, items.length);
   const browseHint = /[\u0600-\u06ff]/.test(label) ? "برای مرور از کلیدهای جهت‌نمای چپ و راست استفاده کنید." : "Use the left and right arrow keys to browse.";
 
   return (
@@ -93,16 +133,16 @@ export function ImageCarousel({ items, dark = false, label = "Image carousel", c
         tabIndex={0}
         aria-label={`${label}. ${browseHint}`}
         onKeyDown={handleRailKeys}
-        onScroll={() => trackActiveSlide(rail.current, setActive)}
+        onScroll={() => { keepLooping(); trackActiveSlide(rail.current, setActive, items.length); }}
         onPointerDown={(event) => { if (!isMouseDrag(event)) return; event.currentTarget.setPointerCapture(event.pointerId); drag.current = { startX: event.clientX, startScroll: event.currentTarget.scrollLeft }; setDragging(true); }}
         onPointerMove={(event) => { if (dragging && rail.current) rail.current.scrollLeft = drag.current.startScroll - (event.clientX - drag.current.startX); }}
         onPointerUp={() => setDragging(false)}
         onPointerCancel={() => setDragging(false)}
         onPointerLeave={() => setDragging(false)}
       >
-        {items.map((item, index) => <CarouselSlide className="image-carousel-slide" item={item} index={index} key={`${item.src ?? "empty"}-${index}`} />)}
+        {displayedItems.map((item, index) => <CarouselSlide className="image-carousel-slide" item={item} index={index % items.length} cloned={infinite && (index < items.length || index >= items.length * 2)} key={`${item.src ?? "empty"}-${index}`} />)}
       </div>
-      <CarouselDots count={items.length} active={active} onSelect={(index) => scrollToSlide(rail.current, index)} />
+      <CarouselDots count={items.length} active={active} onSelect={(index) => scrollToSlide(rail.current, index, items.length)} />
     </section>
   );
 }
@@ -112,6 +152,9 @@ export function FutureImageCarousel({ items }: { items: FutureImage[] }) {
   const drag = useRef({ startX: 0, startScroll: 0, moved: false });
   const [dragging, setDragging] = useState(false);
   const [active, setActive] = useState(0);
+  const infinite = items.length > 1;
+  const displayedItems = loopedItems(items);
+  const keepLooping = useInfiniteRail(rail, infinite, items.length);
 
   const beginDrag = (clientX: number) => {
     const element = rail.current;
@@ -138,7 +181,7 @@ export function FutureImageCarousel({ items }: { items: FutureImage[] }) {
         tabIndex={0}
         aria-label="Future of X image cards. Use the left and right arrow keys to browse."
         onKeyDown={handleRailKeys}
-        onScroll={() => trackActiveSlide(rail.current, setActive)}
+        onScroll={() => { keepLooping(); trackActiveSlide(rail.current, setActive, items.length); }}
         onPointerDown={(event) => {
           if (!isMouseDrag(event)) return;
           event.currentTarget.setPointerCapture(event.pointerId);
@@ -149,11 +192,11 @@ export function FutureImageCarousel({ items }: { items: FutureImage[] }) {
         onPointerCancel={endDrag}
         onPointerLeave={endDrag}
       >
-        {items.map((item, index) => (
-          <CarouselSlide className="future-image-slide" item={item} index={index} key={`${item.src ?? "empty"}-${index}`} />
+        {displayedItems.map((item, index) => (
+          <CarouselSlide className="future-image-slide" item={item} index={index % items.length} cloned={infinite && (index < items.length || index >= items.length * 2)} key={`${item.src ?? "empty"}-${index}`} />
         ))}
       </div>
-      <CarouselDots count={items.length} active={active} onSelect={(index) => scrollToSlide(rail.current, index)} />
+      <CarouselDots count={items.length} active={active} onSelect={(index) => scrollToSlide(rail.current, index, items.length)} />
     </section>
   );
 }
