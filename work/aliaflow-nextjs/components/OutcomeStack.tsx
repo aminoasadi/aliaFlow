@@ -67,77 +67,43 @@ export function OutcomeStack({
   useGSAP(() => {
     const panels = gsap.utils.toArray<HTMLElement>(".fig-outcome", scope.current);
 
-    panels.forEach((panel, index) => {
+    panels.forEach((panel) => {
       const screen = panel.querySelector<HTMLElement>(".fig-outcome-screen");
       if (!screen) return;
 
       const circles = panel.querySelectorAll<HTMLElement>(".circle-field i");
       const placeholder = panel.querySelector<HTMLElement>(".detail-placeholder");
-      const nextPanel = panels[index + 1] as HTMLElement | undefined;
+      if (!circles.length && !placeholder) return;
 
-      if (index > 0) {
-        gsap.fromTo(
-          screen,
-          { y: () => window.innerHeight },
-          {
-            y: 0,
-            ease: "none",
-            scrollTrigger: {
-              trigger: panel,
-              start: "top bottom",
-              end: "top top",
-              scrub: 0.65,
-              invalidateOnRefresh: true,
-            },
-          },
-        );
+      // Keep visual entrances independent from document scrolling. Pinning a
+      // panel while CSS snap is resolving a touch fling creates competing
+      // scroll positions, which is especially visible on iOS.
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: panel,
+          start: "top 72%",
+          toggleActions: "play none none reverse",
+          invalidateOnRefresh: true,
+        },
+      });
+
+      if (circles.length) {
+        tl.to(circles, {
+          autoAlpha: 1,
+          scale: 1,
+          ease: "power2.out",
+          duration: 0.45,
+          stagger: 0.025,
+        }, 0);
       }
 
-      if (nextPanel) {
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: panel,
-            start: "top top",
-            endTrigger: nextPanel,
-            end: "top top",
-            scrub: 0.5,
-            pin: panel,
-            pinSpacing: false,
-            // A wheel fling or a fast swipe must settle this chapter before
-            // the following panel may take over. Native CSS snap handles the
-            // physical gesture; this keeps ScrollTrigger's pinned timeline in
-            // the same discrete state for keyboard and programmatic scrolling.
-            snap: {
-              snapTo: 1,
-              delay: 0.05,
-              duration: { min: 0.22, max: 0.65 },
-              ease: "power1.inOut",
-              inertia: false,
-            },
-            invalidateOnRefresh: true,
-          },
-        });
-
-        if (circles.length) {
-          tl.fromTo(
-            circles,
-            { autoAlpha: 0, scale: 0.25 },
-            { autoAlpha: 1, scale: 1, ease: "power2.out", duration: 0.6, stagger: 0.06 },
-            0,
-          );
-        }
-
-        if (placeholder) {
-          const circlesEnd = circles.length ? (circles.length - 1) * 0.06 + 0.6 : 0;
-          tl.fromTo(
-            placeholder,
-            { autoAlpha: 0, scale: 0.6 },
-            { autoAlpha: 1, scale: 1, ease: "power2.out", duration: 0.6 },
-            circlesEnd + 0.3,
-          );
-        }
-
-        tl.to({}, { duration: Math.max(tl.duration(), 0.1) * 0.6 });
+      if (placeholder) {
+        tl.to(placeholder, {
+          autoAlpha: 1,
+          scale: 1,
+          ease: "power2.out",
+          duration: 0.42,
+        }, circles.length ? 0.22 : 0);
       }
     });
 

@@ -1,18 +1,53 @@
-/*
- * Outcome chapters behave as deliberate, one-at-a-time slides.
- * ScrollTrigger owns the discrete state while a chapter is pinned. Use a
- * proximity snap for the document itself so the reader can leave the final
- * chapter without being pulled back to it.
- */
+/* Outcome chapters are one real viewport each. Native snap is deliberately
+   the only owner of scroll position; GSAP only reveals the artwork inside a
+   chapter. This prevents the pin/snap feedback loop that caused jumps on
+   touch devices and during fast wheel input. */
 html:has(.outcome-stack) {
   scroll-snap-type: y proximity;
+  scroll-padding-block: 0;
+  scroll-behavior: smooth;
 }
 
-/* ScrollTrigger wraps pinned panels in `.pin-spacer`, so this intentionally
-   remains a descendant selector rather than a direct-child selector. */
 .outcome-stack .fig-outcome {
+  height: 100vh;
+  height: 100dvh;
+  min-height: 100vh;
+  min-height: 100dvh;
+  box-sizing: border-box;
   scroll-snap-align: start;
   scroll-snap-stop: always;
+  overflow: clip;
+}
+
+.outcome-stack .fig-outcome-screen,
+.outcome-stack .fig-outcome-detail,
+.outcome-stack .manifesto-heading,
+.outcome-stack .manifesto-content {
+  height: 100%;
+  min-height: 100%;
+  box-sizing: border-box;
+}
+
+/* A screen always paints through its complete snap interval. This also avoids
+   the white/dark strip of the following chapter appearing below a short card. */
+.outcome-stack .fig-outcome-detail { background: var(--ink); }
+.outcome-stack .fig-outcome-title,
+.outcome-stack .manifesto-heading { background: #fff; }
+.outcome-stack .manifesto-content { background: var(--ink); }
+
+@media (max-width: 780px) {
+  .outcome-stack .fig-outcome-detail { height: 100%; min-height: 100%; }
+
+  .outcome-1 .outcome-detail,
+  .outcome-2 .outcome-detail,
+  .outcome-3 .outcome-detail {
+    top: clamp(300px, 51dvh, 470px) !important;
+  }
+
+  .outcome-detail .outcome-copy {
+    font-size: clamp(13px, 3.8vw, 16px);
+    line-height: 1.34;
+  }
 }
 
 /* The small preface mirrors the hierarchy in the supplied reference frames. */
@@ -35,5 +70,5 @@ html:has(.outcome-stack) {
 
 /* Do not force additional movement on people who opt out of motion. */
 @media (prefers-reduced-motion: reduce) {
-  html:has(.outcome-stack) { scroll-snap-type: y proximity; }
+  html:has(.outcome-stack) { scroll-behavior: auto; }
 }
