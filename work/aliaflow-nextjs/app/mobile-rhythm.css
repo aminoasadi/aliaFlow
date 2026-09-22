@@ -78,6 +78,12 @@
   .event-promo--future-leadership .event-copy p:nth-child(3),
   .event-promo--technocratic-leadership .event-copy p:nth-child(3) { margin-block-end: var(--mobile-space-4); }
 
+  /* Vertical labels are a desktop composition detail; keep event copy readable on phones. */
+  .event-copy p:nth-child(3) {
+    height: auto;
+    writing-mode: horizontal-tb;
+  }
+
   .brand-culture-header {
     padding-block: var(--mobile-section-space) var(--mobile-space-4);
     padding-inline: 28px;
