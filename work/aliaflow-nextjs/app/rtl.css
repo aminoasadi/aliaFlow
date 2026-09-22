@@ -44,6 +44,10 @@
 .site-shell--fa [dir="ltr"]{font-family:Arial,sans-serif}
 .site-shell--fa :where(.image-carousel-rail,.future-image-carousel-rail,.testimonial-carousel__rail,.portfolio-timeline-rail,.future-grid,.people-grid,.toolkits){direction:ltr}
 .site-shell--fa :where(.image-carousel-slide,.future-image-slide,.testimonial-carousel__slide,.portfolio-timeline-rail article,.future-grid article,.people-grid article,.toolkits article){direction:rtl}
+/* The rails scroll in LTR coordinates, so their index indicators must use the
+   same visual order. Otherwise dot 1 appears on the right while card 1 is
+   reached from the left, making Persian carousels feel reversed. */
+.site-shell--fa :where(.carousel-dots,.testimonial-carousel__dots){direction:ltr}
 
 @media(min-width:781px){
   .site-shell--fa .question-hero>div{align-items:flex-start}
