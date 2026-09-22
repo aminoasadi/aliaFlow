@@ -7,7 +7,7 @@
 .language-switch{display:inline-grid;min-width:40px;height:36px;margin-inline-start:24px;place-items:center;border:1px solid currentColor;border-radius:999px;font-size:13px;font-weight:700;line-height:1;text-decoration:none}
 .language-switch:focus-visible{outline:3px solid currentColor;outline-offset:3px}
 
-.site-shell--fa{font-family:IRANYekan,Arial,sans-serif;text-align:right}
+.site-shell--fa{font-family:IRANYekan,Arial,sans-serif;text-align:start}
 /* Persian letters must never be tracked: spacing breaks their joined forms,
    especially in the small mobile labels. Use !important because the visual
    system's English rules intentionally set tracking on individual components. */
@@ -20,17 +20,23 @@
 .site-shell--fa .thrivable-heading,.site-shell--fa .thrivable-question,.site-shell--fa .why-us,
 .site-shell--fa .why-trust-us,.site-shell--fa .portfolio-timeline,.site-shell--fa .holocratic,
 .site-shell--fa .execution-orbits,.site-shell--fa .partners>h2,.site-shell--fa .what-if{text-align:center}
+/* Narrative and form content follows the reading edge.  `start` lets the
+   same component remain correct if its direction is ever changed in CMS. */
 .site-shell--fa .catalogue-nav li,.site-shell--fa .business-system-services__intro,
 .site-shell--fa .business-system-service,.site-shell--fa .future-book-copy,.site-shell--fa .future-card-copy,
 .site-shell--fa .jam-copy,.site-shell--fa .magazine-copy,.site-shell--fa .question-hero>div,
 .site-shell--fa .service-statement>div:first-child,.site-shell--fa .event-copy,
 .site-shell--fa .execution-management>p,.site-shell--fa .people-grid article,
-.site-shell--fa .brief-form-section,.site-shell--fa .footer{text-align:right}
-.site-shell--fa .outcome-detail{direction:rtl;text-align:right}
+.site-shell--fa .brief-form-section,.site-shell--fa .brief-form-intro,.site-shell--fa .brief-form-wrapper,
+.site-shell--fa .footer,.site-shell--fa .portfolio-timeline-rail p,
+.site-shell--fa .testimonial-carousel__slide-fallback,.site-shell--fa .why-list,
+.site-shell--fa .service-copy,.site-shell--fa .pillar-copy,.site-shell--fa .card-copy{text-align:start}
+.site-shell--fa .outcome-detail{direction:rtl;text-align:start}
 .site-shell--fa .catalogue-nav li{flex-direction:row}
 .site-shell--fa .future-book h3 b{margin-right:0;margin-left:12px}
 .site-shell--fa .service-statement p{margin-right:clamp(22px,5.25vw,76px);margin-left:0}
 .site-shell--fa .event-copy,.site-shell--fa .jam-copy{align-items:flex-start}
+.site-shell--fa .technocratic-intro__hero h3{right:4.2%;left:auto;text-align:start}
 .site-shell--fa .brief-options{right:0;left:auto}
 .site-shell--fa .brief-submit span{margin-right:24px;margin-left:0}
 .site-shell--fa .footer-meta>div{justify-content:flex-start}
@@ -44,15 +50,15 @@
   .site-shell--fa .execution-management.execution-management h2{right:5.95%;left:auto}
   .site-shell--fa .execution-management.execution-management>p{right:39.6%;left:auto}
   .site-shell--fa .event-promo--future-leadership .event-copy,
-  .site-shell--fa .event-promo--technocratic-leadership .event-copy{align-items:flex-start;text-align:right}
+  .site-shell--fa .event-promo--technocratic-leadership .event-copy{align-items:flex-start;text-align:start}
 }
 
 @media(max-width:780px){
   .language-switch{position:absolute;right:72px;left:auto;height:32px;min-width:36px;margin:0}
   .site-shell--fa .language-switch{right:auto;left:106px}
   .site-shell--fa .menu-toggle{margin-right:auto;margin-left:0}
-  .site-shell--fa .nav-list.open{right:0;left:auto;text-align:right}
-  .site-shell--fa .nav-list.open a{text-align:right}
+  .site-shell--fa .nav-list.open{right:0;left:auto;text-align:start}
+  .site-shell--fa .nav-list.open a{text-align:start}
   .site-shell--fa .service-statement p{margin-right:22px;margin-left:0}
   .site-shell--fa .what-if p{text-align:center}
 }
