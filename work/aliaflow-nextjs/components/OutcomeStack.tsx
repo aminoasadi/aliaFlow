@@ -66,52 +66,69 @@ export function OutcomeStack({
 
   useGSAP(() => {
     const panels = gsap.utils.toArray<HTMLElement>(".fig-outcome", scope.current);
+    const screens = panels.map((panel) => panel.querySelector<HTMLElement>(".fig-outcome-screen"))
+      .filter((screen): screen is HTMLElement => Boolean(screen));
 
-    panels.forEach((panel) => {
-      const screen = panel.querySelector<HTMLElement>(".fig-outcome-screen");
-      if (!screen) return;
+    if (screens.length < 2) return;
 
+    // One pinned stack owns the entire transition. Multiple overlapping pins
+    // fight over scroll position on touch devices, while this single timeline
+    // lets every next screen slide in over the preceding screen smoothly.
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: scope.current,
+        start: "top top",
+        end: () => `+=${window.innerHeight * (screens.length - 1)}`,
+        pin: true,
+        pinSpacing: true,
+        scrub: 0.75,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        snap: {
+          snapTo: "labels",
+          delay: 0.08,
+          duration: { min: 0.18, max: 0.48 },
+          ease: "power2.out",
+          inertia: false,
+        },
+      },
+    });
+
+    screens.slice(1).forEach((screen, index) => {
+      const step = index;
+      const panel = panels[index + 1];
       const circles = panel.querySelectorAll<HTMLElement>(".circle-field i");
       const placeholder = panel.querySelector<HTMLElement>(".detail-placeholder");
-      if (!circles.length && !placeholder) return;
 
-      // Keep visual entrances independent from document scrolling. Pinning a
-      // panel while CSS snap is resolving a touch fling creates competing
-      // scroll positions, which is especially visible on iOS.
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: panel,
-          start: "top 72%",
-          toggleActions: "play none none reverse",
-          invalidateOnRefresh: true,
-        },
-      });
+      timeline.addLabel(`slide-${index + 1}`, step);
+      timeline.to(screen, { "--outcome-slide-y": "0%", duration: 1, ease: "none" }, step);
 
       if (circles.length) {
-        tl.to(circles, {
+        timeline.to(circles, {
           autoAlpha: 1,
           scale: 1,
-          ease: "power2.out",
-          duration: 0.45,
-          stagger: 0.025,
-        }, 0);
+          duration: 0.28,
+          ease: "power1.out",
+          stagger: 0.012,
+        }, step + 0.56);
       }
 
       if (placeholder) {
-        tl.to(placeholder, {
+        timeline.to(placeholder, {
           autoAlpha: 1,
           scale: 1,
-          ease: "power2.out",
-          duration: 0.42,
-        }, circles.length ? 0.22 : 0);
+          duration: 0.22,
+          ease: "power1.out",
+        }, step + 0.7);
       }
     });
+    timeline.addLabel("slide-final", screens.length - 1);
 
     ScrollTrigger.refresh();
   }, { scope });
 
   return (
-    <div ref={scope} className="outcome-list outcome-stack">
+    <div ref={scope} className="outcome-list outcome-stack outcome-stack--animated">
       <article className="fig-outcome outcome-0">
         <div className="fig-outcome-screen outcomes-intro"><h2><Lines text={introHeading} /></h2></div>
       </article>
