@@ -8,7 +8,11 @@
 .language-switch:focus-visible{outline:3px solid currentColor;outline-offset:3px}
 
 .site-shell--fa{font-family:IRANYekan,Arial,sans-serif;text-align:right}
-.site-shell--fa :where(h1,h2,h3,h4,p,a,button,li,label,span,small,strong,input,textarea,summary){font-family:IRANYekan,Arial,sans-serif;letter-spacing:0}
+/* Persian letters must never be tracked: spacing breaks their joined forms,
+   especially in the small mobile labels. Use !important because the visual
+   system's English rules intentionally set tracking on individual components. */
+.site-shell--fa :where(h1,h2,h3,h4,p,a,button,li,label,span,small,strong,input,textarea,summary){font-family:IRANYekan,Arial,sans-serif;word-spacing:normal;font-kerning:normal}
+.site-shell--fa *{letter-spacing:0!important}
 .site-shell--fa .site-header{direction:rtl}
 .site-shell--fa .nav-list{direction:rtl}
 .site-shell--fa .hero-copy,.site-shell--fa .outcomes-intro,.site-shell--fa .fig-outcome-title,
