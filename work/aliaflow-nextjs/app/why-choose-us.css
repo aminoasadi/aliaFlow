@@ -73,7 +73,7 @@
   .why-us.why-us { padding: 68px 20px 56px; }
   .why-us::before { width: 45%; height: 22px; }
   .why-us::after { width: 52%; height: 24px; }
-  .why-us-side-tab { top: 390px; width: 10px; height: 104px; }
+  .why-us-side-tab { top: clamp(232px, 62vw, 270px); width: 10px; height: 104px; }
   .why-us.why-us > p { margin-bottom: 25px; font-size: 17px; }
   .why-us.why-us > h2 { font-size: 39px; line-height: 1.04; }
   .why-us-cards { margin-top: 32px; }

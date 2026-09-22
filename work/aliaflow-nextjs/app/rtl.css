@@ -11,7 +11,7 @@
 /* Persian letters must never be tracked: spacing breaks their joined forms,
    especially in the small mobile labels. Use !important because the visual
    system's English rules intentionally set tracking on individual components. */
-.site-shell--fa :where(h1,h2,h3,h4,p,a,button,li,label,span,small,strong,input,textarea,summary){font-family:IRANYekan,Arial,sans-serif;word-spacing:normal;font-kerning:normal}
+.site-shell--fa :where(h1,h2,h3,h4,p,a,button,li,label,span,small,strong,b,input,textarea,summary){font-family:IRANYekan,Arial,sans-serif;word-spacing:normal;font-kerning:normal}
 .site-shell--fa *{letter-spacing:0!important}
 .site-shell--fa .site-header{direction:rtl}
 .site-shell--fa .nav-list{direction:rtl}
@@ -37,6 +37,7 @@
 .site-shell--fa .service-statement p{margin-right:clamp(22px,5.25vw,76px);margin-left:0}
 .site-shell--fa .event-copy,.site-shell--fa .jam-copy{align-items:flex-start}
 .site-shell--fa .technocratic-intro__hero h3{right:4.2%;left:auto;text-align:start}
+.site-shell--fa .technocratic-intro__pillar b{font-family:IRANYekan,Arial,sans-serif;font-weight:700;line-height:1.25}
 .site-shell--fa .brief-options{right:0;left:auto}
 .site-shell--fa .brief-submit span{margin-right:24px;margin-left:0}
 .site-shell--fa .footer-meta>div{justify-content:flex-start}
@@ -58,10 +59,11 @@
 }
 
 @media(max-width:780px){
-  .language-switch{position:absolute;right:72px;left:auto;height:32px;min-width:36px;margin:0}
-  .site-shell--fa .language-switch{right:auto;left:106px}
-  .site-shell--fa .menu-toggle{margin-right:auto;margin-left:0}
-  .site-shell--fa .nav-list.open{right:0;left:auto;text-align:start}
+  .language-switch{position:absolute;top:50%;right:112px;left:auto;height:32px;min-width:36px;margin:0;transform:translateY(-50%)}
+  .site-shell--fa .site-header{direction:ltr}
+  .site-shell--fa .language-switch{right:112px;left:auto}
+  .site-shell--fa .menu-toggle{margin-right:0;margin-left:auto}
+  .site-shell--fa .nav-list.open{right:0;left:0;text-align:start}
   .site-shell--fa .nav-list.open a{text-align:start}
   .site-shell--fa .service-statement p{margin-right:22px;margin-left:0}
   .site-shell--fa .what-if p{text-align:center}

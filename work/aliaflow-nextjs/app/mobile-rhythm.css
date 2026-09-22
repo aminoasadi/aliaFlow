@@ -47,6 +47,11 @@
     padding-inline: 26px;
   }
 
+  .service-statement.statement-dark.service-statement--leadership-divider {
+    min-height: 0;
+    padding-block-end: var(--mobile-space-4);
+  }
+
   .service-statement.statement-dark h2,
   .service-statement--change-solving h2,
   .service-statement--risk-setting h2,
