@@ -412,16 +412,49 @@ async function main() {
       }
       return current === undefined ? defaults : current;
     };
+    /*
+     * Persian content keeps its own copy and alt text, but an empty media
+     * field should never turn into an empty card on the public site. Reuse the
+     * currently configured English asset as a production-safe placeholder.
+     * A non-empty Persian value is deliberately preserved for CMS editors.
+     */
+    const inheritMissingMedia = (english: unknown, persian: unknown): unknown => {
+      if (Array.isArray(persian)) {
+        return persian.map((item, index) => inheritMissingMedia(Array.isArray(english) ? english[index] : undefined, item));
+      }
+      if (!persian || typeof persian !== "object" || Array.isArray(persian)) return persian;
+
+      const englishRecord = english && typeof english === "object" && !Array.isArray(english)
+        ? english as Record<string, unknown>
+        : {};
+      const persianRecord = persian as Record<string, unknown>;
+      return Object.fromEntries(Object.entries(persianRecord).map(([field, value]) => {
+        const englishValue = englishRecord[field];
+        const isMediaField = /(?:^|_)(?:image|logo|avatar|photo|icon|shape)$/i.test(field);
+        if (isMediaField && typeof value === "string" && value.trim() === ""
+          && typeof englishValue === "string" && englishValue.trim() !== "") {
+          return [field, englishValue];
+        }
+        return [field, inheritMissingMedia(englishValue, value)];
+      }));
+    };
     const localizeVersion = (source: string | null | undefined) => {
-      if (!source) return { en: fallbackEnglish, fa: persianSections[key] ?? fallbackEnglish };
+      if (!source) {
+        const fa = persianSections[key] ?? fallbackEnglish;
+        return { en: fallbackEnglish, fa: inheritMissingMedia(fallbackEnglish, fa) };
+      }
       const parsed = JSON.parse(source) as Record<string, unknown>;
       if (parsed.en && typeof parsed.en === "object" && parsed.fa && typeof parsed.fa === "object") {
+        const en = mergeMissing(fallbackEnglish, parsed.en);
+        const fa = mergeMissing(persianSections[key] ?? fallbackEnglish, parsed.fa);
         return {
-          en: mergeMissing(fallbackEnglish, parsed.en),
-          fa: mergeMissing(persianSections[key] ?? fallbackEnglish, parsed.fa),
+          en,
+          fa: inheritMissingMedia(en, fa),
         };
       }
-      return { en: mergeMissing(fallbackEnglish, parsed), fa: persianSections[key] ?? fallbackEnglish };
+      const en = mergeMissing(fallbackEnglish, parsed);
+      const fa = persianSections[key] ?? fallbackEnglish;
+      return { en, fa: inheritMissingMedia(en, fa) };
     };
     const localizedDraft = localizeVersion(existing?.data);
     const localizedPublished = localizeVersion(existing?.publishedData ?? existing?.data);
