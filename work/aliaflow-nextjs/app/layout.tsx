@@ -19,6 +19,7 @@ import "./figma-page-rhythm.css";
 import "./card-page.css";
 import "./event-modal.css";
 import "./mobile.css";
+import "./mobile-rhythm.css";
 import "./outcome-slide-scroll.css";
 import "./rtl.css";
 

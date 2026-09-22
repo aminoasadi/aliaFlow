@@ -1,0 +1,110 @@
+/*
+ * Mobile vertical rhythm
+ *
+ * Flowing sections share an 8px spacing scale. Full-screen story panels and
+ * image frames deliberately keep their viewport/aspect-ratio sizing; all
+ * written content around them follows these same tokens.
+ */
+@media (max-width: 780px) {
+  :root {
+    --mobile-space-1: 8px;
+    --mobile-space-2: 16px;
+    --mobile-space-3: 24px;
+    --mobile-space-4: 32px;
+    --mobile-section-space: 64px;
+    --mobile-section-space-compact: 48px;
+    --mobile-gutter: 24px;
+  }
+
+  /* Section introductions and chapter headings. */
+  .business-system-services__intro {
+    padding-block: var(--mobile-section-space);
+    padding-inline: 26px;
+  }
+
+  .business-system-services__intro p { margin-block-end: var(--mobile-space-3); }
+  .business-system-services__intro span { margin-block-start: var(--mobile-space-4); }
+  .business-system-service { padding-block-end: var(--mobile-space-4); }
+  .business-system-service__copy { padding-block-start: var(--mobile-space-4); }
+  .business-system-service small { margin-block-start: var(--mobile-space-4); }
+
+  .catalogue-nav {
+    padding-block: var(--mobile-section-space) var(--mobile-space-4);
+  }
+
+  .catalogue-nav h2 { margin-block-end: var(--mobile-space-3); }
+  .department-heading {
+    padding-block: var(--mobile-section-space-compact);
+    padding-inline: var(--mobile-gutter);
+  }
+
+  /* Repeated service statement headers use one shared content frame. */
+  .service-statement.statement-dark,
+  .service-statement.service-statement--change-solving,
+  .service-statement.service-statement--risk-setting,
+  .service-statement.service-statement--performance-testing {
+    padding-block: var(--mobile-section-space) var(--mobile-space-4);
+    padding-inline: 26px;
+  }
+
+  .service-statement.statement-dark h2,
+  .service-statement--change-solving h2,
+  .service-statement--risk-setting h2,
+  .service-statement--performance-testing h2 {
+    margin-block-end: var(--mobile-space-3);
+  }
+
+  .service-statement--change-solving p,
+  .service-statement--risk-setting p,
+  .service-statement--performance-testing p { margin-block-start: var(--mobile-space-3); }
+
+  .future-book-copy {
+    padding-block: var(--mobile-space-4);
+    padding-inline: 18px;
+  }
+
+  .jam-copy { padding: var(--mobile-section-space) 8%; }
+
+  .event-promo--future-leadership .event-copy,
+  .event-promo--technocratic-leadership .event-copy {
+    padding-block: var(--mobile-section-space);
+    padding-inline: 26px;
+  }
+
+  .event-promo--future-leadership .event-copy h2,
+  .event-promo--technocratic-leadership .event-copy h2 { margin-block-end: var(--mobile-space-4); }
+  .event-promo--future-leadership .event-copy p:nth-child(2),
+  .event-promo--technocratic-leadership .event-copy p:nth-child(2) { margin-block-end: var(--mobile-space-2); }
+  .event-promo--future-leadership .event-copy p:nth-child(3),
+  .event-promo--technocratic-leadership .event-copy p:nth-child(3) { margin-block-end: var(--mobile-space-4); }
+
+  .brand-culture-header {
+    padding-block: var(--mobile-section-space) var(--mobile-space-4);
+    padding-inline: 28px;
+  }
+
+  .brand-culture-copy p { margin-block-start: var(--mobile-space-3); }
+  .brand-culture-mark { margin-block-start: var(--mobile-space-4); }
+  .brand-culture-detail { padding-block: var(--mobile-space-3) var(--mobile-space-4); }
+  .brand-culture-detail h3 { margin-block: var(--mobile-space-3) var(--mobile-space-2); }
+
+  .portfolio-timeline { padding-block: var(--mobile-space-4); }
+  .portfolio-timeline > h2 { margin-block-end: var(--mobile-space-3); }
+  .portfolio-timeline-rail article { padding-block: var(--mobile-section-space-compact) var(--mobile-space-4); }
+  .portfolio-timeline-rail strong { margin-block: var(--mobile-space-3) var(--mobile-space-4); }
+
+  .execution-management.execution-management { padding-block-end: var(--mobile-section-space); }
+  .execution-management.execution-management h2 { padding-block-start: calc(var(--mobile-section-space) + var(--mobile-space-3)); }
+  .execution-management.execution-management .execution-orbits { margin-block-start: var(--mobile-section-space-compact); }
+  .execution-management.execution-management > p { margin-block-start: var(--mobile-section-space-compact); }
+
+  .why-us.why-us { padding-block: var(--mobile-section-space); }
+  main .why-us .why-us-cards { margin-block-start: var(--mobile-space-4); }
+  .why-trust-us__content { gap: var(--mobile-space-4); }
+  .holocratic { padding-block: var(--mobile-section-space); }
+
+  .brief-form-section { padding: var(--mobile-section-space) var(--mobile-gutter); }
+  .footer { padding: var(--mobile-section-space) var(--mobile-gutter) var(--mobile-space-4); }
+  .what-if { padding: var(--mobile-section-space) var(--mobile-gutter); }
+  .what-if p { margin-block-start: var(--mobile-space-3); }
+}
