@@ -90,8 +90,8 @@ main .portfolio .toolkits article:last-child { border-right: 0; }
 main .portfolio .toolkits article img { object-fit: cover; }
 
 @media (max-width: 780px) {
-  main .portfolio > h2 { height: 112px; padding: 8px 24px 0; font-size: 34px; }
-  main .portfolio > h2.toolkits-heading { height: 150px; padding: 0 26px; font-size: 36px; letter-spacing: .14em; }
+  main .portfolio > h2 { height: 104px; justify-content: center; padding: 8px 24px 0; font-size: 30px; text-align: center; }
+  main .portfolio > h2.toolkits-heading { height: 132px; justify-content: center; padding: 0 24px; font-size: 30px; letter-spacing: .11em; text-align: center; }
   .people-grid { height: auto; grid-template-columns: 1fr 1fr; }
   .people-grid article { height: 310px; padding: 30px 18px 0; border-bottom: 2px solid rgba(255, 255, 255, .12); }
   .people-grid h3 { margin-bottom: 9px; font-size: 21px; white-space: normal; }

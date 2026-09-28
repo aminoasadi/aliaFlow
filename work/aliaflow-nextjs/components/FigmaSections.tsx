@@ -320,6 +320,6 @@ export function TestimonialsAndFooter({
       <h2>{testimonials_heading}</h2>
       <TestimonialCarousel slides={testimonials} locale={/[\u0600-\u06ff]/.test(testimonials_heading) ? "fa" : "en"} />
     </section>
-    <section className="what-if"><h2><Lines text={displayClosingHeading} /></h2><p><Lines text={closing_body} /></p></section>
+    <section className="what-if"><h2><span className="what-if-heading-desktop"><Lines text={displayClosingHeading} /></span><span className="what-if-heading-mobile">{displayClosingHeading.replace(/\s+/g, " ")}</span></h2><p><Lines text={closing_body} /></p></section>
   </>;
 }

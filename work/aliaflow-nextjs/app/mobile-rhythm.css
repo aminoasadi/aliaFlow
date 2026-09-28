@@ -114,8 +114,8 @@
   .why-trust-us__content { gap: var(--mobile-space-4); }
   .holocratic { padding-block: var(--mobile-section-space); }
 
-  .brief-form-section { padding: var(--mobile-section-space) var(--mobile-gutter); }
+  .brief-form-section { padding: var(--mobile-space-4) var(--mobile-gutter); }
   .footer { padding: var(--mobile-section-space) var(--mobile-gutter) var(--mobile-space-4); }
-  .what-if { padding: var(--mobile-section-space) var(--mobile-gutter); }
-  .what-if p { margin-block-start: var(--mobile-space-3); }
+  .what-if { padding: var(--mobile-space-4) var(--mobile-gutter); }
+  .what-if p { margin-block-start: 0; }
 }

@@ -52,6 +52,8 @@
   letter-spacing: .015em;
 }
 
+main:not(.site-shell--fa) .why-trust-us h2 { white-space: nowrap; }
+
 .why-trust-us h2 strong { margin-inline: .14em; font-weight: 800; }
 
 .why-trust-us p {
@@ -67,6 +69,7 @@
   .why-trust-us__top-cutout { height: 34px; }
   .why-trust-us__bottom-cutout { height: 40px; }
   .why-trust-us__content { gap: 31px; }
-  .why-trust-us h2 { font-size: clamp(39px, 12vw, 62px); }
-  .why-trust-us p { font-size: clamp(12px, 3.6vw, 17px); letter-spacing: .27em; }
+  .why-trust-us h2 { font-size: clamp(30px, 9.2vw, 36px); }
+  .why-trust-us h2 strong { margin-inline: .09em; }
+  .why-trust-us p { font-size: clamp(11px, 3.2vw, 14px); letter-spacing: .24em; }
 }

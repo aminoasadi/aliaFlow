@@ -52,6 +52,8 @@
 
 @media(min-width:781px){
   .site-shell--fa .question-hero>div{align-items:flex-start}
+  .site-shell--fa .business-system-service{border-right:0;border-left:3px solid #555}
+  .site-shell--fa .business-system-service:last-child{border-left:0}
   .site-shell--fa .execution-management.execution-management h2{right:5.95%;left:auto}
   .site-shell--fa .execution-management.execution-management>p{right:39.6%;left:auto}
   .site-shell--fa .event-promo--future-leadership .event-copy,
@@ -65,6 +67,29 @@
   .site-shell--fa .menu-toggle{margin-right:0;margin-left:auto}
   .site-shell--fa .nav-list.open{right:0;left:0;text-align:start}
   .site-shell--fa .nav-list.open a{text-align:start}
+  .site-shell--fa .hero-copy{width:min(86vw,360px);transform:translate(-50%,-46%)}
+  .site-shell--fa .hero-copy .eyebrow{font-size:14px;font-weight:500}
+  .site-shell--fa .hero h1{font-size:clamp(29px,8.2vw,34px);line-height:1.28;font-weight:800}
+  .site-shell--fa .business-system-services__intro{padding:44px 22px 38px}
+  .site-shell--fa .business-system-services__intro p{margin:0 0 16px;font-size:10px;line-height:1.45}
+  .site-shell--fa .business-system-services__intro h2{max-width:346px;font-size:clamp(28px,7.5vw,31px);line-height:1.28;font-weight:800;text-wrap:balance}
+  .site-shell--fa .business-system-services__intro span{max-width:320px;margin-top:18px;font-size:12.5px;line-height:1.65}
+  .site-shell--fa .business-system-service{padding:0 22px 28px}
+  .site-shell--fa .business-system-service__topline{height:48px}
+  .site-shell--fa .business-system-service__copy{max-width:346px;padding-top:28px}
+  .site-shell--fa .business-system-service h3{max-width:320px;margin-bottom:12px;font-size:clamp(23px,6.7vw,27px);line-height:1.25;font-weight:700;text-wrap:balance}
+  .site-shell--fa .business-system-service p{font-size:12.5px;line-height:1.7}
+  .site-shell--fa .business-system-service small{margin-top:22px;font-size:9.5px;line-height:1.45}
+  .site-shell--fa .question-hero>div{padding:0 22px;align-items:center;text-align:center}
+  .site-shell--fa .question-hero h2{margin-bottom:22px;font-size:clamp(24px,6.7vw,28px);line-height:1.25;font-weight:500}
+  .site-shell--fa .question-hero h3{width:min(342px,100%);font-size:clamp(35px,10.5vw,42px);line-height:1.28;font-weight:800;text-wrap:balance}
+  .site-shell--fa .future-book{grid-template-columns:minmax(0,1fr) 82px;min-height:188px}
+  .site-shell--fa .future-book-copy{padding:24px 20px}
+  .site-shell--fa .future-book h3{margin-bottom:16px;font-size:clamp(22px,6.3vw,25px);line-height:1.28;font-weight:700;text-wrap:balance}
+  .site-shell--fa .future-book h3 b{margin-right:0;margin-left:8px;font-weight:500}
+  .site-shell--fa .future-book p{font-size:11.5px;line-height:1.55}
+  .site-shell--fa .future-book-mark{width:68px;height:68px}
+  .site-shell--fa .future-book-mark svg{width:34px;height:34px}
   .site-shell--fa .service-statement p{margin-right:22px;margin-left:0}
   .site-shell--fa .what-if p{text-align:center}
 }
