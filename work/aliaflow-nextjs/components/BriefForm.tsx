@@ -5,34 +5,34 @@ import { useState, type FormEvent } from "react";
 type Option = { value: string; label: string };
 
 const objectives: Option[] = [
-  { value: "mkhatban_nsbt_bh_shrkt_khdmat_w_twanmndyhay_ma_agahy_byshtry_pyda_krdhand", label: "Build stronger awareness of our company, services, and capabilities." },
-  { value: "mshtryan_bh_tkhss_tjrbh_atbar_w_twan_ajrayy_shrkt_atmad_krdhand", label: "Build customer trust in our expertise, experience, credibility, and delivery capability." },
-  { value: "shrkt_dr_dhhn_mkhatban_bhnwan_yk_mshawr_qabl_atka_w_mtkhss_dr_snt_shnakhth_shdh_ast", label: "Be recognised as a trusted, specialist industry adviser." },
-  { value: "shrkt_dr_hwzh_tdawm_khdmat_w_paydary_ksbwkar_bhnwan_yk_bazygr_pyshrw_dydh_shdh_ast", label: "Be seen as a leading player in service continuity and business resilience." },
-  { value: "tfawt_w_mzyt_shrkt_nsbt_bh_rqba_bray_mkhatban_shfaf_w_qabl_drk_shdh_ast", label: "Make our differentiation and advantage over competitors clear and understandable." },
-  { value: "mshtryan_nsbt_bh_twan_shrkt_dr_tamyn_bhmwq_tjhyzat_khdmat_ya_rahkarha_atmynan_pyda_krdhand", label: "Increase confidence in our ability to supply equipment, services, or solutions on time." },
-  { value: "mshtryan_mtmyn_shdhand_kh_mhswl_khdmt_ya_khrwjy_prwzhh_bhswrt_salm_kaml_w_qabl_astfadh_thwyl_dadh_myshwd", label: "Assure customers that the product, service, or project output is delivered complete and ready to use." },
-  { value: "mshtryan_nsbt_bh_srt_dqt_w_kyfyt_paskhgwyy_shrkt_atmynan_byshtry_pyda_krdhand", label: "Build confidence in the speed, accuracy, and quality of our response." },
-  { value: "mshtryan_mtmyn_shdhand_kh_nsb_rahandazy_ya_ajray_prwzhh_bhdrsty_w_mtabq_nyaz_anha_anjam_myshwd", label: "Assure customers that installation, commissioning, or project delivery meets their needs." },
-  { value: "mshtryan_amwzsh_lazm_ra_dryaft_krdhand_w_mytwannd_az_mhswl_khdmt_ya_rahkar_arayhshdh_bhdrsty_astfadh_knnd", label: "Help customers receive the training needed to use the product, service, or solution correctly." },
-  { value: "artbat_mshtry_ba_shrkt_az_yk_taml_mqty_bh_yk_rabth_blndmdt_qabl_atmad_w_hmrahanh_tbdyl_shdh_ast", label: "Turn one-off customer interactions into trusted, long-term relationships." },
+  { value: "مخاطبان نسبت به شرکت، خدمات و توانمندی‌های ما آگاهی بیشتری پیدا کرده‌اند.", label: "Build stronger awareness of our company, services, and capabilities." },
+  { value: "مشتریان به تخصص، تجربه، اعتبار و توان اجرایی شرکت اعتماد کرده‌اند.", label: "Build customer trust in our expertise, experience, credibility, and delivery capability." },
+  { value: "شرکت در ذهن مخاطبان به‌عنوان یک مشاور قابل اتکا و متخصص در صنعت شناخته شده است.", label: "Be recognised as a trusted, specialist industry adviser." },
+  { value: "شرکت در حوزه تداوم خدمات و پایداری کسب‌وکار به‌عنوان یک بازیگر پیشرو دیده شده است.", label: "Be seen as a leading player in service continuity and business resilience." },
+  { value: "تفاوت و مزیت شرکت نسبت به رقبا برای مخاطبان شفاف و قابل درک شده است.", label: "Make our differentiation and advantage over competitors clear and understandable." },
+  { value: "مشتریان نسبت به توان شرکت در تأمین به‌موقع تجهیزات، خدمات یا راهکارها اطمینان پیدا کرده‌اند.", label: "Increase confidence in our ability to supply equipment, services, or solutions on time." },
+  { value: "مشتریان مطمئن شده‌اند که محصول، خدمت یا خروجی پروژه به‌صورت سالم، کامل و قابل استفاده تحویل داده می‌شود.", label: "Assure customers that the product, service, or project output is delivered complete and ready to use." },
+  { value: "مشتریان نسبت به سرعت، دقت و کیفیت پاسخگویی شرکت اطمینان بیشتری پیدا کرده‌اند.", label: "Build confidence in the speed, accuracy, and quality of our response." },
+  { value: "مشتریان مطمئن شده‌اند که نصب، راه‌اندازی یا اجرای پروژه به‌درستی و مطابق نیاز آن‌ها انجام می‌شود.", label: "Assure customers that installation, commissioning, or project delivery meets their needs." },
+  { value: "مشتریان آموزش لازم را دریافت کرده‌اند و می‌توانند از محصول، خدمت یا راهکار ارائه‌شده به‌درستی استفاده کنند.", label: "Help customers receive the training needed to use the product, service, or solution correctly." },
+  { value: "ارتباط مشتری با شرکت از یک تعامل مقطعی به یک رابطه بلندمدت، قابل اعتماد و همراهانه تبدیل شده است.", label: "Turn one-off customer interactions into trusted, long-term relationships." },
 ];
 
 const approaches: Option[] = [
-  { value: "nmaysh_twanmndyha_tjrbhha_w_prwzhhhay_mshabh_shrkt", label: "Showcase the company’s capabilities, experience, and similar projects." },
-  { value: "arayh_rzwmh_nmwnhkar_w_shwahd_atbar", label: "Present credentials, case studies, and evidence of credibility." },
-  { value: "frwsh_mshawrhay_bhjay_mrfy_srf_mhswl", label: "Use consultative selling rather than simply presenting a product." },
-  { value: "shkhsysazy_pyshnhad_brasas_nyaz_w_mhdwdyt_mshtry", label: "Tailor the proposal to the customer’s needs and constraints." },
-  { value: "twdyh_shfaf_mzaya_mhdwdytha_ryskha_w_pyshnyazha", label: "Explain benefits, limitations, risks, and prerequisites transparently." },
-  { value: "nmaysh_twan_tamyn_mwjwdy_brndha_w_zyrsakht_ajrayy", label: "Demonstrate supply capability, inventory, brands, and delivery infrastructure." },
-  { value: "ayjad_tjrbh_hdwry_az_tryq_bazdyd_dmw_ya_jlsh_tkhssy", label: "Create an in-person experience through a visit, demo, or expert session." },
-  { value: "pygyry_mnzm_wdyt_sfarsh_prwzhh_ya_drkhwast_mshtry", label: "Follow up regularly on an order, project, or customer request." },
-  { value: "amwzsh_mly_w_qabl_astfadh_bray_tym_mshtry", label: "Provide practical, usable training for the customer team." },
-  { value: "sayr", label: "Other" },
+  { value: "نمایش توانمندی‌ها، تجربه‌ها و پروژه‌های مشابه شرکت", label: "Showcase the company’s capabilities, experience, and similar projects." },
+  { value: "ارائه رزومه، نمونه‌کار و شواهد اعتبار", label: "Present credentials, case studies, and evidence of credibility." },
+  { value: "فروش مشاوره‌ای به‌جای معرفی صرف محصول", label: "Use consultative selling rather than simply presenting a product." },
+  { value: "شخصی‌سازی پیشنهاد براساس نیاز و محدودیت مشتری", label: "Tailor the proposal to the customer’s needs and constraints." },
+  { value: "توضیح شفاف مزایا، محدودیت‌ها، ریسک‌ها و پیش‌نیازها", label: "Explain benefits, limitations, risks, and prerequisites transparently." },
+  { value: "نمایش توان تأمین، موجودی، برندها و زیرساخت اجرایی", label: "Demonstrate supply capability, inventory, brands, and delivery infrastructure." },
+  { value: "ایجاد تجربه حضوری از طریق بازدید، دمو یا جلسه تخصصی", label: "Create an in-person experience through a visit, demo, or expert session." },
+  { value: "پیگیری منظم وضعیت سفارش، پروژه یا درخواست مشتری", label: "Follow up regularly on an order, project, or customer request." },
+  { value: "آموزش عملی و قابل استفاده برای تیم مشتری", label: "Provide practical, usable training for the customer team." },
+  { value: "سایر", label: "Other" },
 ];
 
 const touchpoints: Option[] = [
-  { value: "wbsayt", label: "Website" }, { value: "shbkhhay_ajtmay_w_tblyghat", label: "Social media and advertising" }, { value: "aymyl_w_khbrnamh", label: "Email and newsletter" }, { value: "snd_prwpwzal_ya_drkhwast_pyshnhad", label: "Proposal or request-for-proposal document" }, { value: "brwshwr_twanmndyha_w_fayl_mrfy", label: "Capabilities brochure and company profile" }, { value: "nmwnhmwrdy_prwzhhha", label: "Project case studies" }, { value: "pltfrm_wbynar_w_padkst", label: "Webinar and podcast platform" }, { value: "ghrfh_nmayshgahy", label: "Exhibition booth" }, { value: "prtal_ya_aplykyshn_mshtryan_w_pshtybany", label: "Customer and support portal or application" }, { value: "samanh_tyktyng_w_myz_khdmt", label: "Ticketing system and service desk" }, { value: "sayr", label: "Other" },
+  { value: "وب‌سایت", label: "Website" }, { value: "شبکه‌های اجتماعی و تبلیغات", label: "Social media and advertising" }, { value: "ایمیل و خبرنامه", label: "Email and newsletter" }, { value: "سند پروپوزال یا درخواست پیشنهاد", label: "Proposal or request-for-proposal document" }, { value: "بروشور توانمندی‌ها و فایل معرفی", label: "Capabilities brochure and company profile" }, { value: "نمونه‌موردی پروژه‌ها", label: "Project case studies" }, { value: "پلتفرم وبینار و پادکست", label: "Webinar and podcast platform" }, { value: "غرفه نمایشگاهی", label: "Exhibition booth" }, { value: "پرتال یا اپلیکیشن مشتریان و پشتیبانی", label: "Customer and support portal or application" }, { value: "سامانه تیکتینگ و میز خدمت", label: "Ticketing system and service desk" }, { value: "سایر", label: "Other" },
 ];
 
 const faObjectiveLabels = [
