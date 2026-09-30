@@ -22,7 +22,7 @@ function EventBookingForm() {
         autoComplete="false"
         role="form"
         method="post"
-        action="http://crm.houseoftechnocrats.ir/form/submit?formId=19"
+        action="https://crm.houseoftechnocrats.ir/form/submit?formId=19"
         id="mauticform_bookaliaflowevent"
         data-mautic-form="bookaliaflowevent"
         encType="multipart/form-data"

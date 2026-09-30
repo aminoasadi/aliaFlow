@@ -92,7 +92,7 @@ export function BriefForm({ locale = "en" }: { locale?: "en" | "fa" }) {
   return <section id="brief-form" className="brief-form-section" aria-labelledby="brief-form-title">
     <div className="brief-form-intro"><p className="eyebrow">{fa ? "گفت‌وگو را شروع کنیم" : "START A CONVERSATION"}</p><h2 id="brief-form-title">{fa ? "فرم درخواست همکاری" : "Brief Form"}</h2><p>{fa ? "نیازتان را با ما در میان بگذارید تا گفت‌وگوی درستی را شکل دهیم." : "Share your needs so we can shape the right conversation."}</p></div>
     <div id="mauticform_wrapper_briefform" className="brief-form-wrapper mauticform_wrapper">
-      <form autoComplete="off" role="form" method="post" action="http://crm.houseoftechnocrats.ir/form/submit?formId=18" id="mauticform_briefform" data-mautic-form="briefform" encType="multipart/form-data" onSubmit={validate}>
+      <form autoComplete="off" role="form" method="post" action="https://crm.houseoftechnocrats.ir/form/submit?formId=18" id="mauticform_briefform" data-mautic-form="briefform" encType="multipart/form-data" onSubmit={validate}>
         <div className="mauticform-error brief-form-error" id="mauticform_briefform_error" aria-live="polite" />
         <div className="mauticform-message brief-form-message" id="mauticform_briefform_message" aria-live="polite" />
         <div className="mauticform-innerform"><div className="mauticform-page-wrapper mauticform-page-1" data-mautic-form-page="1">
