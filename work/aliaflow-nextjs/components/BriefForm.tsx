@@ -101,6 +101,11 @@ export function BriefForm({ locale = "en" }: { locale?: "en" | "fa" }) {
           <MultiSelectDropdown locale={locale} field="hdf_prwzhh_ra_antkhab_kny" label={fa ? "چرا" : "Why"} options={fa ? withLabels(objectives, faObjectiveLabels) : objectives} value={objective} onChange={setObjective} error={errors.hdf_prwzhh_ra_antkhab_kny} />
           <MultiSelectDropdown locale={locale} field="rwykrd_rsydn_bh_hdf_ra_an" label={fa ? "چگونه" : "How"} options={fa ? withLabels(approaches, faApproachLabels) : approaches} value={approach} onChange={setApproach} error={errors.rwykrd_rsydn_bh_hdf_ra_an} />
           <MultiSelectDropdown locale={locale} field="nqth_tmas_kanal_ya_khrwjy" label={fa ? "چه چیزی" : "What"} options={fa ? withLabels(touchpoints, faTouchpointLabels) : touchpoints} value={touchpoint} onChange={setTouchpoint} error={errors.nqth_tmas_kanal_ya_khrwjy} />
+          <label id="mauticform_briefform_if_select_other_explain_i" className="brief-field brief-other-field mauticform-row mauticform-text mauticform-field-6" htmlFor="mauticform_input_briefform_if_select_other_explain_i">
+            <span id="mauticform_label_briefform_if_select_other_explain_i" className="brief-label mauticform-label">{fa ? "اگر «سایر» را انتخاب کرده‌اید، توضیح دهید" : "If selected other, explain it"}</span>
+            <textarea name="mauticform[if_select_other_explain_i]" id="mauticform_input_briefform_if_select_other_explain_i" className="mauticform-textarea brief-textarea" />
+            <span className="mauticform-errormsg" aria-live="polite" />
+          </label>
           <div id="mauticform_briefform_submit" className="mauticform-row mauticform-button-wrapper"><button className="mauticform-button brief-submit" name="mauticform[submit]" value="1" id="mauticform_input_briefform_submit" type="submit">{fa ? "ارسال درخواست" : "Submit Brief"} <span aria-hidden="true">↗</span></button></div>
         </div></div>
         <input type="hidden" name="mauticform[formId]" id="mauticform_briefform_id" value="18" />
